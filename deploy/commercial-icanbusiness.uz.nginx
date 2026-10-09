@@ -1,0 +1,47 @@
+# commercial-icanbusiness.uz — apex + www + BARCHA tenant subdomenlar (wildcard), HTTPS bilan.
+# Sertifikat: certbot certonly --manual --preferred-challenges dns \
+#   --cert-name commercial-icanbusiness.uz -d commercial-icanbusiness.uz -d '*.commercial-icanbusiness.uz'
+# bilan olinadi (wildcard uchun DNS-01 TXT kerak).
+
+# ---- HTTP -> HTTPS (apex + www + barcha subdomen) ----
+server {
+    listen 80;
+    listen [::]:80;
+    server_name commercial-icanbusiness.uz www.commercial-icanbusiness.uz *.commercial-icanbusiness.uz;
+    return 301 https://$host$request_uri;
+}
+
+# ---- HTTPS: apex + www + wildcard subdomenlar ----
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name commercial-icanbusiness.uz www.commercial-icanbusiness.uz *.commercial-icanbusiness.uz;
+
+    ssl_certificate     /etc/letsencrypt/live/commercial-icanbusiness.uz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/commercial-icanbusiness.uz/privkey.pem;
+
+    root /var/www/zoodprez;
+    index index.html;
+
+    # API -> Node backend (haqiqiy mijoz IP uzatiladi)
+    location /api/ {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # brand.js keshlanmasin
+    location = /brand.js { add_header Cache-Control "no-store"; expires off; }
+
+    # React Super Admin (SPA)
+    location /superadmin/ { try_files $uri $uri/ /superadmin/index.html; }
+
+    # Market (React build)
+    location /market/ { try_files $uri $uri/ =404; }
+
+    # Prezentatsiya + demolar
+    location / { try_files $uri $uri/ =404; }
+}

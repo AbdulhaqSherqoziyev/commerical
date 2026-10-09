@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);
+/* logo FOUC: tenant logosi bo'lsa — eski ZOOD logolarini almashguncha yashiramiz (src almashsa avtomatik ko'rinadi). data-nobrand (ICAN) tegmaydi. */
+if(_b.logo){var _s=document.createElement("style");_s.id="zfouc-logo";_s.textContent='img[src$="zood-logo.png"]:not([data-nobrand]),img[src$="zood-logo-white.png"]:not([data-nobrand]){opacity:0!important}';(document.head||document.documentElement).appendChild(_s);setTimeout(function(){var e=document.getElementById("zfouc-logo");if(e&&e.parentNode)e.parentNode.removeChild(e);},1600);}
+}}catch(e){}</script>
+<script>/* BO'LIMLAR (modullar): tashkilotga yoqilmagan bo'limlarni yashiramiz — FOUC'siz, keshlangan konfiguratsiyadan. data-mod tokeni yoqilganlar ichida bo'lsa ko'rinadi. */try{var _bm=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_bm&&Array.isArray(_bm.modules)){var _c2='[data-mod]{display:none!important}';for(var _i=0;_i<_bm.modules.length;_i++){_c2+='[data-mod~="'+String(_bm.modules[_i]).replace(/[^a-z0-9_]/gi,'')+'"]{display:revert!important}';}var _sm=document.createElement("style");_sm.id="zmodhide";_sm.textContent=_c2;(document.head||document.documentElement).appendChild(_sm);}}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+  <script src="watermark.js" defer></script>
+  <script src="/security.js" defer></script>
+  <script>/* Market (React) tilini sahifa tili bilan sinxronlash: iframe yuklanishidan OLDIN. uz->uz, ru->ru, en->ru+overlay */try{var _pl=(localStorage.getItem('zood-prez-lang')||'uz');localStorage.setItem('glowen-locale',_pl==='uz'?'uz':'ru');localStorage.setItem('zood-ui-en',_pl==='en'?'1':'0');}catch(e){}</script>
+  <script src="/brand.js?v=1784661573"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+:root{--ink:#171A2B;--ink-2:#3A4055;--muted:#7C8398;--accent:#2E3192;--accent-2:#4A4FC4;--soft:#ECEDF9;--line:#E7EAF2;--bg:#F4F5FA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:'Nunito Sans',sans-serif;color:var(--ink)}
+a{color:var(--accent);text-decoration:none}a:hover{color:var(--accent-2)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+.frame{width:100%;border:0;display:block;background:#F4F5FA}
+/* GLOWEN iframe'lari: til almashganda src qayta yozilmasin (embed=1 saqlanadi) */
+.frame-x{border:0;display:block}
+.shot{border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 2px 6px rgba(20,30,60,.05),0 40px 80px -50px rgba(20,30,60,.45);background:#fff}
+.pill{display:inline-flex;align-items:center;gap:11px;background:var(--soft);color:var(--accent);border-radius:999px;padding:15px 30px;font:900 20px 'Nunito Sans',sans-serif;letter-spacing:.03em;text-transform:uppercase}
+.pill i,.pill svg{width:22px!important;height:22px!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:15px;padding:16px 26px;font:900 15.5px 'Nunito Sans',sans-serif;cursor:pointer;border:0;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--accent);color:#fff;box-shadow:0 14px 30px -12px rgba(46,49,146,.6)}
+.btn-g{background:#fff;color:var(--accent);border:1.5px solid #D6D9EE}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 1px 2px rgba(20,30,60,.04)}
+.fico{width:50px;height:50px;border-radius:15px;background:var(--soft);color:var(--accent);display:grid;place-items:center;margin-bottom:16px}
+.step-n{width:34px;height:34px;border-radius:11px;background:var(--accent);color:#fff;display:grid;place-items:center;font:900 15px 'Nunito Sans',sans-serif;flex-shrink:0}
+.lng{border:0;background:transparent;border-radius:10px;padding:8px 12px;font:900 13px 'Nunito Sans',sans-serif;color:var(--muted);cursor:pointer}
+.lng.on{background:var(--soft);color:var(--accent)}
+/* ===== RESPONSIVE (mobil + o'rta ekran) — desktop dizaynga tegmaydi ===== */
+html,body{overflow-x:hidden}
+/* planshet: 3/4 ustunli kartalar -> 2 ustun */
+@media(max-width:1000px){
+  [style*="repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
+  [style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important}
+}
+/* mobil: 2-ustunli bo'limlar -> 1 ustun (matn + telefon vertikal) */
+@media(max-width:860px){
+  .wrap{padding-left:16px!important;padding-right:16px!important}
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns:1fr 420px"],
+  [style*="grid-template-columns:420px 1fr"]{grid-template-columns:1fr!important;gap:32px!important;justify-items:center}
+}
+/* kichik mobil: kartalar 1 ustun */
+@media(max-width:560px){
+  [style*="repeat(3,1fr)"],[style*="repeat(4,1fr)"]{grid-template-columns:1fr!important}
+}
+/* nav: kichik ekranda ortiqcha yozuvlar yashirin */
+@media(max-width:720px){ .d-hide-sm{display:none!important} }
+/* telefon maketlarini kichik ekranga sig'dirish (zoom layoutni ham kichraytiradi) */
+@media(max-width:480px){ [style*="border-radius:57px"]{zoom:.86} }
+@media(max-width:380px){ [style*="border-radius:57px"]{zoom:.74} }
+</style>
+</helmet>
+
+<div data-screen-label="ZOOD prezentatsiya" style="min-height:100vh">
+
+  <!-- NAV -->
+  <div style="position:sticky;top:0;z-index:30;background:rgba(244,245,250,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+    <div class="wrap" style="display:flex;align-items:center;gap:16px;height:70px">
+      <img src="zood-logo.png" alt="ZOOD" style="height:34px;width:auto" />
+      <span class="d-hide-sm" style="width:1px;height:22px;background:var(--line)"></span>
+      <span class="d-hide-sm" style="font:800 13.5px 'Nunito Sans',sans-serif;color:var(--muted)">{{ t.navSub }}</span>
+      <span style="margin-left:auto;display:flex;gap:2px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3"><button class="{{ l.cls }}" onClick="{{ l.on }}">{{ l.label }}</button></sc-for>
+      </span>
+      <a href="#demo"><span class="btn btn-p" style="padding:11px 20px;font-size:14px"><i data-lucide="play" style="width:16px;height:16px"></i>{{ t.navBtn }}</span></a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap" style="padding-top:70px;padding-bottom:40px;text-align:center">
+    <span class="pill"><span style="width:7px;height:7px;border-radius:50%;background:#33B36B"></span>{{ t.heroPill }}</span>
+    <h1 style="font:900 clamp(38px,6vw,64px)/1.04 'Nunito Sans',sans-serif;letter-spacing:-.03em;margin:22px 0 0;text-wrap:balance">{{ t.heroA }}<br /><span style="color:var(--accent)">{{ t.heroB }}</span></h1>
+    <p style="max-width:640px;margin:20px auto 0;font:600 18px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);text-wrap:pretty">{{ t.heroP }}</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px">
+      <a data-mod="agent_web" href="Agent%20Panel%20(standalone).html" target="_blank" rel="noopener"><span class="btn btn-p"><i data-lucide="monitor" style="width:18px;height:18px"></i>{{ t.openWeb }}</span></a>
+      <a data-mod="agent_app" href="Agent%20Mobile%20(standalone).html?v=1784659690&amp;lang={{ langQ }}" target="_blank" rel="noopener"><span class="btn btn-g"><i data-lucide="smartphone" style="width:18px;height:18px"></i>{{ t.openMob }}</span></a>
+    </div>
+  </div>
+
+  <!-- ICAN MOBIL -->
+  <div data-mod="ican_mobil" class="wrap" style="padding:36px 28px 20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <span class="pill"><i data-lucide="smartphone" style="width:14px;height:14px"></i>{{ t.icmPill }}</span>
+        <h2 style="font:900 32px/1.12 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:16px 0 14px">{{ t.icmH }}</h2>
+        <p style="font:600 16.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);max-width:480px">{{ t.icmP }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px">
+          <sc-for list="{{ icmFeat }}" as="im" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:var(--ink)"><span style="width:30px;height:30px;border-radius:9px;background:var(--soft);color:var(--accent);display:grid;place-items:center"><i data-lucide="{{ im.icon }}" style="width:16px;height:16px"></i></span>{{ im.label }}</div>
+          </sc-for>
+        </div>
+        <a href="iCAN%20Mobile.dc.html?v=1784659690&amp;lang={{ langQ }}" target="_blank" rel="noopener"><span class="btn btn-p" style="margin-top:26px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.icmBtn }}</span></a>
+      </div>
+      <div style="justify-self:center;padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 40px 80px -24px rgba(20,30,60,.5),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+      <div style="position:relative;width:374px;height:813px;border-radius:45px;overflow:hidden">
+        <iframe class="frame" loading="lazy" src="iCAN%20Mobile.dc.html?v=1784659690&amp;lang={{ langQ }}&amp;frameless=1" scrolling="no" style="position:absolute;top:0;left:-20.57px;width:480px;height:940px;transform:scale(.8649);transform-origin:top left;background:transparent"></iframe>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEB SHOT LABEL -->
+  <div data-mod="agent_web" class="wrap" style="text-align:center;padding:6px 28px 16px">
+    <span class="pill"><i data-lucide="monitor" style="width:16px;height:16px"></i>{{ t.webShot }}</span>
+  </div>
+
+  <!-- HERO SHOT: WEB -->
+  <div data-mod="agent_web" class="wrap panelfit" style="padding-bottom:20px">
+    <div class="shot" style="height:660px;position:relative">
+      <div style="height:34px;background:#EDEFF6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)">
+        <span style="width:11px;height:11px;border-radius:50%;background:#E5695B"></span><span style="width:11px;height:11px;border-radius:50%;background:#E9B44A"></span><span style="width:11px;height:11px;border-radius:50%;background:#57B368"></span>
+        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">panel.zood.uz</span>
+      </div>
+      <div style="height:626px;overflow:hidden;position:relative">
+        <iframe class="frame" loading="lazy" src="Agent Panel.dc.html?v=1784659690&amp;lang={{ langQ }}" scrolling="yes" style="position:absolute;top:0;left:0;width:1440px;height:816px;transform:scale(.7667);transform-origin:top left"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div data-mod="agent_web agent_mobil agent_app" class="wrap" style="padding:60px 28px 20px">
+    <div style="text-align:center;margin-bottom:38px">
+      <span class="pill"><i data-lucide="layers" style="width:14px;height:14px"></i>{{ t.featPill }}</span>
+      <h2 style="font:900 34px/1.1 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:16px 0 0">{{ t.featH }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+        <div class="fcard">
+          <span class="fico"><i data-lucide="{{ f.icon }}" style="width:23px;height:23px"></i></span>
+          <div style="font:900 18px 'Nunito Sans',sans-serif;letter-spacing:-.01em">{{ f.title }}</div>
+          <div style="font:600 14.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);margin-top:8px">{{ f.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div data-mod="agent_mobil" class="wrap" style="padding:56px 28px 20px">
+    <div style="text-align:center;margin-bottom:36px">
+      <span class="pill"><i data-lucide="smartphone" style="width:16px;height:16px"></i>{{ t.flowShot }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <span class="pill"><i data-lucide="route" style="width:14px;height:14px"></i>{{ t.flowPill }}</span>
+        <h2 style="font:900 32px/1.12 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:16px 0 26px">{{ t.flowH }}</h2>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <sc-for list="{{ flow }}" as="st" hint-placeholder-count="4">
+            <div style="display:flex;gap:15px">
+              <span class="step-n">{{ st.n }}</span>
+              <span><span style="display:block;font:900 16.5px 'Nunito Sans',sans-serif">{{ st.title }}</span><span style="display:block;font:600 14.5px/1.55 'Nunito Sans',sans-serif;color:var(--ink-2);margin-top:3px">{{ st.desc }}</span></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="justify-self:center;padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 40px 80px -24px rgba(20,30,60,.5),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+      <div style="position:relative;width:374px;height:813px;border-radius:45px;overflow:hidden">
+        <iframe class="frame" loading="lazy" src="Agent Mobile.dc.html?v=1784659690&amp;lang={{ langQ }}&amp;frameless=1" scrolling="no" style="position:absolute;top:-41px;left:-13px;width:430px;height:962px;transform:scale(.9302);transform-origin:top left;background:transparent"></iframe>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE -->
+  <div data-mod="agent_app" style="background:linear-gradient(180deg,var(--brand-d1,#20235E),var(--brand-d2,#141637));margin-top:64px;color:#fff">
+    <div class="wrap" style="padding:64px 28px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center">
+      <div>
+        <span class="pill" style="background:rgba(255,255,255,.12);color:#C9CBF4"><i data-lucide="smartphone" style="width:14px;height:14px"></i>{{ t.mobPill }}</span>
+        <h2 style="font:900 36px/1.1 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:18px 0 16px">{{ t.mobH }}</h2>
+        <p style="font:600 17px/1.6 'Nunito Sans',sans-serif;color:#B9BCE4;max-width:460px">{{ t.mobP }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:26px">
+          <sc-for list="{{ mobileFeat }}" as="m" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:#E7E8FB"><span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff"><i data-lucide="{{ m.icon }}" style="width:16px;height:16px"></i></span>{{ m.label }}</div>
+          </sc-for>
+        </div>
+        <a href="Agent%20Mobile%20(standalone).html?v=1784659690&amp;lang={{ langQ }}" target="_blank" rel="noopener"><span class="btn" style="background:#fff;color:var(--accent);margin-top:30px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.openMob }}</span></a>
+      </div>
+      <div style="justify-self:center">
+        <div style="padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 50px 90px -40px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+        <div style="width:374px;height:813px;position:relative;border-radius:45px;overflow:hidden">
+          <iframe class="frame" loading="lazy" src="Agent Mobile.dc.html?v=1784659690&amp;lang={{ langQ }}&amp;frameless=1" scrolling="no" style="position:absolute;top:-41px;left:-13px;width:430px;height:962px;transform:scale(.9302);transform-origin:top left;background:transparent"></iframe>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENT APP -->
+  <div data-mod="client" class="wrap" style="padding:64px 28px 20px">
+    <div style="display:grid;grid-template-columns:420px 1fr;gap:48px;align-items:center">
+      <div style="justify-self:center;padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 40px 80px -24px rgba(20,30,60,.5),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+      <div style="position:relative;width:374px;height:813px;border-radius:45px;overflow:hidden">
+        <iframe class="frame" loading="lazy" src="uploads/ZOOD%20-%20Demo%20(standalone).html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-24.5px;left:-23px;width:420px;height:862px;background:transparent"></iframe>
+      </div>
+      </div>
+      <div>
+        <span class="pill"><i data-lucide="user-round" style="width:14px;height:14px"></i>{{ t.cliPill }}</span>
+        <h2 style="font:900 34px/1.12 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:16px 0 14px">{{ t.cliH }}</h2>
+        <p style="font:600 16.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);max-width:480px">{{ t.cliP }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px">
+          <sc-for list="{{ clientFeat }}" as="cf" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:var(--ink)"><span style="width:30px;height:30px;border-radius:9px;background:var(--soft);color:var(--accent);display:grid;place-items:center"><i data-lucide="{{ cf.icon }}" style="width:16px;height:16px"></i></span>{{ cf.label }}</div>
+          </sc-for>
+        </div>
+        <a href="uploads/ZOOD%20-%20Demo%20(standalone).html" target="_blank" rel="noopener"><span class="btn btn-g" style="margin-top:26px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.cliBtn }}</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTOR -->
+  <div data-mod="investor" style="background:linear-gradient(180deg,var(--brand-d1,#20235E),var(--brand-d2,#141637));color:#fff;margin-top:64px">
+    <div class="wrap" style="padding:64px 28px;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center">
+      <div>
+        <span class="pill" style="background:rgba(255,255,255,.12);color:#C9CBF4"><i data-lucide="trending-up" style="width:14px;height:14px"></i>{{ t.invPill }}</span>
+        <h2 style="font:900 36px/1.1 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:18px 0 16px">{{ t.invH }}</h2>
+        <p style="font:600 17px/1.6 'Nunito Sans',sans-serif;color:#B9BCE4;max-width:460px">{{ t.invP }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:26px">
+          <sc-for list="{{ invFeat }}" as="iv" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:#E7E8FB"><span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff"><i data-lucide="{{ iv.icon }}" style="width:16px;height:16px"></i></span>{{ iv.label }}</div>
+          </sc-for>
+        </div>
+        <a href="Investor%20Mobil%20-ZOOD-.html" target="_blank" rel="noopener"><span class="btn" style="background:#fff;color:var(--accent);margin-top:30px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.invBtn }}</span></a>
+      </div>
+      <div style="justify-self:center">
+        <div style="padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 50px 90px -40px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+        <div style="width:374px;height:813px;border-radius:45px;overflow:hidden;position:relative">
+          <iframe class="frame" loading="lazy" src="Investor%20Mobil%20-ZOOD-.html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-26px;left:-46px;width:500px;height:930px;transform:scale(.9302);transform-origin:top left;background:transparent"></iframe>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOWEN · VEB-DO'KON -->
+  <div data-mod="webstore" class="wrap" style="padding:70px 28px 20px">
+    <div style="text-align:center;margin-bottom:34px">
+      <span class="pill"><i data-lucide="store" style="width:14px;height:14px"></i>{{ t.glwPill }}</span>
+      <h2 style="font:900 34px/1.12 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:16px 0 0;text-wrap:balance">{{ t.glwH }}</h2>
+      <p style="max-width:640px;margin:16px auto 0;font:600 16.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);text-wrap:pretty">{{ t.glwP }}</p>
+    </div>
+
+    <div class="panelfit">
+    <div class="shot" style="height:640px;position:relative;margin-bottom:26px">
+      <div style="height:34px;background:#EDEFF6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)">
+        <span style="width:11px;height:11px;border-radius:50%;background:#E5695B"></span><span style="width:11px;height:11px;border-radius:50%;background:#E9B44A"></span><span style="width:11px;height:11px;border-radius:50%;background:#57B368"></span>
+        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">zoodmall.uz</span>
+        <a href="market/index.html" target="_blank" rel="noopener" style="margin-left:auto;font:900 11.5px 'Nunito Sans',sans-serif;color:var(--accent);display:inline-flex;align-items:center;gap:5px">{{ t.glwNew }} <i data-lucide="external-link" style="width:12px;height:12px"></i></a>
+      </div>
+      <div style="height:606px;overflow:hidden;position:relative">
+        <iframe class="frame-x" src="market/index.html" style="position:absolute;top:0;left:0;width:1440px;height:790px;transform:scale(.7667);transform-origin:top left;background:#F4F5FA" loading="lazy"></iframe>
+      </div>
+    </div>
+    </div>
+    <div style="text-align:center;margin-bottom:30px;font:600 13px 'Nunito Sans',sans-serif;color:var(--muted)">{{ t.glwLive }}</div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+      <sc-for list="{{ glwFeat }}" as="gf" hint-placeholder-count="4">
+        <div class="fcard">
+          <span class="fico"><i data-lucide="{{ gf.icon }}" style="width:23px;height:23px"></i></span>
+          <div style="font:900 18px 'Nunito Sans',sans-serif;letter-spacing:-.01em">{{ gf.title }}</div>
+          <div style="font:600 14.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2);margin-top:8px">{{ gf.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- GLOWEN · MOBIL ILOVA -->
+  <div data-mod="market" style="background:linear-gradient(180deg,var(--brand-d1,#20235E),var(--brand-d2,#141637));color:#fff;margin-top:64px">
+    <div class="wrap" style="padding:64px 28px;display:grid;grid-template-columns:420px 1fr;gap:48px;align-items:center">
+      <div style="justify-self:center">
+        <div style="padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 50px 90px -40px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.07)">
+        <!-- Glowen ilovasi o'z qora ramkasini chizadi: uni kesib tashlab, faqat ekranni (368x822) ZOOD ramkasiga joylaymiz -->
+        <div style="width:364px;height:813px;border-radius:45px;overflow:hidden;position:relative;background:#F1F4F5">
+          <iframe class="frame-x" loading="lazy" src="Glowen%20-%20Mobil%20ilova.html?embed=1&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-22.75px;left:-25.72px;width:420px;height:868px;transform:scale(.98905);transform-origin:top left;background:transparent"></iframe>
+        </div>
+        </div>
+      </div>
+      <div>
+        <span class="pill" style="background:rgba(255,255,255,.12);color:#C9CBF4"><i data-lucide="smartphone" style="width:14px;height:14px"></i>{{ t.gmPill }}</span>
+        <h2 style="font:900 36px/1.1 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:18px 0 16px">{{ t.gmH }}</h2>
+        <p style="font:600 17px/1.6 'Nunito Sans',sans-serif;color:#B9BCE4;max-width:460px">{{ t.gmP }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:26px">
+          <sc-for list="{{ gmFeat }}" as="gm" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:#E7E8FB"><span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff"><i data-lucide="{{ gm.icon }}" style="width:16px;height:16px"></i></span>{{ gm.label }}</div>
+          </sc-for>
+        </div>
+        <a href="Glowen%20-%20Mobil%20ilova.html?lang={{ langQ }}" target="_blank" rel="noopener"><span class="btn" style="background:#fff;color:var(--accent);margin-top:30px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.gmBtn }}</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO CTA -->
+  <div id="demo" class="wrap" style="padding:80px 28px 90px;text-align:center">
+    <span class="pill"><i data-lucide="mouse-pointer-click" style="width:14px;height:14px"></i>{{ t.demoPill }}</span>
+    <h2 style="font:900 40px/1.08 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:18px 0 12px;text-wrap:balance">{{ t.demoH }}</h2>
+    <p style="max-width:560px;margin:0 auto;font:600 17px/1.6 'Nunito Sans',sans-serif;color:var(--ink-2)">{{ t.demoP }}</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1104px;margin:40px auto 0">
+      <sc-for list="{{ demoCards }}" as="d" hint-placeholder-count="6">
+        <a data-mod="{{ d.mod }}" href="{{ d.href }}" target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="fcard" style="text-align:left;height:100%;transition:transform .15s,box-shadow .15s" style-hover="transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(46,49,146,.45)">
+            <span class="fico" style="background:var(--accent);color:#fff"><i data-lucide="{{ d.icon }}" style="width:24px;height:24px"></i></span>
+            <div style="font:900 21px 'Nunito Sans',sans-serif">{{ d.title }}</div>
+            <div style="font:600 14.5px/1.55 'Nunito Sans',sans-serif;color:var(--ink-2);margin-top:8px">{{ d.desc }}</div>
+            <div style="display:inline-flex;align-items:center;gap:7px;font:900 14.5px 'Nunito Sans',sans-serif;color:var(--accent);margin-top:16px">{{ t.open }} <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#07211F;color:#EAF3F2">
+    <div class="wrap" style="padding:48px 28px 22px;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:34px;align-items:start">
+      <div>
+        <img src="ican-logo-white.png" alt="ICAN BUSINESS" data-nobrand="1" style="height:88px;width:auto" onerror="this.style.display='none'" />
+      </div>
+      <div>
+        <div style="font:900 12px 'Nunito Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#4FC3BC;margin-bottom:14px">{{ t.footDev }}</div>
+        <div style="font:800 15.5px 'Nunito Sans',sans-serif">Sobirov Nuriddin</div>
+        <a href="tel:+998939825001" style="color:#AECFCC;font:600 14px 'Nunito Sans',sans-serif">+998 93 982 50 01</a>
+        <div style="font:800 15.5px 'Nunito Sans',sans-serif;margin-top:12px">Akmaljonov Asiljon</div>
+        <a href="tel:+998999981444" style="color:#AECFCC;font:600 14px 'Nunito Sans',sans-serif">+998 99 998 14 44</a>
+      </div>
+      <div>
+        <div style="font:900 12px 'Nunito Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#4FC3BC;margin-bottom:14px">{{ t.footSite }}</div>
+        <a href="https://icanbusiness.uz/" target="_blank" rel="noopener" style="color:#EAF3F2;font:800 15.5px 'Nunito Sans',sans-serif;display:inline-flex;align-items:center;gap:8px"><i data-lucide="globe" style="width:17px;height:17px"></i>icanbusiness.uz</a>
+        <div style="font:900 12px 'Nunito Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#4FC3BC;margin:20px 0 14px">{{ t.footSupport }}</div>
+        <a href="tel:+998781137200" style="color:#EAF3F2;font:800 15.5px 'Nunito Sans',sans-serif;display:inline-flex;align-items:center;gap:8px"><i data-lucide="headphones" style="width:17px;height:17px"></i>+998 78 113 72 00</a>
+      </div>
+    </div>
+    <div class="wrap" style="border-top:1px solid rgba(255,255,255,.12);margin-top:26px;padding:18px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <span style="font:700 12.5px 'Nunito Sans',sans-serif;color:#8FB0AD">{{ t.footL }}</span>
+      <span style="margin-left:auto;font:700 12.5px 'Nunito Sans',sans-serif;color:#8FB0AD">{{ t.footR }}</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('zood-prez-lang')) || 'uz' };
+  componentDidMount() { this._lastLang = this.state.lang; const d = () => { if (window.lucide) window.lucide.createIcons(); }; d(); this._i = setInterval(d, 500); }
+  componentWillUnmount() { clearInterval(this._i); }
+  componentDidUpdate() {
+    if (this._lastLang !== this.state.lang) {
+      this._lastLang = this.state.lang;
+      const l = this.state.lang;
+      try { document.querySelectorAll('iframe.frame').forEach(f => { try { const cur = f.getAttribute('src') || ''; const base = cur.split('?')[0]; if (base) f.src = base + '?v=1784659690&lang=' + l + (cur.indexOf('frameless=1') >= 0 ? '&frameless=1' : ''); } catch (e) {} }); } catch (e) {}
+      // Market (React) — tili localStorage['glowen-locale'] orqali; faqat uz/ru mavjud, en -> uz
+      try {
+        const marketLoc = (l === 'uz') ? 'uz' : 'ru';
+        const uiEn = (l === 'en') ? '1' : '0';
+        try { localStorage.setItem('glowen-locale', marketLoc); localStorage.setItem('zood-ui-en', uiEn); } catch (e) {}
+        document.querySelectorAll('iframe.frame-x').forEach(f => {
+          const cur = f.getAttribute('src') || '';
+          if (cur.indexOf('market/index.html') >= 0) {
+            try { f.contentWindow.localStorage.setItem('glowen-locale', marketLoc); f.contentWindow.localStorage.setItem('zood-ui-en', uiEn); } catch (e) {}
+            f.src = 'market/index.html?loc=' + marketLoc + '&ui=' + uiEn + '&t=' + Date.now();
+          } else if (cur.indexOf('Glowen') >= 0) {
+            f.src = 'Glowen%20-%20Mobil%20ilova.html?embed=1&lang=' + l + '&t=' + Date.now();
+          }
+        });
+      } catch (e) {}
+    }
+  }
+
+  T = {
+    ru: {
+      navSub: 'Панель агента · BNPL', navBtn: 'Открыть демо',
+      heroPill: 'Живой прототип · 2026', heroA: 'Рассрочка для магазина —', heroB: 'от проверки клиента до выплаты',
+      heroP: 'Единая панель агента ZOOD: оформление продажи в рассрочку, скоринг и лимит клиента, прозрачные взаиморасчёты с финтехом и отчётность — на компьютере и в телефоне.',
+      openWeb: 'Открыть веб-панель', openMob: 'Открыть мобильную версию', open: 'Открыть',
+      icmPill: 'iCAN Mobil', icmH: 'Клиентское приложение — теперь полностью в мобильном',
+      icmP: 'Вход, договоры, скоринг и блокировка — всё в одном приложении. Клиент отслеживает свои договоры, график платежей и лимит прямо с телефона.',
+      icmBtn: 'Открыть iCAN Mobil',
+      webShot: 'Агент · Веб-панель', flowShot: 'Агент · Мобильный',
+      featPill: 'Что внутри', featH: 'Всё для продажи в одном месте',
+      flowPill: 'Как проходит продажа', flowH: '4 шага — и товар оформлен',
+      mobPill: 'Мобильное приложение агента', mobH: 'Продавайте прямо со смартфона',
+      mobP: 'Тот же функционал в кармане: оформление в рассрочку, проверка клиента по ПИНФЛ или сканером QR, взаиморасчёты и калькулятор. Кнопка «Продажа» — всегда под большим пальцем.',
+      cliPill: 'Приложение клиента', cliH: 'А клиент видит всё у себя в телефоне',
+      cliP: 'Личный кабинет покупателя: одобренный лимит, QR-код для оформления в магазине, график платежей и оплата — всё в одном приложении.',
+      cliBtn: 'Открыть приложение клиента',
+      invPill: 'ZOOD Invest · Инвестор', invH: 'Кабинет инвестора — в телефоне',
+      invP: 'Инвесторы финансируют рассрочку и следят за своим портфелем: вложения, доходность и выплаты — в мобильном кабинете.',
+      invBtn: 'Открыть кабинет инвестора',
+      glwPill: 'ZOODMALL · Веб-магазин', glwH: 'Premium marketplace — от покупки до доставки',
+      glwP: 'ZOODMALL — полноценный магазин в браузере: каталог и поиск, молниеносные скидки, рассрочка и подтверждение личности. Заказ сразу попадает в панель управления.',
+      glwNew: 'В новом окне', glwLive: 'Окно выше — живой сайт. Внутри можно листать и кликать.',
+      gmPill: 'Zoodmall мобильный маркет', gmH: 'Покупки прямо с телефона',
+      gmP: 'Возможности сайта в кармане: каталог и поиск, таймер молниеносных скидок, рассрочка и подтверждение через камеру. Кнопка корзины — всегда под большим пальцем.',
+      gmBtn: 'Открыть приложение полностью',
+      demoPill: 'Попробуйте сами', demoH: 'Откройте демо и пройдите весь путь',
+      demoP: 'Нажмите — приложение откроется в новой вкладке. Всё интерактивно: оформите продажу, проверьте клиента, посмотрите взаиморасчёты и отчёты.',
+      footL: 'Панель агента · Прототип 2026', footR: 'Демо-данные · UZS сум',
+      footDev: 'Для связи', footSite: 'Веб-сайт', footSupport: 'Поддержка',
+      features: [
+        ['Новая продажа','Мастер из 4 шагов: корзина товаров, проверка клиента, договор и подпись по SMS.'],
+        ['Проверка и лимит','Скоринг по ПИНФЛ или сканирование QR-кода — лимит клиента виден мгновенно.'],
+        ['Взаиморасчёты','Переданные товары в минус, выплаты финтеха в плюс и общий баланс — прозрачно.'],
+        ['Договоры','Список всех договоров со статусом выплаты и днями просрочки по каждому.'],
+        ['Отчёты','Продажи, выплаты, комиссия, просрочки и продавцы — 5 отчётов с итогами.'],
+        ['Калькулятор','Быстрый расчёт рассрочки: цена и срок → ежемесячный платёж и наценка.']
+      ],
+      flow: [
+        ['Корзина','Агент добавляет товары, выбирает срок рассрочки — расчёт считается вживую.'],
+        ['Клиент','Проверка по ПИНФЛ или сканером QR — система показывает одобренный лимит.'],
+        ['Договор','Клиент подписывает по SMS, договор оформлен, финтех выплачивает магазину.'],
+        ['Взаиморасчёты','Операция попадает в ленту, баланс и выплата обновляются автоматически.']
+      ],
+      icmFeat: ['Безопасный вход и профиль','Договоры и история платежей','Проверка клиента через скоринг','Блокировка IMEI и устройства'],
+      mobileFeat: ['Оформление продажи в 3 шага','Сканер QR-кода клиента','Взаиморасчёты и баланс','Калькулятор рассрочки'],
+      clientFeat: ['Одобренный лимит всегда под рукой','QR-код для покупки в магазине','График платежей и напоминания','Оплата рассрочки картой'],
+      invFeat: ['Портфель и вложения инвестора','Доходность и начисления','Выплаты и история операций','Прозрачный фонд под контролем'],
+      glwFeat: [
+        ['Каталог и поиск','Трёхуровневые категории, фильтр, сортировка и сравнение — 8 направлений.'],
+        ['Молниеносные скидки','Акции с таймером. Одна кампания — и на сайте, и в приложении.'],
+        ['Рассрочка','3, 6 или 12 месяцев. Платёж считается вживую, договор скачивается сразу.'],
+        ['Подтверждение личности','Проверка лица по камере, паспорт и дата рождения — для покупки в рассрочку.']
+      ],
+      gmFeat: ['Поиск, категории и избранное','Молниеносные скидки — с таймером','Рассрочка на 3 / 6 / 12 месяцев','Подтверждение личности по камере'],
+      demoCards: [
+        ['iCAN Mobil','Вход, договоры, скоринг и блокировка — клиентское приложение полностью в мобильном.'],
+        ['Веб-панель','Полная панель агента для компьютера. Все разделы и отчёты.'],
+        ['Мобильная версия','Приложение агента в iOS-оболочке. Продажа в пару касаний.'],
+        ['Приложение клиента','Лимит, QR-код и график платежей глазами покупателя.'],
+        ['Кабинет инвестора','Портфель, доходность и выплаты инвестора фонда.'],
+        ['Маркет · веб-панель','Магазин ZOODMALL в браузере. Каталог, страница товара, корзина и оформление.'],
+        ['Маркет · мобильная версия','Приложение ZOODMALL в телефоне. Покупка и рассрочка в пару касаний.']
+      ]
+    },
+    uz: {
+      navSub: 'Agent paneli · BNPL', navBtn: 'Demoni ochish',
+      heroPill: 'Jonli prototip · 2026', heroA: "Do'kon uchun muddatli to'lov —", heroB: "mijoz tekshiruvidan to'lovgacha",
+      heroP: "ZOOD agentining yagona paneli: muddatli to'lovga savdo rasmiylashtirish, skoring va mijoz limiti, fintex bilan shaffof o'zaro hisob-kitoblar va hisobotlar — kompyuterda ham, telefonda ham.",
+      openWeb: 'Veb-panelni ochish', openMob: 'Mobil versiyani ochish', open: 'Ochish',
+      icmPill: 'iCAN Mobil ilova', icmH: "Mijoz ilovasi — endi to'liq mobilda",
+      icmP: "Kirish, shartnomalar, skoring va bloklash — barchasi bitta ilovada. Mijoz o'z shartnomalarini, to'lov jadvalini va limitini istalgan vaqt telefonidan kuzatadi.",
+      icmBtn: 'iCAN Mobilni ochish',
+      webShot: 'Agent · Veb-panel', flowShot: 'Agent · Mobil',
+      featPill: 'Ichida nima bor', featH: "Savdo uchun hammasi bir joyda",
+      flowPill: "Savdo qanday o'tadi", flowH: '4 qadam — va tovar rasmiylashtirildi',
+      mobPill: 'Agent mobil ilova', mobH: "To'g'ridan-to'g'ri smartfondan soting",
+      mobP: "Xuddi shu funksiyalar cho'ntagingizda: muddatli to'lovga rasmiylashtirish, PINFL yoki QR-skaner orqali mijoz tekshiruvi, hisob-kitoblar va kalkulyator. «Savdo» tugmasi — doim bosh barmoq ostida.",
+      cliPill: 'Mijoz ilovasi', cliH: "Mijoz esa hammasini o'z telefonida ko'radi",
+      cliP: "Xaridorning shaxsiy kabineti: tasdiqlangan limit, do'konda rasmiylashtirish uchun QR-kod, to'lov jadvali va to'lov — hammasi bitta ilovada.",
+      cliBtn: 'Mijoz ilovasini ochish',
+      invPill: 'ZOOD Invest · Investor', invH: 'Investor kabineti — telefonda',
+      invP: "Investorlar muddatli to'lovni moliyalashtiradi va portfelini kuzatadi: qo'yilmalar, daromadlilik va to'lovlar — mobil kabinetda.",
+      invBtn: 'Investor kabinetini ochish',
+      glwPill: "ZOODMALL · Veb-do'kon", glwH: "Premium marketplace — xariddan yetkazib berishgacha",
+      glwP: "ZOODMALL — brauzerdagi to'liq do'kon: katalog va qidiruv, chaqmoq chegirma, muddatli to'lov va shaxsni tasdiqlash. Buyurtma bir zumda boshqaruv paneliga tushadi.",
+      glwNew: 'Yangi oynada', glwLive: "Yuqoridagi oyna — jonli sayt. Ichida aylantirib, bosib ko'rishingiz mumkin.",
+      gmPill: 'Zoodmall mobil market', gmH: "To'g'ridan-to'g'ri telefondan xarid",
+      gmP: "Saytdagi imkoniyatlar cho'ntakda: katalog va qidiruv, chaqmoq chegirma taymeri, bo'lib to'lash va kamera orqali tasdiqlash. Savat tugmasi — doim bosh barmoq ostida.",
+      gmBtn: "Ilovani to'liq ochish",
+      demoPill: "O'zingiz sinab ko'ring", demoH: "Demoni oching va butun yo'lni bosib o'ting",
+      demoP: "Bosing — ilova yangi vkladkada ochiladi. Hammasi interaktiv: savdo rasmiylashtiring, mijozni tekshiring, hisob-kitob va hisobotlarni ko'ring.",
+      footL: 'Agent paneli · Prototip 2026', footR: "Demo ma'lumotlar · UZS so'm",
+      footDev: 'Aloqa uchun', footSite: 'Veb-sayt', footSupport: "Qo'llab-quvvatlash",
+      features: [
+        ['Yangi savdo',"4 qadamli master: tovarlar savati, mijoz tekshiruvi, shartnoma va SMS orqali imzo."],
+        ['Tekshiruv va limit',"PINFL bo'yicha skoring yoki QR-kod skaneri — mijoz limiti bir zumda ko'rinadi."],
+        ["O'zaro hisob-kitoblar","Berilgan tovarlar minusga, fintex to'lovlari plusga va umumiy balans — shaffof."],
+        ['Shartnomalar',"Barcha shartnomalar ro'yxati: to'lov holati va har biri bo'yicha kechikish kunlari."],
+        ['Hisobotlar',"Savdolar, to'lovlar, komissiya, kechikishlar va sotuvchilar — jami bilan 5 ta hisobot."],
+        ['Kalkulyator',"Tez hisob-kitob: narx va muddat → oylik to'lov va ustama."]
+      ],
+      flow: [
+        ['Savat',"Agent tovarlarni qo'shadi, muddatni tanlaydi — hisob jonli hisoblanadi."],
+        ['Mijoz',"PINFL yoki QR-skaner orqali tekshiruv — tizim tasdiqlangan limitni ko'rsatadi."],
+        ['Shartnoma',"Mijoz SMS orqali imzolaydi, shartnoma rasmiylashadi, fintex do'konga to'laydi."],
+        ["Hisob-kitob","Operatsiya lentaga tushadi, balans va to'lov avtomatik yangilanadi."]
+      ],
+      icmFeat: ['Xavfsiz kirish va profil', "Shartnomalar va to'lov tarixi", 'Mijozni skoring orqali tekshirish', 'IMEI va qurilmani bloklash'],
+      mobileFeat: ["3 qadamda savdo rasmiylashtirish",'Mijoz QR-kodini skanerlash','Hisob-kitoblar va balans','Muddatli to\'lov kalkulyatori'],
+      clientFeat: ['Tasdiqlangan limit doim qo\'lda',"Do'konda xarid uchun QR-kod","To'lov jadvali va eslatmalar","Muddatli to'lovni karta bilan to'lash"],
+      invFeat: ["Investor portfeli va qo'yilmalari",'Daromadlilik va hisoblanmalar',"To'lovlar va operatsiyalar tarixi",'Shaffof fond nazorat ostida'],
+      glwFeat: [
+        ['Katalog va qidiruv',"Uch darajali kategoriyalar, filtr, saralash va taqqoslash — 8 yo'nalish."],
+        ['Chaqmoq chegirma',"Vaqt hisoblagichli aksiyalar. Bitta kampaniya — saytda ham, ilovada ham."],
+        ["Muddatli to'lov","3, 6 yoki 12 oy. Oylik to'lov jonli hisoblanadi, shartnoma darhol yuklanadi."],
+        ['Shaxsni tasdiqlash',"Kamera orqali yuz tekshiruvi, pasport va tug'ilgan sana — nasiya xaridi uchun."]
+      ],
+      gmFeat: ['Qidiruv, kategoriyalar va sevimlilar','Chaqmoq chegirma — vaqt hisoblagichi bilan',"3 / 6 / 12 oyga bo'lib to'lash",'Kamera orqali shaxsni tasdiqlash'],
+      demoCards: [
+        ['iCAN Mobil', "Kirish, shartnomalar, skoring va bloklash — mijoz ilovasi to'liq mobilda."],
+        ['Veb-panel',"Kompyuter uchun to'liq agent paneli. Barcha bo'limlar va hisobotlar."],
+        ['Mobil versiya','iOS qobig\'idagi agent ilovasi. Bir necha teginishda savdo.'],
+        ['Mijoz ilovasi',"Limit, QR-kod va to'lov jadvali — xaridor ko'zi bilan."],
+        ['Investor kabineti',"Fond investorining portfeli, daromadliligi va to'lovlari."],
+        ['Market veb-panel',"ZOODMALL do'koni brauzerda. Katalog, mahsulot sahifasi, savat va rasmiylashtirish."],
+        ['Market mobil versiya',"ZOODMALL ilovasi telefonda. Bir necha bosishda xarid va bo'lib to'lash."]
+      ]
+    },
+    en: {
+      navSub: 'Agent panel · BNPL', navBtn: 'Open demo',
+      heroPill: 'Live prototype · 2026', heroA: 'In-store installments —', heroB: 'from client check to payout',
+      heroP: 'One ZOOD agent panel: installment sales, client scoring and limits, transparent settlements with the fintech, and reporting — on desktop and mobile.',
+      openWeb: 'Open web panel', openMob: 'Open mobile version', open: 'Open',
+      icmPill: 'iCAN Mobile', icmH: 'The client app — now fully mobile',
+      icmP: 'Login, contracts, scoring and blocking — all in one app. Clients track their contracts, payment schedule and limit right from their phone.',
+      icmBtn: 'Open iCAN Mobile',
+      webShot: 'Agent · Web panel', flowShot: 'Agent · Mobile',
+      featPill: "What's inside", featH: 'Everything for a sale in one place',
+      flowPill: 'How a sale works', flowH: '4 steps — and the deal is done',
+      mobPill: 'Agent mobile app', mobH: 'Sell right from a smartphone',
+      mobP: 'The same tools in your pocket: installment checkout, client check by PINFL or QR scanner, settlements and a calculator. The "Sale" button is always under your thumb.',
+      cliPill: 'Client app', cliH: 'And the client sees everything on their phone',
+      cliP: 'A buyer personal account: approved limit, QR code for in-store checkout, payment schedule and payments — all in one app.',
+      cliBtn: 'Open client app',
+      invPill: 'ZOOD Invest · Investor', invH: 'Investor account — on the phone',
+      invP: 'Investors fund the installments and track their portfolio: investments, returns and payouts — in a mobile account.',
+      invBtn: 'Open investor account',
+      glwPill: 'ZOODMALL · Web store', glwH: 'A premium marketplace — from checkout to delivery',
+      glwP: 'ZOODMALL is a full store in the browser: catalogue and search, flash deals, installments and identity verification. Every order lands in the admin panel instantly.',
+      glwNew: 'New window', glwLive: 'The window above is the live site. Scroll and click inside it.',
+      gmPill: 'Zoodmall mobile market', gmH: 'Shop straight from the phone',
+      gmP: 'The whole site in your pocket: catalogue and search, a flash-deal timer, installments and camera verification. The cart button is always under your thumb.',
+      gmBtn: 'Open the full app',
+      demoPill: 'Try it yourself', demoH: 'Open the demo and walk the whole flow',
+      demoP: 'Click — the app opens in a new tab. Everything is interactive: make a sale, check a client, browse settlements and reports.',
+      footL: 'Agent panel · Prototype 2026', footR: 'Demo data · UZS',
+      footDev: 'Contact us', footSite: 'Website', footSupport: 'Support',
+      features: [
+        ['New sale','A 4-step wizard: product cart, client check, contract and SMS signature.'],
+        ['Check & limit','Scoring by PINFL or QR-code scan — the client limit is visible instantly.'],
+        ['Settlements','Transferred goods as minus, fintech payouts as plus, and a running balance.'],
+        ['Contracts','All contracts with payout status and overdue days for each one.'],
+        ['Reports','Sales, payouts, commission, overdues and sellers — 5 reports with totals.'],
+        ['Calculator','Quick installment math: price and term → monthly payment and markup.']
+      ],
+      flow: [
+        ['Cart','The agent adds products and picks a term — totals update live.'],
+        ['Client','Check by PINFL or QR scanner — the system shows the approved limit.'],
+        ['Contract','The client signs via SMS, the contract is done, the fintech pays the shop.'],
+        ['Settlements','The operation lands in the ledger; balance and payout update automatically.']
+      ],
+      icmFeat: ['Secure login and profile','Contracts and payment history','Client check via scoring','IMEI and device blocking'],
+      mobileFeat: ['Checkout in 3 steps','Client QR-code scanner','Settlements and balance','Installment calculator'],
+      clientFeat: ['Approved limit always at hand','QR code for in-store purchase','Payment schedule and reminders','Pay installments by card'],
+      invFeat: ['Investor portfolio and holdings','Returns and accruals','Payouts and operation history','A transparent, controlled fund'],
+      glwFeat: [
+        ['Catalogue & search','Three-level categories, filters, sorting and comparison — 8 departments.'],
+        ['Flash deals','Timed campaigns. One campaign — live on the site and in the app at once.'],
+        ['Installments','3, 6 or 12 months. The monthly payment updates live; the contract downloads instantly.'],
+        ['Identity check','Face check by camera, passport and date of birth — for installment purchases.']
+      ],
+      gmFeat: ['Search, categories and favourites','Flash deals — with a countdown','Installments over 3 / 6 / 12 months','Identity verification by camera'],
+      demoCards: [
+        ['iCAN Mobile', 'Login, contracts, scoring and blocking — the client app fully on mobile.'],
+        ['Web panel','The full agent panel for desktop. Every section and report.'],
+        ['Mobile version','The agent app in an iOS shell. A sale in a few taps.'],
+        ['Client app','Limit, QR code and payment schedule through the buyer\'s eyes.'],
+        ['Investor account','Portfolio, returns and payouts of a fund investor.'],
+        ['Market web panel','The ZOODMALL store in a browser. Catalogue, product page, cart and checkout.'],
+        ['Market mobile version','The ZOODMALL app on a phone. Buy and pay in installments in a few taps.']
+      ]
+    }
+  };
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = this.T[lang] || this.T.ru;
+    const icons = { features: ['file-signature','user-check','arrow-left-right','file-text','bar-chart-3','calculator'],
+      icm: ['lock','file-text','shield-check','smartphone-nfc'],
+      mobile: ['plus-circle','scan-line','wallet','calculator'],
+      client: ['badge-check','qr-code','calendar-days','credit-card'],
+      inv: ['wallet','trending-up','arrow-down-left','shield-check'],
+      glw: ['search','zap','credit-card','scan-face'],
+      gm: ['search','zap','credit-card','scan-face'],
+      demo: ['wallet','monitor','smartphone','user-round','trending-up','store','shopping-bag'] };
+    const hrefs = ['iCAN%20Mobile.dc.html?lang=' + lang,'Agent%20Panel%20(standalone).html','Agent%20Mobile%20(standalone).html?lang=' + lang,'uploads/ZOOD%20-%20Demo%20(standalone).html','Investor%20Mobil%20-ZOOD-.html','market/index.html','Glowen%20-%20Mobil%20ilova.html'];
+    return {
+      t, langQ: lang,
+      langs: ['uz','ru','en'].map(l => ({ label: l.toUpperCase(), cls: lang === l ? 'lng on' : 'lng', on: () => { this.setState({ lang: l }); try { localStorage.setItem('zood-prez-lang', l); } catch(_){} } })),
+      features: t.features.map((f, i) => ({ icon: icons.features[i], title: f[0], desc: f[1] })),
+      flow: t.flow.map((f, i) => ({ n: String(i + 1), title: f[0], desc: f[1] })),
+      icmFeat: t.icmFeat.map((label, i) => ({ icon: icons.icm[i], label })),
+      mobileFeat: t.mobileFeat.map((label, i) => ({ icon: icons.mobile[i], label })),
+      clientFeat: t.clientFeat.map((label, i) => ({ icon: icons.client[i], label })),
+      invFeat: t.invFeat.map((label, i) => ({ icon: icons.inv[i], label })),
+      glwFeat: t.glwFeat.map((f, i) => ({ icon: icons.glw[i], title: f[0], desc: f[1] })),
+      gmFeat: t.gmFeat.map((label, i) => ({ icon: icons.gm[i], label })),
+      demoCards: t.demoCards.map((d, i) => ({ icon: icons.demo[i], title: d[0], desc: d[1], href: hrefs[i], mod: ['ican_mobil','agent_web','agent_app','client','investor','webstore','market'][i] }))
+    };
+  }
+}
+</script>
+<script>
+/* RESPONSIVE: desktop panellarni (agent, market — 1104px) mavjud kenglikka aniq sig'dirish.
+   Desktop (>=1104px joy) bo'lsa hech narsa o'zgartirmaydi — dizayn o'z holicha qoladi. */
+(function(){
+  var NAT=1104;
+  function fit(){
+    var list=document.querySelectorAll('.panelfit');
+    for(var i=0;i<list.length;i++){
+      var outer=list[i], shot=outer.querySelector('.shot'); if(!shot) continue;
+      shot.style.transform='none'; shot.style.width='';           // o'lchashdan oldin reset
+      var avail=outer.clientWidth; if(!avail) continue;
+      if(avail>=NAT){ shot.style.transform=''; shot.style.width=''; outer.style.height=''; outer.style.overflow=''; continue; }
+      var scale=avail/NAT;
+      shot.style.width=NAT+'px'; shot.style.transformOrigin='top left';
+      var h=shot.offsetHeight||660;
+      shot.style.transform='scale('+scale+')';
+      outer.style.height=Math.round(h*scale)+'px'; outer.style.overflow='hidden';
+    }
+  }
+  var t; function fitD(){ clearTimeout(t); t=setTimeout(fit,120); }
+  window.addEventListener('resize', fitD);
+  window.addEventListener('load', fit);
+  if(document.readyState!=='loading') fit(); else document.addEventListener('DOMContentLoaded', fit);
+  // DC framework kontenti kech render qilishi mumkin -> dastlabki ~5s settling (keyin to'xtaydi)
+  var n=0, iv=setInterval(function(){ fit(); if(++n>10) clearInterval(iv); }, 500);
+  try{ if(window.ResizeObserver){ var ro=new ResizeObserver(fitD); var ps=document.querySelectorAll('.panelfit'); for(var i=0;i<ps.length;i++) ro.observe(ps[i]); } }catch(e){}
+})();
+</script>
+</body>
+</html>

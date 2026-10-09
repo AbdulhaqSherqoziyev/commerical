@@ -1,0 +1,20 @@
+# dependencies / build artifacts
+node_modules/
+admin/frontend/dist/
+
+# runtime data (orglar, admin parol-hash) — serverda, repo'ga tushmaydi
+data/
+admin/backend/data/
+
+# secrets / certs
+*.pem
+*.key
+.env
+.env.*
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log
+*.bak*
+*.tgbak

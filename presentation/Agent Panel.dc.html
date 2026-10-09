@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+  <script src="watermark.js" defer></script>
+  <script src="/brand.js?v=1784661573"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="ican-v2.css" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+:root{--accent:#2E3192;--accent-press:#23276F;--accent-soft:#ECEDF7;--accent-ink:#282C7D;
+  --bg:#F5F7FA;--line:#EDF0F4;--card:#FFFFFF;--shadow:0 1px 2px rgba(30,45,70,.04),0 12px 34px -22px rgba(30,45,70,.14)}
+body{margin:0;background:var(--bg);font-family:'Nunito Sans',sans-serif}
+/* ==== 2026 soft refresh ==== */
+.app{gap:26px;padding:22px}
+.side{border-radius:30px;box-shadow:var(--shadow);border:1px solid #F0F2F6;padding:20px 16px}
+.sitem{border-radius:16px;padding:13px 14px}
+.sitem.active{box-shadow:none}
+.topbar .ticon,.balpill,.modtabs{box-shadow:var(--shadow);border:1px solid #F0F2F6}
+.ticon{border-radius:16px}
+.statmini{border-radius:26px;box-shadow:var(--shadow);border:1px solid #F1F3F7;padding:22px 24px;gap:15px}
+.statmini .mnum{font-size:24px;letter-spacing:-.01em;margin-top:3px;white-space:nowrap}
+.statmini .mlabel{font-size:13px;line-height:1.35}
+.itile{border-radius:18px;width:48px;height:48px}
+.panel{border-radius:28px;box-shadow:var(--shadow);border:1px solid #F1F3F7;padding:26px}
+.phd h2{font-size:18.5px}
+.tablewrap{border-radius:26px;box-shadow:var(--shadow);border:1px solid #F1F3F7}
+.stbl th{background:#FAFBFD;color:#93A1B2;font-weight:800;letter-spacing:.02em;border-bottom:1px solid #F2F4F8;padding:15px 18px;font-size:13px}
+.stbl td{border-top:1px solid #F5F7FA;padding:17px 18px;font-size:14px}
+.stbl tbody tr:hover{background:#FAFBFD}
+.btn-fill{border-radius:16px;box-shadow:0 10px 24px -12px var(--accent-press);padding:13px 22px;font-size:14.5px}
+.btn-ghost{border-radius:16px;border-color:#E9ECF2;color:var(--ink);font-size:14.5px}
+.ftab{border-radius:15px;border-color:#EDF0F4;box-shadow:none;background:#FBFCFE;font-size:14px}
+.ftab.on{box-shadow:none}
+.wcard{border-radius:30px;box-shadow:var(--shadow);border:1px solid #F1F3F7;padding:30px 34px}
+.setcard{border-radius:28px;box-shadow:var(--shadow);border:1px solid #F1F3F7}
+.mcard,.runpanel{border-radius:24px}
+.search{border-radius:16px;border-color:#EAEDF2;background:#fff;box-shadow:var(--shadow);padding:13px 16px}
+.search input{font-size:14.5px}
+.cnt{background:#F2F5F9}
+.psub{font-size:14.5px}
+.phead h1{font-size:30px;letter-spacing:-.02em}
+.tg{border-radius:999px}
+.balpill{border-radius:16px}
+/* kalkulyator — kotta shrift */
+.calcbig .flabel{font-size:13px}
+.calcbig .fld{font-size:24px;padding:16px 18px}
+.calcbig .chipterm{padding:14px 8px}
+.calcbig .ctm{font-size:20px}
+.calcbig .ctp{font-size:12px}
+a{color:var(--accent-ink);text-decoration:none}a:hover{color:var(--accent-press)}
+.app{min-height:100vh}
+.statmini .mlabel,.statmini .mnum{display:block}
+.balpill .bl,.balpill .bv{display:block}
+/* qalin shriftlar */
+.psub,.mf,.lrsub,.mhsub,.search input,.acc-a{font-weight:700}
+.stbl td{font-weight:700}
+.stbl th{font-weight:900}
+.mn,.num,.mnum,.bv{font-weight:900}
+.phead h1{font-weight:900;letter-spacing:-.01em}
+.ftab,.chip,.flabel{font-weight:900}
+.tg,.tag-tarif{font-weight:800}
+.mlabel,.bl{font-weight:800}
+.sitem{font-weight:800}
+.btn-fill,.btn-ghost{font-weight:900}
+.phd h2,.setcard-hd h2,.wsteptitle{font-weight:900}
+.wstepsub{font-weight:700}
+.rk{font-weight:700}.rv{font-weight:900}
+.srlbl{font-weight:900}
+.delta{display:inline-flex;align-items:center;gap:3px;font:800 11.5px 'Nunito Sans',sans-serif;margin-top:4px}
+.delta.up{color:#2C7A4B}.delta.down{color:#B4453C}
+.pos{color:#2C7A4B}.neg{color:#B4453C}
+.qa{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #F1F3F7;border-radius:20px;padding:18px 20px;cursor:pointer;transition:.16s;box-shadow:var(--shadow)}
+.qa:hover{border-color:#D9E0EC;box-shadow:0 14px 30px -18px rgba(21,58,70,.28);transform:translateY(-1px)}
+.qaic{width:44px;height:44px;border-radius:13px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qaic svg{width:21px;height:21px}
+.bar{width:100%;max-width:30px;border-radius:7px 7px 3px 3px;background:var(--accent)}
+.bar.wk{background:var(--accent-soft)}
+.fld{display:block;width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;font:800 15px 'Nunito Sans',sans-serif;color:var(--ink);outline:none;background:#fff;box-sizing:border-box}
+.fld:focus{border-color:var(--accent)}
+.fld::placeholder{color:var(--muted);font-weight:600}
+.chipterm{border:1.5px solid var(--line);background:#fff;border-radius:13px;padding:12px 8px;text-align:center;cursor:pointer;transition:.12s}
+.chipterm:hover{border-color:#BFCBEB}
+.chipterm.on{border-color:var(--accent);background:var(--accent-soft)}
+.acc{border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;background:#fff}
+.acc-q{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;font:800 15px 'Nunito Sans',sans-serif;color:var(--ink)}
+.acc-a{padding:0 18px 16px 48px;font:600 13.5px/1.6 'Nunito Sans',sans-serif;color:var(--ink-3)}
+.seg{display:inline-flex;background:#EDF2F4;border-radius:12px;padding:4px}
+.seg button{border:0;background:transparent;border-radius:9px;padding:9px 18px;font:800 13px 'Nunito Sans',sans-serif;color:var(--ink-3);cursor:pointer}
+.seg button.on{background:#fff;color:var(--accent-ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.stepper input{width:46px;text-align:center;border:1.5px solid var(--line);border-radius:10px;padding:8px 0;font:900 15px 'Nunito Sans',sans-serif;color:var(--ink);outline:none}
+.rndbtn{width:34px;height:34px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--ink-3);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.rndbtn:hover{border-color:var(--accent);color:var(--accent-ink)}
+/* товар-форма (нейтральный стиль) */
+.tlbl{font:700 16px 'Nunito Sans',sans-serif;color:#2A2A2A}
+.tfld{display:block;width:100%;border:1.5px solid #DEDEDE;border-radius:14px;padding:15px 17px;font:700 15.5px 'Nunito Sans',sans-serif;color:#151515;outline:none;background:#fff;box-sizing:border-box}
+.tfld:focus{border-color:#151515;box-shadow:inset 0 0 0 .5px #151515}
+.tfld::placeholder{color:#B3B3B3;font-weight:600}
+.tselect{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1.5px solid #DEDEDE;border-radius:14px;padding:15px 17px;font:700 15.5px 'Nunito Sans',sans-serif;color:#151515;background:#fff;cursor:pointer;box-sizing:border-box}
+.tselect:hover{border-color:#B9B9B9}
+</style>
+</helmet>
+
+<div class="app" data-screen-label="Панель агента">
+
+  <aside class="side">
+    <div class="sbrand">
+      <img src="zood-logo.png" alt="ZOOD" style="height:26px;width:auto;object-fit:contain;margin-right:auto" />
+      <span class="bfold"><i data-lucide="chevrons-left"></i></span>
+    </div>
+    <nav class="snav">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="9">
+        <span class="{{ n.cls }}" onClick="{{ n.on }}"><i data-lucide="{{ n.icon }}"></i><span class="stxt">{{ n.label }}</span></span>
+      </sc-for>
+    </nav>
+    <div class="sutil"><span class="uic"><i data-lucide="moon"></i></span><span class="uic"><i data-lucide="search"></i></span><span class="ulang">{{ lang }}</span></div>
+    <div class="scard"><span class="uic2"><i data-lucide="headphones"></i></span><span><b>Поддержка</b><i>Чем помочь?</i></span><span class="schev"><i data-lucide="chevron-right"></i></span></div>
+  </aside>
+
+  <div class="main">
+
+    <div class="topbar" style="margin-bottom:18px">
+      <div class="search" style="max-width:340px"><i data-lucide="search"></i><input placeholder="Клиент или № договора" /></div>
+      <div class="tright">
+        <div class="balpill"><span class="bi"><i data-lucide="wallet"></i></span><span><span class="bl">FINTECH должен вам</span><span class="bv">12 400 000 сум</span></span></div>
+        <button class="btn-fill" onClick="{{ startSale }}"><i data-lucide="plus"></i>Новая продажа</button>
+        <div class="ticon"><i data-lucide="bell"></i><span class="dot"></span></div>
+        <div class="ticon"><i data-lucide="user"></i></div>
+      </div>
+    </div>
+
+    <!-- ================= ГЛАВНАЯ ================= -->
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div data-screen-label="Главная">
+      <div class="phead"><div><h1>Главная</h1><div class="psub">Обзор за июль 2026</div></div></div>
+
+      <!-- основные действия -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="qa" onClick="{{ startSale }}" style="background:var(--accent);border-color:var(--accent);padding:22px 24px">
+          <span class="qaic" style="background:rgba(255,255,255,.18);color:#fff"><i data-lucide="plus-circle"></i></span>
+          <span style="flex:1"><span style="display:block;font:900 17px 'Nunito Sans',sans-serif;color:#fff">Создать договор</span><span style="display:block;font:700 12.5px 'Nunito Sans',sans-serif;color:rgba(255,255,255,.82);margin-top:3px">Оформить рассрочку клиенту</span></span>
+          <i data-lucide="arrow-right" style="width:20px;height:20px;color:#fff"></i>
+        </div>
+        <div class="qa" onClick="{{ startSale }}" style="padding:22px 24px">
+          <span class="qaic"><i data-lucide="badge-check"></i></span>
+          <span style="flex:1"><span style="display:block;font:900 17px 'Nunito Sans',sans-serif;color:var(--ink)">Получить лимит</span><span style="display:block;font:700 12.5px 'Nunito Sans',sans-serif;color:var(--muted);margin-top:3px">Скоринг клиента и одобрение</span></span>
+          <i data-lucide="arrow-right" style="width:20px;height:20px;color:var(--muted)"></i>
+        </div>
+      </div>
+
+      <!-- заработок + взаиморасчёты -->
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:16px">
+        <div class="panel" style="background:linear-gradient(140deg,var(--brand-d2,#1F2A44),var(--brand-d0,#2B3F72));color:#fff">
+          <div style="font:800 12px 'Nunito Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;opacity:.8">Заработано за месяц</div>
+          <div style="font:900 34px 'Nunito Sans',sans-serif;letter-spacing:-.02em;margin:8px 0 4px">8 450 000 <span style="font-size:17px;opacity:.75">сум</span></div>
+          <div style="display:inline-flex;align-items:center;gap:6px;font:800 12.5px 'Nunito Sans',sans-serif;background:rgba(255,255,255,.16);border-radius:999px;padding:5px 12px"><i data-lucide="trending-up" style="width:14px;height:14px"></i>+12% к июню</div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;font:700 13px 'Nunito Sans',sans-serif;opacity:.85"><span>Сумма продаж</span><span style="font-weight:900;opacity:1">168 200 000</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="phd"><span class="pic"><i data-lucide="arrow-left-right"></i></span><h2>Расчёты с FINTECH</h2><span class="plink2" onClick="{{ goSettle }}">Подробнее</span></div>
+          <div style="display:flex;gap:14px;margin-bottom:18px">
+            <div style="flex:1;background:#EDF7F0;border-radius:18px;padding:16px 18px">
+              <div style="display:flex;align-items:center;gap:7px;font:800 12px 'Nunito Sans',sans-serif;color:#2C7A4B"><i data-lucide="check-circle-2" style="width:15px;height:15px"></i>FINTECH выплатил</div>
+              <div style="font:900 22px 'Nunito Sans',sans-serif;color:#1F6B41;margin-top:6px">131 500 000</div>
+            </div>
+            <div style="flex:1;background:#FCF4E6;border-radius:18px;padding:16px 18px">
+              <div style="display:flex;align-items:center;gap:7px;font:800 12px 'Nunito Sans',sans-serif;color:#B07A22"><i data-lucide="clock" style="width:15px;height:15px"></i>Ещё не выплачено</div>
+              <div style="font:900 22px 'Nunito Sans',sans-serif;color:#96682A;margin-top:6px">12 400 000</div>
+            </div>
+          </div>
+          <div style="height:10px;border-radius:999px;background:#EDF2F4;overflow:hidden;display:flex"><span style="width:91%;background:#46B26C"></span><span style="flex:1;background:#E8A13F"></span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:9px;font:700 12.5px 'Nunito Sans',sans-serif;color:var(--muted)"><span>Выплачено 91%</span><span>Ближайшая выплата: 15 июля</span></div>
+        </div>
+      </div>
+
+      <!-- qo'shimcha instrument: kalkulyator (yangi dizayn) -->
+      <div class="calcbig" style="margin-top:16px;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);border:1px solid #F1F3F7;display:grid;grid-template-columns:1.15fr 1fr">
+        <div style="background:#fff;padding:26px 28px">
+          <div class="phd" style="margin-bottom:20px"><span class="pic"><i data-lucide="calculator"></i></span><h2>Калькулятор рассрочки</h2></div>
+          <span class="flabel" style="margin-bottom:10px">Стоимость товара</span>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px">
+            <input value="{{ calc.priceNum }}" onInput="{{ onCalcPrice }}" style="border:0;outline:0;background:transparent;font:900 40px 'Nunito Sans',sans-serif;color:var(--ink);letter-spacing:-.02em;width:100%;min-width:0" />
+            <span style="font:900 18px 'Nunito Sans',sans-serif;color:var(--muted)">сум</span>
+          </div>
+          <input type="range" min="500000" max="30000000" step="100000" value="{{ calc.priceNum }}" onInput="{{ onCalcPrice }}" style="width:100%;accent-color:var(--accent);height:6px;cursor:pointer" />
+          <div style="display:flex;justify-content:space-between;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted);margin-top:6px"><span>500 тыс</span><span>30 млн</span></div>
+          <span class="flabel" style="margin:22px 0 10px">Срок рассрочки</span>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+            <sc-for list="{{ calcTerms }}" as="t" hint-placeholder-count="4">
+              <div class="{{ t.cls }}" onClick="{{ t.on }}"><div class="ctm" style="color:var(--ink);font-weight:900">{{ t.m }}</div><div class="ctp" style="color:var(--muted);font-weight:700;margin-top:2px">+{{ t.pct }}%</div></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:linear-gradient(150deg,var(--brand-d2,#1F2A44),var(--brand-d0,#2B3F72));color:#fff;padding:30px 30px;display:flex;flex-direction:column;justify-content:center">
+          <div style="font:800 12px;letter-spacing:.06em;text-transform:uppercase;opacity:.75">Ежемесячный платёж</div>
+          <div style="font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:56px;letter-spacing:-.03em;line-height:1;margin:12px 0 4px">{{ calc.monthly }}</div>
+          <div style="font:800 15px;opacity:.75">сум × {{ calc.term }} мес</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px">
+            <div style="background:rgba(255,255,255,.1);border-radius:16px;padding:14px 16px"><div style="font:800 11px;opacity:.72;text-transform:uppercase;letter-spacing:.04em">Наценка</div><div style="font:900 18px;margin-top:4px">{{ calc.markup }}</div></div>
+            <div style="background:rgba(255,255,255,.1);border-radius:16px;padding:14px 16px"><div style="font:800 11px;opacity:.72;text-transform:uppercase;letter-spacing:.04em">Итого</div><div style="font:900 18px;margin-top:4px">{{ calc.total }}</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ================= НОВАЯ ПРОДАЖА (WIZARD) ================= -->
+    <sc-if value="{{ isSale }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Новая продажа">
+      <div class="phead"><div><h1>Новая продажа</h1><div class="psub">Оформление рассрочки за 4 шага</div></div></div>
+      <div class="wcard" style="max-width:920px">
+        <div class="steps">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+            <div class="{{ s.cls }}"><span class="snum2"><i data-lucide="{{ s.icon }}"></i></span><span class="slbl2">{{ s.label }}</span></div>
+            <sc-if value="{{ s.line }}" hint-placeholder-val="{{ true }}"><span class="sline {{ s.lineCls }}"></span></sc-if>
+          </sc-for>
+        </div>
+
+        <!-- Шаг 1 -->
+        <sc-if value="{{ isW1 }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div class="wsteptitle">Проверка клиента</div>
+          <div class="wstepsub">Введите данные — система проведёт скоринг и вернёт лимит</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px">
+            <label style="grid-column:1/-1"><span class="flabel" style="margin-bottom:6px">ПИНФЛ (14 цифр)</span><input class="fld" value="{{ w.pinfl }}" onInput="{{ onPinfl }}" placeholder="•••• •••• •••• ••" maxLength="17" /></label>
+            <label><span class="flabel" style="margin-bottom:6px">Телефон</span><input class="fld" value="{{ w.phone }}" onInput="{{ onPhone }}" placeholder="+998" /></label>
+            <label><span class="flabel" style="margin-bottom:6px">Ф.И.О.</span><input class="fld" value="{{ w.name }}" onInput="{{ onName }}" placeholder="Фамилия Имя" /></label>
+          </div>
+          <div style="margin-top:16px"><button class="btn-fill" onClick="{{ runScoring }}"><i data-lucide="search-check"></i>Проверить клиента</button></div>
+
+          <sc-if value="{{ resApproved }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;border:1.5px solid #A9DCB9;background:#EDF7F0;border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:16px;max-width:620px">
+            <span style="width:46px;height:46px;border-radius:50%;background:#D6EEDD;color:#2C7A4B;display:grid;place-items:center"><i data-lucide="check"></i></span>
+            <span style="flex:1"><span style="display:block;font:900 16px;color:#1F6B41">Одобрено</span><span style="display:block;font:700 13px;color:#3E7B57;margin-top:2px">Доступный лимит по скорингу</span></span>
+            <span style="font:900 22px;color:#1F6B41">15 000 000 сум</span>
+          </div>
+          </sc-if>
+          <sc-if value="{{ resDeny }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:18px;border:1.5px solid #F0C0BA;background:#FBEEEC;border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:16px;max-width:620px">
+            <span style="width:46px;height:46px;border-radius:50%;background:#F6D6D1;color:#B4453C;display:grid;place-items:center"><i data-lucide="x"></i></span>
+            <span style="flex:1"><span style="display:block;font:900 16px;color:#A23A31">Отказ</span><span style="display:block;font:700 13px;color:#9A5750;margin-top:2px">Причина: активная просрочка в другом магазине. Рекомендуйте погасить задолженность.</span></span>
+          </div>
+          </sc-if>
+        </div>
+        </sc-if>
+
+        <!-- Шаг 2 -->
+        <sc-if value="{{ isW2 }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div class="wsteptitle">Выдача лимита</div>
+          <div class="wstepsub">Клиенту отправлен SMS-код для подтверждения</div>
+          <div style="max-width:420px">
+            <div class="rptotal" style="margin-bottom:16px"><span class="tl">Одобренный лимит</span><span class="tv">15 000 000 сум</span></div>
+            <span class="flabel" style="margin-bottom:6px">Код из SMS (6 цифр)</span>
+            <input class="fld" value="{{ w.otp }}" onInput="{{ onOtp }}" placeholder="— — — — — —" maxLength="6" style="letter-spacing:.4em;text-align:center;font-size:22px" />
+            <sc-if value="{{ otpErr }}" hint-placeholder-val="{{ false }}"><div style="color:#B4453C;font:800 12.5px;margin-top:8px"><i data-lucide="alert-circle" style="width:13px;height:13px;display:inline;vertical-align:-2px"></i> Неверный код, попробуйте снова</div></sc-if>
+            <div style="margin-top:12px;font:700 13px;color:var(--muted)">{{ otpTimerText }}</div>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- Шаг 3 -->
+        <sc-if value="{{ isW3 }}" hint-placeholder-val="{{ false }}">
+        <div style="max-width:800px">
+          <sc-for list="{{ cart }}" as="c" hint-placeholder-count="1">
+            <div style="margin-bottom:12px">
+              <div style="display:flex;align-items:center;margin:20px 0 28px"><span style="font:900 26px 'Nunito Sans',sans-serif;color:#151515;letter-spacing:-.01em">{{ c.title }}</span>
+                <sc-if value="{{ c.canRm }}" hint-placeholder-val="{{ false }}"><button class="iconbtn danger" onClick="{{ c.rm }}" style="margin-left:auto"><i data-lucide="trash-2"></i></button></sc-if>
+              </div>
+              <div style="display:grid;grid-template-columns:210px minmax(0,540px);row-gap:28px;align-items:center">
+                <span class="tlbl">Категория</span>
+                <span style="position:relative;display:block">
+                  <button class="tselect" onClick="{{ c.catToggle }}"><span>{{ c.cat }}</span><i data-lucide="chevron-down" style="width:17px;height:17px;color:#8A8A8A"></i></button>
+                  <sc-if value="{{ c.catOpen }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;top:calc(100% + 8px);left:0;right:0;background:#fff;border-radius:16px;box-shadow:0 20px 50px -18px rgba(0,0,0,.28);padding:8px 0;z-index:40;max-height:340px;overflow:auto">
+                      <sc-for list="{{ c.cats }}" as="k" hint-placeholder-count="6">
+                        <div onClick="{{ k.pick }}" style="display:flex;align-items:center;gap:12px;padding:14px 20px;font:700 14.5px 'Nunito Sans',sans-serif;color:#333;cursor:pointer" style-hover="background:#F6F6F6"><i data-lucide="chevron-right" style="width:14px;height:14px;color:#9A9A9A"></i>{{ k.name }}</div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </span>
+                <span class="tlbl">Наименование</span>
+                <input class="tfld" value="{{ c.name }}" onInput="{{ c.onName }}" placeholder="Введите наименование" />
+                <span class="tlbl">Количество</span>
+                <span style="display:flex;gap:12px">
+                  <select class="tfld" value="{{ c.unit }}" onChange="{{ c.onUnit }}" style="width:130px;cursor:pointer"><option>шт</option><option>компл</option><option>упак</option></select>
+                  <span style="flex:1;display:flex;align-items:center;justify-content:space-between;border:1.5px solid #DEDEDE;border-radius:14px;padding:6px 14px">
+                    <button onClick="{{ c.dec }}" style="width:40px;height:40px;border:0;background:transparent;color:#8A8A8A;font:600 24px 'Nunito Sans',sans-serif;cursor:pointer;line-height:1">−</button>
+                    <span style="font:800 16px 'Nunito Sans',sans-serif;color:#151515">{{ c.qty }}</span>
+                    <button onClick="{{ c.inc }}" style="width:40px;height:40px;border:0;background:transparent;color:#151515;font:600 24px 'Nunito Sans',sans-serif;cursor:pointer;line-height:1">+</button>
+                  </span>
+                </span>
+                <span class="tlbl">Цена, сум</span>
+                <input class="tfld" value="{{ c.priceStr }}" onInput="{{ c.onPrice }}" placeholder="Введите цену" />
+                <span class="tlbl">Сумма</span>
+                <span style="font:800 19px 'Nunito Sans',sans-serif;color:{{ c.sumFg }}">{{ c.sumText }}</span>
+              </div>
+            </div>
+          </sc-for>
+          <button onClick="{{ addItem }}" style="width:100%;background:#F4F4F4;border:0;border-radius:999px;padding:19px;font:800 16px 'Nunito Sans',sans-serif;color:#1A1A1A;cursor:pointer;margin-top:28px;display:flex;align-items:center;justify-content:center;gap:9px" style-hover="background:#ECECEC"><i data-lucide="plus" style="width:18px;height:18px"></i>Добавить новый товар</button>
+
+          <div style="border-top:1px solid #ECECEC;margin-top:34px;padding-top:28px;display:grid;grid-template-columns:210px minmax(0,540px);align-items:start">
+            <span style="font:900 26px/1.25 'Nunito Sans',sans-serif;color:{{ calcHdFg }};letter-spacing:-.01em">Расчет<br />стоимости</span>
+            <sc-if value="{{ noPrice }}" hint-placeholder-val="{{ true }}"><span style="font:900 26px/1.25 'Nunito Sans',sans-serif;color:#C9C9C9;letter-spacing:-.01em">Сначала добавьте товар и цену</span></sc-if>
+            <sc-if value="{{ hasPrice }}" hint-placeholder-val="{{ false }}">
+              <span style="display:block">
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px">
+                  <sc-for list="{{ terms }}" as="t2" hint-placeholder-count="4">
+                    <div class="{{ t2.cls }}" onClick="{{ t2.on }}"><div style="font:900 16px;color:var(--ink)">{{ t2.m }} мес</div><div style="font:700 12px;color:var(--muted);margin-top:2px">+{{ t2.pct }}%</div></div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px;font:700 15px 'Nunito Sans',sans-serif;color:#6B6B6B">
+                  <div style="display:flex;justify-content:space-between"><span>Стоимость товаров</span><span style="font-weight:900;color:#151515">{{ t.goods }}</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>Наценка FINTECH</span><span style="font-weight:900;color:#151515">{{ t.markup }}</span></div>
+                  <div style="display:flex;justify-content:space-between;border-top:1px solid #ECECEC;padding-top:12px"><span style="font-weight:900;color:#151515">Итого</span><span style="font-weight:900;color:#151515;font-size:17px">{{ t.total }}</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>Ежемесячный платёж</span><span style="font-weight:900;color:var(--accent-ink)">{{ t.monthly }}</span></div>
+                  <div style="display:flex;justify-content:space-between"><span>Остаток лимита</span><span style="font-weight:900;color:{{ t.remFg }}">{{ t.remaining }}</span></div>
+                </div>
+                <sc-if value="{{ t.exceeded }}" hint-placeholder-val="{{ false }}"><div style="color:#B4453C;font:800 13px;margin-top:10px">Превышен лимит клиента</div></sc-if>
+              </span>
+            </sc-if>
+          </div>
+        </div>
+        </sc-if>
+
+        <!-- Шаг 4 -->
+        <sc-if value="{{ isW4 }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <sc-if value="{{ signed }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:20px 0">
+            <span style="width:64px;height:64px;border-radius:50%;background:#E7F5EC;color:#2C7A4B;display:inline-grid;place-items:center"><i data-lucide="check" style="width:30px;height:30px"></i></span>
+            <div style="font:900 22px;color:var(--ink);margin-top:14px">Договор оформлен</div>
+            <div style="font:700 14px;color:var(--ink-3);margin-top:6px;max-width:460px;margin-left:auto;margin-right:auto">Договор №2026-04912 подписан клиентом по SMS. Выплата магазину поступит в течение 1 рабочего дня.</div>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:20px">
+              <button class="btn-ghost"><i data-lucide="download"></i>Скачать договор PDF</button>
+              <button class="btn-fill" onClick="{{ resetSale }}"><i data-lucide="plus"></i>Новая продажа</button>
+            </div>
+          </div>
+          </sc-if>
+          <sc-if value="{{ notSigned }}" hint-placeholder-val="{{ true }}">
+          <div style="max-width:560px">
+            <div class="wsteptitle">Договор</div>
+            <div class="wstepsub">Проверьте условия — клиент подпишет по SMS</div>
+            <div class="rev">
+              <div class="revrow"><span class="rk">Номер договора</span><span class="rv">№2026-04912</span></div>
+              <div class="revrow"><span class="rk">Клиент</span><span class="rv">{{ w.nameShow }}</span></div>
+              <div class="revrow"><span class="rk">Товары</span><span class="rv">{{ t.goodsCount }} поз. · {{ t.goods }} сум</span></div>
+              <div class="revrow"><span class="rk">Срок · платёж</span><span class="rv">{{ w.term }} мес · {{ t.monthly }} сум</span></div>
+              <div class="revrow"><span class="rk">Выплата магазину</span><span class="rv">{{ t.goods }} сум</span></div>
+              <div class="revrow"><span class="rk">Комиссия агента</span><span class="rv pos">+{{ t.commission }} сум</span></div>
+            </div>
+            <div style="margin-top:16px"><button class="btn-fill" onClick="{{ sign }}"><i data-lucide="pen-line"></i>Клиент подписывает по SMS</button></div>
+          </div>
+          </sc-if>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ showFoot }}" hint-placeholder-val="{{ true }}">
+        <div class="wfoot">
+          <button class="btn-ghost" onClick="{{ wBack }}" style="visibility:{{ backVis }}"><i data-lucide="arrow-left"></i>Назад</button>
+          <button class="btn-fill" onClick="{{ wNext }}" disabled="{{ nextDisabled }}">{{ nextLabel }}<i data-lucide="arrow-right"></i></button>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ================= ВЗАИМОРАСЧЁТЫ ================= -->
+    <sc-if value="{{ isSettle }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Взаиморасчёты">
+      <div class="phead"><div><h1>Взаиморасчёты</h1><div class="psub">Товары с баланса и выплаты от FINTECH · Июль 2026</div></div><div class="pactions"><button class="btn-ghost"><i data-lucide="file-spreadsheet"></i>Экспорт в Excel</button></div></div>
+
+      <!-- mini statistika -->
+      <div class="grid4">
+        <div class="statmini"><span class="itile red"><i data-lucide="package"></i></span><span><span class="mlabel">Отгружено товаров</span><span class="mnum">{{ setStat.out }}</span></span></div>
+        <div class="statmini"><span class="itile"><i data-lucide="banknote"></i></span><span><span class="mlabel">Выплачено FINTECH</span><span class="mnum">{{ setStat.in }}</span></span></div>
+        <div class="statmini"><span class="itile amber"><i data-lucide="clock"></i></span><span><span class="mlabel">Ожидает выплаты</span><span class="mnum">{{ setStat.pending }}</span></span></div>
+        <div class="statmini"><span class="itile"><i data-lucide="scale"></i></span><span><span class="mlabel">Текущее сальдо</span><span class="mnum">{{ setStat.balance }}</span></span></div>
+      </div>
+
+      <!-- ikki ustun -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="panel">
+          <div class="phd"><span class="pic" style="background:#FBEDEB;color:#B4453C"><i data-lucide="arrow-up-right"></i></span><h2>Товары с баланса</h2><span class="plink2" style="cursor:default">расход</span></div>
+          <sc-for list="{{ outflows }}" as="o" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid #F4F6F9;padding:13px 0">
+              <span class="lrico" style="margin:0;background:#FBEDEB;color:#B4453C"><i data-lucide="package"></i></span>
+              <span style="flex:1;min-width:0"><span style="display:block;font:800 13.5px;color:var(--ink)">{{ o.goods }}</span><span style="display:block;font:700 12px;color:var(--muted)">{{ o.num }} · {{ o.date }}</span></span>
+              <span class="num neg">−{{ o.sum }}</span>
+            </div>
+          </sc-for>
+          <div style="border-top:2px solid #F0F2F6;margin-top:6px;padding-top:14px;display:flex;justify-content:space-between;align-items:center"><span style="font:900 14px 'Nunito Sans',sans-serif;color:var(--ink)">Итого отгружено</span><span class="num neg" style="font-size:17px">−{{ outTotal }}</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="phd"><span class="pic" style="background:#E7F5EC;color:#2C7A4B"><i data-lucide="arrow-down-left"></i></span><h2>Выплаты от FINTECH</h2><span class="plink2" style="cursor:default">приход</span></div>
+          <sc-for list="{{ inflows }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid #F4F6F9;padding:13px 0">
+              <span class="lrico" style="margin:0;background:{{ p.icBg }};color:{{ p.icFg }}"><i data-lucide="{{ p.icon }}"></i></span>
+              <span style="flex:1;min-width:0"><span style="display:block;font:800 13.5px;color:var(--ink)">{{ p.op }}</span><span style="display:block;font:700 12px;color:var(--muted)">{{ p.num }} · {{ p.date }}</span></span>
+              <span style="text-align:right"><span class="num pos" style="display:block">+{{ p.sum }}</span><span class="tg" style="margin-top:4px;padding:2px 8px;font-size:10px;background:{{ p.stBg }};color:{{ p.stFg }}">{{ p.st }}</span></span>
+            </div>
+          </sc-for>
+          <div style="border-top:2px solid #F0F2F6;margin-top:6px;padding-top:14px;display:flex;justify-content:space-between;align-items:center"><span style="font:900 14px 'Nunito Sans',sans-serif;color:var(--ink)">Итого получено</span><span class="num pos" style="font-size:17px">+{{ inTotal }}</span></div>
+        </div>
+      </div>
+
+      <!-- umumiy itog -->
+      <div class="panel" style="margin-top:16px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px"><div style="font:800 12px 'Nunito Sans',sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)">Итоговое сальдо (FINTECH должен магазину)</div><div style="font:900 30px 'Nunito Sans',sans-serif;color:var(--accent-ink);letter-spacing:-.02em;margin-top:6px">{{ setStat.balance }} <span style="font-size:16px;color:var(--muted)">сум</span></div></div>
+        <div style="display:flex;gap:20px">
+          <span style="text-align:right"><span style="display:block;font:700 12px;color:var(--muted)">Расход</span><span class="num neg" style="font-size:18px">−{{ outTotal }}</span></span>
+          <span style="text-align:right"><span style="display:block;font:700 12px;color:var(--muted)">Приход</span><span class="num pos" style="font-size:18px">+{{ inTotal }}</span></span>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ================= ДОГОВОРЫ ================= -->
+    <sc-if value="{{ isContracts }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Договоры">
+      <div class="phead"><div><h1>Договоры</h1><div class="psub">Все оформленные рассрочки и статус выплат</div></div></div>
+      <div class="filterbar">
+        <div class="search" style="max-width:300px"><i data-lucide="search"></i><input value="{{ cQuery }}" onInput="{{ onCQuery }}" placeholder="Клиент или № договора" /></div>
+        <div class="fbsep"></div>
+        <div class="ftabs" style="margin:0">
+          <sc-for list="{{ cStatusTabs }}" as="t" hint-placeholder-count="4"><button class="{{ t.cls }}" onClick="{{ t.on }}">{{ t.label }}</button></sc-for>
+        </div>
+      </div>
+      <div class="tablewrap">
+        <table class="stbl">
+          <thead><tr><th class="idx">№</th><th>Дата</th><th>Клиент</th><th>Товары</th><th class="r">Сумма</th><th>Срок</th><th class="r">Дней просрочки</th><th>Статус выплаты</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ contracts }}" as="c" hint-placeholder-count="6">
+              <tr style="cursor:pointer"><td class="idx">{{ c.n }}</td><td class="num" style="color:var(--ink-3)">{{ c.date }}</td><td><span class="mcell"><span class="mlogo" style="background:{{ c.avBg }}">{{ c.ini }}</span><span><span class="mn" style="display:block">{{ c.client }}</span><span class="mf">{{ c.phone }}</span></span></span></td><td>{{ c.goods }}</td><td class="r num" style="color:var(--accent-ink)">{{ c.sum }}</td><td class="num">{{ c.term }}</td><td class="r"><span style="display:inline-block;border-radius:8px;padding:4px 10px;font:900 12.5px 'Nunito Sans',sans-serif;background:{{ c.odBg }};color:{{ c.odFg }}">{{ c.odText }}</span></td><td><span class="tg" style="background:{{ c.stBg }};color:{{ c.stFg }}"><span class="gdot"></span>{{ c.st }}</span></td></tr>
+            </sc-for>
+            <sc-if value="{{ contractsEmpty }}" hint-placeholder-val="{{ false }}"><tr class="emptyrow"><td colSpan="8">Ничего не найдено</td></tr></sc-if>
+          </tbody>
+        </table>
+      </div>
+      <div class="pager"><span class="pginfo">Показано <b>{{ contractsShown }}</b> из <b>{{ contractsTotal }}</b></span><div style="display:flex;gap:8px"><button class="iconbtn"><i data-lucide="chevron-left"></i></button><button class="iconbtn"><i data-lucide="chevron-right"></i></button></div></div>
+    </div>
+    </sc-if>
+
+    <!-- ================= ОТЧЁТЫ ================= -->
+    <sc-if value="{{ isReports }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Отчёты">
+      <div class="phead"><div><h1>Отчёты</h1><div class="psub">Аналитика продаж и выплат за период</div></div><div class="pactions"><button class="btn-ghost"><i data-lucide="file-spreadsheet"></i>Экспорт в Excel</button></div></div>
+      <div class="filterbar">
+        <span class="fglabel">Период</span>
+        <div class="ftabs" style="margin:0">
+          <sc-for list="{{ periodTabs }}" as="t" hint-placeholder-count="4"><button class="{{ t.cls }}" onClick="{{ t.on }}">{{ t.label }}</button></sc-for>
+        </div>
+      </div>
+      <div class="grid4">
+        <div class="statmini"><span class="itile"><i data-lucide="shopping-bag"></i></span><span><span class="mlabel">Продаж за период</span><span class="mnum">42</span></span></div>
+        <div class="statmini"><span class="itile"><i data-lucide="banknote"></i></span><span><span class="mlabel">Сумма продаж</span><span class="mnum">168 200 000</span></span></div>
+        <div class="statmini"><span class="itile"><i data-lucide="percent"></i></span><span><span class="mlabel">Комиссия агента</span><span class="mnum">8 450 000</span></span></div>
+        <div class="statmini"><span class="itile"><i data-lucide="receipt"></i></span><span><span class="mlabel">Средний чек</span><span class="mnum">4 005 000</span></span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="panel">
+          <div class="phd"><span class="pic"><i data-lucide="bar-chart-3"></i></span><h2>Продажи по неделям</h2></div>
+          <div style="display:flex;align-items:flex-end;gap:20px;height:180px;padding:0 10px">
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px"><div class="bar" style="height:58%;max-width:60px"></div><span style="font:700 11px;color:var(--muted)">Нед 1</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px"><div class="bar" style="height:74%;max-width:60px"></div><span style="font:700 11px;color:var(--muted)">Нед 2</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px"><div class="bar" style="height:66%;max-width:60px"></div><span style="font:700 11px;color:var(--muted)">Нед 3</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px"><div class="bar" style="height:92%;max-width:60px"></div><span style="font:700 11px;color:var(--muted)">Нед 4</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="phd"><span class="pic"><i data-lucide="pie-chart"></i></span><h2>Продажи по сроку</h2></div>
+          <div style="display:flex;align-items:center;gap:22px">
+            <div style="width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--accent) 0 42%,var(--accent-press) 42% 66%,#9BB0EC 66% 85%,#C7D3F5 85% 100%);flex-shrink:0"></div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <div style="display:flex;align-items:center;gap:8px;font:800 13px;color:var(--ink)"><span style="width:11px;height:11px;border-radius:3px;background:var(--accent)"></span>3 мес · 42%</div>
+              <div style="display:flex;align-items:center;gap:8px;font:800 13px;color:var(--ink)"><span style="width:11px;height:11px;border-radius:3px;background:var(--accent-press)"></span>6 мес · 24%</div>
+              <div style="display:flex;align-items:center;gap:8px;font:800 13px;color:var(--ink)"><span style="width:11px;height:11px;border-radius:3px;background:#9BB0EC"></span>9 мес · 19%</div>
+              <div style="display:flex;align-items:center;gap:8px;font:800 13px;color:var(--ink)"><span style="width:11px;height:11px;border-radius:3px;background:#C7D3F5"></span>12 мес · 15%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seg" style="margin-bottom:14px">
+        <sc-for list="{{ repTabs }}" as="rt" hint-placeholder-count="5"><button class="{{ rt.cls }}" onClick="{{ rt.on }}">{{ rt.label }}</button></sc-for>
+      </div>
+      <div class="tablewrap">
+        <table class="stbl">
+          <sc-if value="{{ repIsSales }}" hint-placeholder-val="{{ true }}">
+          <thead><tr><th>Дата</th><th>№ договора</th><th>Клиент</th><th>Продавец</th><th class="r">Сумма</th><th class="r">Комиссия</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ repSalesRows }}" as="r" hint-placeholder-count="5">
+              <tr><td class="num" style="color:var(--ink-3)">{{ r.date }}</td><td class="num" style="color:var(--accent-ink)">{{ r.num }}</td><td>{{ r.client }}</td><td>{{ r.seller }}</td><td class="r num">{{ r.sum }}</td><td class="r num pos">+{{ r.comm }}</td></tr>
+            </sc-for>
+          </tbody>
+          <tfoot><tr style="background:#EEF2F4"><td colSpan="4" style="padding:14px 16px;font:900 13px 'Nunito Sans',sans-serif;color:var(--ink)">Итого</td><td class="r num" style="padding:14px 16px">33 100 000</td><td class="r num pos" style="padding:14px 16px">+1 655 000</td></tr></tfoot>
+          </sc-if>
+          <sc-if value="{{ repIsPay }}" hint-placeholder-val="{{ false }}">
+          <thead><tr><th>Дата</th><th>№ договора</th><th>Тип</th><th class="r">Сумма</th><th>Статус</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ repPayRows }}" as="r" hint-placeholder-count="5">
+              <tr><td class="num" style="color:var(--ink-3)">{{ r.date }}</td><td class="num" style="color:var(--accent-ink)">{{ r.num }}</td><td>{{ r.type }}</td><td class="r num pos">{{ r.sum }}</td><td><span class="tg faol">{{ r.st }}</span></td></tr>
+            </sc-for>
+          </tbody>
+          <tfoot><tr style="background:#EEF2F4"><td colSpan="3" style="padding:14px 16px;font:900 13px 'Nunito Sans',sans-serif;color:var(--ink)">Итого</td><td class="r num pos" style="padding:14px 16px">+23 550 000</td><td></td></tr></tfoot>
+          </sc-if>
+          <sc-if value="{{ repIsComm }}" hint-placeholder-val="{{ false }}">
+          <thead><tr><th>Дата</th><th>№ договора</th><th>Клиент</th><th class="r">Сумма продажи</th><th class="r">Комиссия (5%)</th><th>Статус</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ repCommRows }}" as="r" hint-placeholder-count="5">
+              <tr><td class="num" style="color:var(--ink-3)">{{ r.date }}</td><td class="num" style="color:var(--accent-ink)">{{ r.num }}</td><td>{{ r.client }}</td><td class="r num">{{ r.sum }}</td><td class="r num pos">+{{ r.comm }}</td><td><span class="tg" style="background:{{ r.stBg }};color:{{ r.stFg }}">{{ r.st }}</span></td></tr>
+            </sc-for>
+          </tbody>
+          <tfoot><tr style="background:#EEF2F4"><td colSpan="4" style="padding:14px 16px;font:900 13px 'Nunito Sans',sans-serif;color:var(--ink)">Итого начислено</td><td class="r num pos" style="padding:14px 16px">+1 655 000</td><td></td></tr></tfoot>
+          </sc-if>
+          <sc-if value="{{ repIsOverdue }}" hint-placeholder-val="{{ false }}">
+          <thead><tr><th>№ договора</th><th>Клиент</th><th>Товар</th><th class="r">Задолженность</th><th class="r">Дней просрочки</th><th>Статус</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ repOverdueRows }}" as="r" hint-placeholder-count="4">
+              <tr><td class="num" style="color:var(--accent-ink)">{{ r.num }}</td><td>{{ r.client }}</td><td>{{ r.goods }}</td><td class="r num neg">{{ r.debt }}</td><td class="r"><span style="display:inline-block;border-radius:8px;padding:4px 10px;font:900 12.5px 'Nunito Sans',sans-serif;background:{{ r.dBg }};color:{{ r.dFg }}">{{ r.days }}</span></td><td><span class="tg" style="background:{{ r.stBg }};color:{{ r.stFg }}">{{ r.st }}</span></td></tr>
+            </sc-for>
+          </tbody>
+          <tfoot><tr style="background:#EEF2F4"><td colSpan="3" style="padding:14px 16px;font:900 13px 'Nunito Sans',sans-serif;color:var(--ink)">Итого просрочено</td><td class="r num neg" style="padding:14px 16px">−7 850 000</td><td colSpan="2"></td></tr></tfoot>
+          </sc-if>
+          <sc-if value="{{ repIsSellers }}" hint-placeholder-val="{{ false }}">
+          <thead><tr><th class="idx">№</th><th>Продавец</th><th class="r">Продаж</th><th class="r">Сумма продаж</th><th class="r">Комиссия</th><th class="r">Средний чек</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ repSellerRows }}" as="r" hint-placeholder-count="3">
+              <tr><td class="idx">{{ r.n }}</td><td><span class="mcell"><span class="mlogo" style="background:{{ r.avBg }}">{{ r.ini }}</span><span class="mn">{{ r.name }}</span></span></td><td class="r num">{{ r.count }}</td><td class="r num">{{ r.sum }}</td><td class="r num pos">+{{ r.comm }}</td><td class="r num">{{ r.avg }}</td></tr>
+            </sc-for>
+          </tbody>
+          <tfoot><tr style="background:#EEF2F4"><td colSpan="2" style="padding:14px 16px;font:900 13px 'Nunito Sans',sans-serif;color:var(--ink)">Итого</td><td class="r num" style="padding:14px 16px">39</td><td class="r num" style="padding:14px 16px">156 400 000</td><td class="r num pos" style="padding:14px 16px">+7 820 000</td><td></td></tr></tfoot>
+          </sc-if>
+        </table>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ================= СОТРУДНИКИ ================= -->
+    <sc-if value="{{ isEmployees }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Сотрудники">
+      <div class="phead"><div><h1>Сотрудники</h1><div class="psub">Продавцы магазина и их продажи за месяц</div></div><div class="pactions"><button class="btn-fill" onClick="{{ openInvite }}"><i data-lucide="user-plus"></i>Пригласить</button></div></div>
+      <div class="tablewrap">
+        <table class="stbl">
+          <thead><tr><th class="idx">№</th><th>Сотрудник</th><th>Роль</th><th>Телефон</th><th class="r">Продаж за месяц</th><th>Статус</th><th></th></tr></thead>
+          <tbody>
+            <sc-for list="{{ employees }}" as="e" hint-placeholder-count="4">
+              <tr><td class="idx">{{ e.n }}</td><td><span class="mcell"><span class="mlogo" style="background:{{ e.avBg }}">{{ e.ini }}</span><span class="mn">{{ e.name }}</span></span></td><td><span class="tag-tarif">{{ e.role }}</span></td><td class="num">{{ e.phone }}</td><td class="r num">{{ e.sales }}</td><td><span class="tg {{ e.stCls }}"><span class="gdot"></span>{{ e.st }}</span></td><td><button class="iconbtn"><i data-lucide="more-horizontal"></i></button></td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ================= FAQ ================= -->
+    <sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="FAQ" style="max-width:820px">
+      <div class="phead"><div><h1>FAQ</h1><div class="psub">Частые вопросы по работе с FINTECH</div></div></div>
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="5">
+        <div class="acc">
+          <div class="acc-q" onClick="{{ f.toggle }}"><span class="pic" style="width:28px;height:28px;border-radius:9px"><i data-lucide="help-circle"></i></span><span style="flex:1">{{ f.q }}</span><i data-lucide="{{ f.chev }}" style="width:18px;height:18px;color:var(--muted)"></i></div>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><div class="acc-a">{{ f.a }}</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <!-- ================= НАСТРОЙКИ ================= -->
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Настройки" style="max-width:820px">
+      <div class="phead"><div><h1>Настройки</h1><div class="psub">Реквизиты, уведомления и язык интерфейса</div></div></div>
+      <div class="setcard" style="margin-bottom:16px">
+        <div class="setcard-hd"><div><h2>Реквизиты магазина</h2><p>Счёт для выплат от FINTECH</p></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <label><span class="flabel" style="margin-bottom:6px">Наименование</span><input class="fld" value="{{ brand }}" readOnly /></label>
+          <label><span class="flabel" style="margin-bottom:6px">ИНН</span><input class="fld" value="304 512 889" /></label>
+          <label><span class="flabel" style="margin-bottom:6px">Банк</span><input class="fld" value="АКБ «Ipak Yuli»" /></label>
+          <label><span class="flabel" style="margin-bottom:6px">Расчётный счёт</span><input class="fld" value="2020 8000 XXXX XXXX 001" /></label>
+        </div>
+        <div style="margin-top:16px"><button class="btn-fill"><i data-lucide="check"></i>Сохранить</button></div>
+      </div>
+      <div class="setcard" style="margin-bottom:16px">
+        <div class="setcard-hd"><div><h2>Уведомления</h2></div></div>
+        <div class="setrow" style="border-top:0;padding:14px 0"><span class="srlbl">SMS о выплатах<span>Приход средств от FINTECH</span></span><button class="{{ notifSmsCls }}" onClick="{{ toggleSms }}"></button></div>
+        <div class="setrow" style="padding:14px 0"><span class="srlbl">Telegram-бот<span>Дубли уведомлений в Telegram</span></span><button class="{{ notifTgCls }}" onClick="{{ toggleTg }}"></button></div>
+        <div class="setrow" style="padding:14px 0"><span class="srlbl">E-mail отчёты<span>Ежемесячный отчёт на почту</span></span><button class="{{ notifEmailCls }}" onClick="{{ toggleEmail }}"></button></div>
+      </div>
+      <div class="setcard">
+        <div class="setcard-hd"><div><h2>Язык интерфейса</h2></div>
+          <div class="seg"><button class="{{ ruCls }}" onClick="{{ setRu }}">Русский</button><button class="{{ uzCls }}" onClick="{{ setUz }}">O'zbek</button></div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+
+  <!-- invite modal -->
+  <div class="modal-ov {{ inviteCls }}" onClick="{{ closeInvite }}">
+    <sc-if value="{{ inviteOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="modal" style="width:440px" onClick="{{ stop }}">
+      <div class="modal-hd"><div><h3>Пригласить сотрудника</h3><div class="mhsub">Отправим SMS со ссылкой для входа</div></div><button class="modal-x" onClick="{{ closeInvite }}"><i data-lucide="x"></i></button></div>
+      <div class="modal-bd">
+        <label style="display:block;margin-bottom:12px"><span class="flabel" style="margin-bottom:6px">Телефон</span><input class="fld" placeholder="+998" /></label>
+        <label style="display:block"><span class="flabel" style="margin-bottom:6px">Роль</span><select class="fld" style="font-weight:800"><option>Продавец</option><option>Администратор</option></select></label>
+      </div>
+      <div class="modal-ft"><button class="btn-ghost" onClick="{{ closeInvite }}">Отмена</button><button class="btn-fill" onClick="{{ closeInvite }}"><i data-lucide="send"></i>Отправить</button></div>
+    </div>
+    </sc-if>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ZOOD&quot;,&quot;Изумруд&quot;,&quot;Фиолет&quot;,&quot;Бирюза&quot;],&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;legalName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZOOD Pay Uzbekistan&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;}}">
+class Component extends DCLogic {
+  state = {
+    route: 'home',
+    wStep: 1, wPinfl: '', wPhone: '+998 ', wName: '', wResult: null, wOtp: '', wTerm: 6, wSigned: false, otpErr: false, otpTimer: 59,
+    cart: [{ id: 1, cat: 'Товары для авто', name: '', unit: 'шт', qty: 1, price: 0 }],
+    catOpen: null,
+    calcPrice: 5000000, calcTerm: 6,
+    setType: 'all', cStatus: 'all', cQuery: '', repTab: 'sales', period: 'jul',
+    inviteOpen: false, faqOpen: 0,
+    notifSms: true, notifTg: true, notifEmail: false, lang: 'RU'
+  };
+
+  MARKUP = { 3: 0.08, 6: 0.15, 9: 0.22, 12: 0.30 };
+  LIMIT = 15000000;
+
+  I18N = [
+    ['Панель агента','Agent paneli','Agent panel'],
+    ['Главная','Bosh sahifa','Home'], ['Договоры','Shartnomalar','Contracts'], ['Продажа','Savdo','Sale'], ['Расчёты','Hisob-kitob','Settlements'], ['Ещё','Yana','More'],
+    ['FINTECH должен вам','FINTECH sizga qarzdor','FINTECH owes you'],
+    ['Выплата: 15 июля','To\u02bblov: 15-iyul','Payout: July 15'], ['Выплата: 15 июля 2026','To\u02bblov: 15-iyul 2026','Payout: July 15, 2026'],
+    ['Заработано','Ishlab topilgan','Earned'], ['Продажи','Savdolar','Sales'], ['Средний чек','O\u02bbrtacha chek','Avg. ticket'],
+    ['↑ 12% к июню','↑ 12% iyunga nisbatan','↑ 12% vs June'], ['↑ 8% к июню','↑ 8% iyunga nisbatan','↑ 8% vs June'], ['+5 новых','+5 yangi','+5 new'], ['за июль','iyul uchun','for July'],
+    ['Последние операции','So\u02bbnggi operatsiyalar','Recent operations'],
+    ['Выплата за товар','Tovar uchun to\u02bblov','Payout for goods'], ['Комиссия агента','Agent komissiyasi','Agent commission'], ['Передача товара','Tovar topshirish','Goods transfer'], ['Корректировка','Tuzatish','Adjustment'],
+    ['Выплачено','To\u02bblangan','Paid'], ['Начислено','Hisoblangan','Accrued'], ['В очереди','Navbatda','Queued'], ['Проведено','O\u02bbtkazilgan','Posted'],
+    ['Клиент или №','Mijoz yoki №','Client or №'],
+    ['Выплата получена','To\u02bblov olindi','Payout received'], ['Ожидает выплаты','To\u02bblov kutilmoqda','Awaiting payout'], ['Отменён','Bekor qilingan','Cancelled'], ['Без просрочки','Kechikishsiz','No overdue'],
+    ['Новая продажа','Yangi savdo','New sale'], ['Клиент','Mijoz','Client'], ['Договор','Shartnoma','Contract'],
+    ['Первый товар','Birinchi tovar','First item'], ['Второй товар','Ikkinchi tovar','Second item'], ['Третий товар','Uchinchi tovar','Third item'], ['Четвёртый товар','To\u02bbrtinchi tovar','Fourth item'],
+    ['Категория','Kategoriya','Category'], ['Наименование','Nomi','Name'], ['Введите наименование','Nomini kiriting','Enter name'],
+    ['Количество','Miqdor','Quantity'], ['Цена, сум','Narx, so\u02bbm','Price, UZS'], ['Введите цену','Narxni kiriting','Enter price'], ['Сумма','Summa','Amount'],
+    ['Рассчитаем после указания цены','Narx kiritilgach hisoblaymiz','Calculated after price is set'],
+    ['Добавить новый товар','Yangi tovar qo\u02bbshish','Add new item'],
+    ['Срок рассрочки','Muddatli to\u02bblov muddati','Installment term'],
+    ['Товары','Tovarlar','Goods'], ['Стоимость товаров','Tovarlar narxi','Goods total'], ['Наценка','Ustama','Markup'], ['Итого','Jami','Total'],
+    ['Платёж / мес','To\u02bblov / oy','Payment / mo'], ['Остаток лимита','Limit qoldig\u02bbi','Limit remaining'], ['Превышен лимит клиента','Mijoz limiti oshib ketdi','Client limit exceeded'],
+    ['Сумма договора','Shartnoma summasi','Contract amount'],
+    ['Сканер QR','QR skaner','QR scanner'], ['ПИНФЛ (14 цифр)','PINFL (14 raqam)','PINFL (14 digits)'], ['ПИНФЛ','PINFL','PINFL'], ['Телефон','Telefon','Phone'], ['Проверить лимит','Limitni tekshirish','Check limit'],
+    ['Наведите камеру на QR-код клиента','Kamerani mijoz QR-kodiga qarating','Point the camera at the client QR code'],
+    ['QR распознан','QR aniqlandi','QR recognized'], ['Сканировать QR-код','QR-kodni skanerlash','Scan QR code'],
+    ['Одобренный лимит','Tasdiqlangan limit','Approved limit'],
+    ['Лимит одобрен по скорингу','Limit skoring bo\u02bbyicha tasdiqlandi','Limit approved by scoring'], ['Лимит получен по QR-коду','Limit QR-kod orqali olindi','Limit received via QR'],
+    ['Сумма договора превышает лимит клиента','Shartnoma summasi mijoz limitidan oshadi','Contract amount exceeds the client limit'],
+    ['Клиент подписывает по SMS','Mijoz SMS orqali imzolaydi','Client signs via SMS'],
+    ['Договор оформлен','Shartnoma rasmiylashtirildi','Contract completed'],
+    ['№2026-04912 подписан. Выплата — в течение 1 рабочего дня.','№2026-04912 imzolandi. To\u02bblov — 1 ish kuni ichida.','№2026-04912 signed. Payout within 1 business day.'],
+    ['К клиенту','Mijozga','To client'], ['К договору','Shartnomaga','To contract'],
+    ['Взаиморасчёты','O\u02bbzaro hisob-kitoblar','Settlements'], ['FINTECH должен магазину','FINTECH do\u02bbkonga qarzdor','FINTECH owes the shop'],
+    ['Отчёты','Hisobotlar','Reports'], ['Сотрудники','Xodimlar','Staff'], ['Настройки','Sozlamalar','Settings'], ['Поддержка','Qo\u02bbllab-quvvatlash','Support'],
+    ['Калькулятор рассрочки','Muddatli to\u02bblov kalkulyatori','Installment calculator'],
+    ['Товары для авто','Avto tovarlar','Auto goods'], ['Телевизоры и видеотехника','Televizorlar va videotexnika','TVs & video'], ['Аудиосистемы','Audiotizimlar','Audio systems'],
+    ['Компьютеры и оргтехника','Kompyuterlar va orgtexnika','Computers & office'], ['Телефоны, гаджеты и аксессуары','Telefonlar, gadjetlar va aksessuarlar','Phones & gadgets'],
+    ['Одежда, обувь и аксессуары','Kiyim, poyabzal va aksessuarlar','Clothing & shoes'], ['Бытовая техника','Maishiy texnika','Home appliances'],
+    ['шт','dona','pcs'], ['компл','komplekt','set'], ['упак','o\u02bbram','pack'],
+    ['Обзор за июль 2026','2026-yil iyul sharhi','July 2026 overview'], ['Создать договор','Shartnoma yaratish','Create contract'], ['Оформить рассрочку клиенту','Mijozga muddatli to\'lov rasmiylashtirish','Set up client installment'], ['Получить лимит','Limit olish','Get limit'], ['Скоринг клиента и одобрение','Mijoz skoringi va tasdiqlash','Client scoring & approval'], ['Заработано за месяц','Oyda ishlab topilgan','Earned this month'], ['Сумма продаж','Savdo summasi','Sales total'], ['Расчёты с FINTECH','FINTECH bilan hisob-kitob','Settlements with FINTECH'], ['Подробнее','Batafsil','Details'], ['FINTECH выплатил','FINTECH to\'ladi','FINTECH paid out'], ['Ещё не выплачено','Hali to\'lanmagan','Not yet paid'], ['Стоимость товара','Tovar narxi','Item price'], ['Ежемесячный платёж','Oylik to\'lov','Monthly payment'], ['Клиент или № договора','Mijoz yoki shartnoma №','Client or contract №'], ['Чем помочь?','Qanday yordam beramiz?','How can we help?'], ['Сотрудники','Xodimlar','Staff'], ['Настройки','Sozlamalar','Settings'], ['Отчёты','Hisobotlar','Reports'], ['Договоры','Shartnomalar','Contracts'], ['Ближайшая выплата: 15 июля','Yaqin to\'lov: 15-iyul','Next payout: July 15'], ['Оформить рассрочку клиенту','Mijozga muddatli to\'lov','Set up installment'],
+  ];
+  RX = [
+    [/(\d+)\s*дн просрочки/g, '$1 kun kechikish', '$1 days overdue'],
+    [/Шаг (\d)\/3/g, 'Qadam $1/3', 'Step $1/3'],
+    [/(\d+) мес/g, '$1 oy', '$1 mo'],
+    [/сум/g, 'so\u02bbm', 'UZS']
+  ];
+  applyLang() {
+    if (this._lang === undefined) { try { this._lang = new URLSearchParams(window.location.search).get('lang') || 'ru'; } catch(_) { this._lang = 'ru'; } }
+    const lang = this._lang;
+    if (lang === 'ru') return;
+    const col = lang === 'uz' ? 1 : 2;
+    if (!this._map) this._map = new Map(this.I18N.map(r => [r[0], r]));
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let n;
+    while ((n = w.nextNode())) {
+      const v = n.nodeValue, tr = v.trim();
+      if (!tr) continue;
+      const row = this._map.get(tr);
+      if (row) { n.nodeValue = v.replace(tr, row[col]); continue; }
+      let nv = v;
+      for (const [rx, uz, en] of this.RX) nv = nv.replace(rx, col === 1 ? uz : en);
+      if (nv !== v) n.nodeValue = nv;
+    }
+    document.querySelectorAll('input[placeholder], select').forEach(el => {
+      if (el.placeholder) { const r = this._map.get(el.placeholder.trim()); if (r) el.placeholder = r[col]; }
+      if (el.tagName === 'SELECT') [...el.options].forEach(o => { const r = this._map.get(o.text.trim()); if (r) o.text = r[col]; });
+    });
+  }
+
+  componentDidMount() { try { const p = new URLSearchParams(location.search).get('lang'); if (p) { const u = p.toLowerCase() === 'uz'; if ((u ? 'UZ' : 'RU') !== this.state.lang) this.setState({ lang: u ? 'UZ' : 'RU' }); } } catch (_) {} const d = () => { if (window.lucide) window.lucide.createIcons(); this.applyLang(); }; d(); this._i = setInterval(d, 400); this.applyTheme(); }
+  componentDidUpdate() { this.applyTheme(); if (window.lucide) window.lucide.createIcons(); this.applyLang(); }
+  componentWillUnmount() { clearInterval(this._i); clearInterval(this._otp); }
+
+  applyTheme() {
+    const map = { 'ZOOD': ['#2E3192','#23276F','#ECEDF7','#282C7D'], 'Изумруд': ['#12A150','#0E8443','#E4F6EC','#0B6B37'], 'Фиолет': ['#7A5AF0','#6544D6','#EEEAFC','#5533B8'], 'Бирюза': ['#14A0B8','#0E7F93','#E4F6F9','#0C6C7D'] };
+    const t = map[this.props.accent] || map['ZOOD']; const r = document.documentElement.style;
+    r.setProperty('--accent', t[0]); r.setProperty('--accent-press', t[1]); r.setProperty('--accent-soft', t[2]); r.setProperty('--accent-ink', t[3]);
+  }
+
+  fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u2009'); }
+  go(r) { return () => this.setState({ route: r }); }
+
+  startOtpTimer() { clearInterval(this._otp); this.setState({ otpTimer: 59 }); this._otp = setInterval(() => { this.setState(s => s.otpTimer <= 1 ? (clearInterval(this._otp), { otpTimer: 0 }) : { otpTimer: s.otpTimer - 1 }); }, 1000); }
+
+  calc(price, term) { const m = this.MARKUP[term]; const total = price * (1 + m); return { markup: total - price, total, monthly: total / term }; }
+
+  renderVals() {
+    const s = this.state;
+    const navDefs = [['home','Главная','layout-dashboard'],['settle','Взаиморасчёты','arrow-left-right'],['contracts','Договоры','file-text'],['reports','Отчёты','bar-chart-3'],['employees','Сотрудники','users'],['faq','FAQ','help-circle'],['settings','Настройки','settings']];
+    const nav = navDefs.map(([k, label, icon]) => ({ label, icon, cls: s.route === k ? 'sitem active' : 'sitem', on: this.go(k) }));
+
+    const chart = [['01',38],['02',52],['03',44],['04',67],['05',28,1],['06',22,1],['07',59],['08',74],['09',63],['10',88],['11',71],['12',100]].map(([day, h, wk]) => ({ day, h: h + '%', cls: wk ? 'bar wk' : 'bar' }));
+    const recent = [
+      { icon:'arrow-down-left', icBg:'#E7F5EC', icFg:'#2C7A4B', title:'Выплата за товар', sub:'№2026-04871 · 12 июл', amt:'+6 200 000', amtCls:'pos', st:'Выплачено', stBg:'#E7F5EC', stFg:'#2C7A4B' },
+      { icon:'percent', icBg:'var(--accent-soft)', icFg:'var(--accent-ink)', title:'Комиссия агента', sub:'№2026-04871 · 12 июл', amt:'+310 000', amtCls:'pos', st:'Начислено', stBg:'#EDF3F8', stFg:'#3D6E8C' },
+      { icon:'package', icBg:'#FBF3E3', icFg:'#B07A22', title:'Передача товара', sub:'№2026-04903 · 11 июл', amt:'8 900 000', amtCls:'', st:'В очереди', stBg:'#FBF3E3', stFg:'#B07A22' },
+      { icon:'arrow-down-left', icBg:'#E7F5EC', icFg:'#2C7A4B', title:'Выплата за товар', sub:'№2026-04855 · 10 июл', amt:'+4 150 000', amtCls:'pos', st:'Выплачено', stBg:'#E7F5EC', stFg:'#2C7A4B' },
+      { icon:'percent', icBg:'var(--accent-soft)', icFg:'var(--accent-ink)', title:'Комиссия агента', sub:'№2026-04855 · 10 июл', amt:'+207 500', amtCls:'pos', st:'Начислено', stBg:'#EDF3F8', stFg:'#3D6E8C' }
+    ];
+
+    // ---- wizard ----
+    const stepDefs = [[1,'Проверка','user-check'],[2,'Лимит','shield-check'],[3,'Корзина','shopping-cart'],[4,'Договор','file-text']];
+    const steps = stepDefs.map(([n, label, icon], i) => ({ label, icon: s.wStep > n ? 'check' : icon, cls: s.wStep === n ? 'step active' : s.wStep > n ? 'step done' : 'step', line: i < 3, lineCls: s.wStep > n ? 'on' : '' }));
+    const term = s.wTerm;
+    const goodsTotal = s.cart.reduce((a, c) => a + c.price * c.qty, 0);
+    const wt = this.calc(goodsTotal, term);
+    const remaining = this.LIMIT - wt.total;
+    const t = {
+      goods: this.fmt(goodsTotal), markup: this.fmt(wt.markup), total: this.fmt(wt.total), monthly: this.fmt(wt.monthly),
+      commission: this.fmt(goodsTotal * 0.05), goodsCount: s.cart.reduce((a, c) => a + c.qty, 0),
+      remaining: this.fmt(remaining) + ' сум', exceeded: remaining < 0,
+      remBg: remaining < 0 ? '#FBEAE8' : '#F2F7F8', remFg: remaining < 0 ? '#B4453C' : 'var(--ink)'
+    };
+    const CATS = ['Товары для авто','Телевизоры и видеотехника','Аудиосистемы','Компьютеры и оргтехника','Телефоны, гаджеты и аксессуары','Одежда, обувь и аксессуары','Бытовая техника'];
+    const ordinals = ['Первый','Второй','Третий','Четвёртый','Пятый','Шестой','Седьмой'];
+    const upd = (id, patch) => this.setState(st => ({ cart: st.cart.map(x => x.id === id ? { ...x, ...patch } : x) }));
+    const cart = s.cart.map((c, i) => ({
+      title: (ordinals[i] || (i + 1) + '-й') + ' товар',
+      cat: c.cat, catOpen: s.catOpen === c.id,
+      catToggle: () => this.setState(st => ({ catOpen: st.catOpen === c.id ? null : c.id })),
+      cats: CATS.map(name => ({ name, pick: () => { upd(c.id, { cat: name }); this.setState({ catOpen: null }); } })),
+      name: c.name, onName: e => upd(c.id, { name: e.target.value }),
+      unit: c.unit, onUnit: e => upd(c.id, { unit: e.target.value }),
+      qty: c.qty,
+      inc: () => upd(c.id, { qty: c.qty + 1 }),
+      dec: () => upd(c.id, { qty: Math.max(1, c.qty - 1) }),
+      priceStr: c.price > 0 ? this.fmt(c.price) : '',
+      onPrice: e => upd(c.id, { price: parseInt(e.target.value.replace(/\D/g, '')) || 0 }),
+      sumText: c.price > 0 ? this.fmt(c.price * c.qty) + ' сум' : 'Рассчитаем после указания цены',
+      sumFg: c.price > 0 ? '#151515' : '#C4C4C4',
+      canRm: s.cart.length > 1,
+      rm: () => this.setState(st => ({ cart: st.cart.filter(x => x.id !== c.id) }))
+    }));
+    const terms = [3,6,9,12].map(m => ({ m, pct: Math.round(this.MARKUP[m]*100), cls: term === m ? 'chipterm on' : 'chipterm', on: () => this.setState({ wTerm: m }) }));
+
+    const wNext = () => {
+      if (s.wStep === 1) { if (s.wResult === 'approved') { this.setState({ wStep: 2 }); this.startOtpTimer(); } }
+      else if (s.wStep === 2) { if (s.wOtp.length === 6) this.setState({ wStep: 3, otpErr: false }); else this.setState({ otpErr: true }); }
+      else if (s.wStep === 3) { if (!t.exceeded && goodsTotal > 0) this.setState({ wStep: 4 }); }
+    };
+    const nextLabel = s.wStep === 2 ? 'Подтвердить' : s.wStep === 3 ? 'К договору' : 'Далее';
+    const nextDisabled = (s.wStep === 1 && s.wResult !== 'approved') || (s.wStep === 3 && (t.exceeded || goodsTotal <= 0)) ? true : false;
+
+    // ---- calculator ----
+    const cc = this.calc(s.calcPrice, s.calcTerm);
+    const calcTerms = [3,6,9,12].map(m => ({ m: m + ' мес', pct: Math.round(this.MARKUP[m]*100), cls: s.calcTerm === m ? 'chipterm on' : 'chipterm', on: () => this.setState({ calcTerm: m }) }));
+
+    // ---- settlements ----
+    const outflows = [
+      { goods: 'iPhone 15 Pro', num: '№2026-04903', date: '11 июл', sumN: 8900000 },
+      { goods: 'Samsung TV 55"', num: '№2026-04788', date: '07 июл', sumN: 5400000 },
+      { goods: 'Ноутбук Lenovo', num: '№2026-04855', date: '10 июл', sumN: 4150000 },
+      { goods: 'Холодильник Artel', num: '№2026-04712', date: '05 июл', sumN: 5200000 }
+    ].map(o => ({ ...o, sum: this.fmt(o.sumN) }));
+    const inflows = [
+      { op: 'Выплата за товар', num: '№2026-04871', date: '12 июл', sumN: 6200000, st: 'Выплачено', stBg: '#E7F5EC', stFg: '#2C7A4B', icon: 'arrow-down-left', icBg: '#E7F5EC', icFg: '#2C7A4B' },
+      { op: 'Выплата за товар', num: '№2026-04855', date: '10 июл', sumN: 4150000, st: 'Выплачено', stBg: '#E7F5EC', stFg: '#2C7A4B', icon: 'arrow-down-left', icBg: '#E7F5EC', icFg: '#2C7A4B' },
+      { op: 'Комиссия агента', num: '№2026-04871', date: '12 июл', sumN: 310000, st: 'Начислено', stBg: '#EDF3F8', stFg: '#3D6E8C', icon: 'percent', icBg: '#EAEDFB', icFg: '#2B3F9E' },
+      { op: 'Выплата за товар', num: '№2026-04788', date: '08 июл', sumN: 5400000, st: 'В очереди', stBg: '#FCF4E6', stFg: '#96682A', icon: 'clock', icBg: '#FCF4E6', icFg: '#96682A' }
+    ].map(p => ({ ...p, sum: this.fmt(p.sumN) }));
+    const outTotalN = outflows.reduce((a, o) => a + o.sumN, 0);
+    const inTotalN = inflows.reduce((a, p) => a + p.sumN, 0);
+    const pendingN = inflows.filter(p => p.st === 'В очереди').reduce((a, p) => a + p.sumN, 0);
+    const setStat = {
+      out: this.fmt(outTotalN), in: this.fmt(inflows.filter(p => p.st !== 'В очереди').reduce((a, p) => a + p.sumN, 0)),
+      pending: this.fmt(pendingN), balance: this.fmt(12400000)
+    };
+
+    // ---- contracts ----
+    const avPal = ['#4EC2D6','#3D9DC9','#E8A13F','#7A5AF0','#12A150','#E05B4E'];
+    const cRaw = [
+      { n:1, date:'12 июл', client:'Азиз Каримов', phone:'+998 90 123-45-67', goods:'iPhone 15', sum:9800000, term:'12 мес', st:'paid', od:0 },
+      { n:2, date:'11 июл', client:'Дилноза Юсупова', phone:'+998 93 770-12-09', goods:'Samsung TV', sum:6500000, term:'9 мес', st:'pending', od:14 },
+      { n:3, date:'10 июл', client:'Ботир Рахимов', phone:'+998 94 551-88-22', goods:'Ноутбук Lenovo', sum:7100000, term:'6 мес', st:'paid', od:0 },
+      { n:4, date:'09 июл', client:'Шахло Норова', phone:'+998 97 444-16-90', goods:'Холодильник Artel', sum:5200000, term:'12 мес', st:'cancelled', od:46 },
+      { n:5, date:'08 июл', client:'Жасур Тошматов', phone:'+998 91 209-44-71', goods:'Стиральная машина', sum:5400000, term:'6 мес', st:'pending', od:6 },
+      { n:6, date:'07 июл', client:'Нилуфар Азимова', phone:'+998 90 332-77-41', goods:'Xiaomi 13', sum:4300000, term:'9 мес', st:'paid', od:0 }
+    ];
+    const cStMeta = { paid:['Выплата получена','#E7F5EC','#2C7A4B'], pending:['Ожидает выплаты','#FBF3E3','#B07A22'], cancelled:['Отменён','#FBEAE8','#B4453C'] };
+    const q = s.cQuery.trim().toLowerCase();
+    const contractsAll = cRaw.filter(c => (s.cStatus === 'all' || c.st === s.cStatus) && (!q || c.client.toLowerCase().includes(q)));
+    const contracts = contractsAll.map((c, i) => ({ ...c, sum: this.fmt(c.sum), ini: c.client.split(' ').map(w => w[0]).slice(0,2).join(''), avBg: avPal[c.n % avPal.length], st: cStMeta[c.st][0], stBg: cStMeta[c.st][1], stFg: cStMeta[c.st][2],
+      odText: c.od > 0 ? c.od + ' дн' : '—',
+      odBg: c.od > 30 ? '#FBEAE8' : c.od > 0 ? '#FBF3E3' : '#EDF2F4',
+      odFg: c.od > 30 ? '#B4453C' : c.od > 0 ? '#B07A22' : 'var(--muted)' }));
+    const cStatusDefs = [['all','Все'],['paid','Выплачены'],['pending','Ожидают'],['cancelled','Отменены']];
+    const cStatusTabs = cStatusDefs.map(([k, label]) => ({ label, cls: s.cStatus === k ? 'ftab on' : 'ftab', on: () => this.setState({ cStatus: k }) }));
+
+    // ---- reports ----
+    const periodDefs = [['jul','Июль'],['jun','Июнь'],['q','Квартал'],['custom','Свой период']];
+    const periodTabs = periodDefs.map(([k, label]) => ({ label, cls: s.period === k ? 'ftab on' : 'ftab', on: () => this.setState({ period: k }) }));
+    const repSalesRows = [
+      { date:'12 июл', num:'№2026-04871', client:'Азиз Каримов', seller:'Санжар А.', sum:'9 800 000', comm:'490 000' },
+      { date:'11 июл', num:'№2026-04903', client:'Дилноза Юсупова', seller:'Малика Р.', sum:'6 500 000', comm:'325 000' },
+      { date:'10 июл', num:'№2026-04855', client:'Ботир Рахимов', seller:'Санжар А.', sum:'7 100 000', comm:'355 000' },
+      { date:'08 июл', num:'№2026-04790', client:'Жасур Тошматов', seller:'Малика Р.', sum:'5 400 000', comm:'270 000' },
+      { date:'07 июл', num:'№2026-04788', client:'Нилуфар Азимова', seller:'Санжар А.', sum:'4 300 000', comm:'215 000' }
+    ];
+    const repCommRows = [
+      { date:'12 июл', num:'№2026-04871', client:'Азиз Каримов', sum:'9 800 000', comm:'490 000', st:'Выплачено', stBg:'#E7F5EC', stFg:'#2C7A4B' },
+      { date:'11 июл', num:'№2026-04903', client:'Дилноза Юсупова', sum:'6 500 000', comm:'325 000', st:'Начислено', stBg:'#EDF3F8', stFg:'#3D6E8C' },
+      { date:'10 июл', num:'№2026-04855', client:'Ботир Рахимов', sum:'7 100 000', comm:'355 000', st:'Выплачено', stBg:'#E7F5EC', stFg:'#2C7A4B' },
+      { date:'08 июл', num:'№2026-04790', client:'Жасур Тошматов', sum:'5 400 000', comm:'270 000', st:'Начислено', stBg:'#EDF3F8', stFg:'#3D6E8C' },
+      { date:'07 июл', num:'№2026-04788', client:'Нилуфар Азимова', sum:'4 300 000', comm:'215 000', st:'Выплачено', stBg:'#E7F5EC', stFg:'#2C7A4B' }
+    ];
+    const repOverdueRows = [
+      { num:'№2026-04903', client:'Дилноза Юсупова', goods:'Samsung TV 55"', debt:'−2 350 000', days:'14 дн', dBg:'#FBF3E3', dFg:'#B07A22', st:'1-е уведомление', stBg:'#FBF3E3', stFg:'#B07A22' },
+      { num:'№2026-04712', client:'Шахло Норова', goods:'Холодильник Artel', debt:'−4 100 000', days:'46 дн', dBg:'#FBEAE8', dFg:'#B4453C', st:'Взыскание FINTECH', stBg:'#FBEAE8', stFg:'#B4453C' },
+      { num:'№2026-04790', client:'Жасур Тошматов', goods:'Стиральная машина LG', debt:'−900 000', days:'6 дн', dBg:'#FBF3E3', dFg:'#B07A22', st:'SMS-напоминание', stBg:'#EDF3F8', stFg:'#3D6E8C' },
+      { num:'№2026-04655', client:'Улугбек Саидов', goods:'Ноутбук HP', debt:'−500 000', days:'3 дн', dBg:'#FBF3E3', dFg:'#B07A22', st:'SMS-напоминание', stBg:'#EDF3F8', stFg:'#3D6E8C' }
+    ];
+    const repSellerRows = [
+      { n:1, name:'Санжар Алиев', count:'18', sum:'72 400 000', comm:'3 620 000', avg:'4 022 000' },
+      { n:2, name:'Малика Рустамова', count:'14', sum:'56 100 000', comm:'2 805 000', avg:'4 007 000' },
+      { n:3, name:'Отабек Турсунов', count:'7', sum:'27 900 000', comm:'1 395 000', avg:'3 985 000' }
+    ].map(r => ({ ...r, ini: r.name.split(' ').map(w => w[0]).slice(0,2).join(''), avBg: avPal[r.n % avPal.length] }));
+    const repTabDefs = [['sales','Продажи'],['pay','Выплаты'],['comm','Комиссия'],['overdue','Просрочки'],['sellers','Продавцы']];
+    const repTabs = repTabDefs.map(([k, label]) => ({ label, cls: s.repTab === k ? 'on' : '', on: () => this.setState({ repTab: k }) }));
+    const repPayRows = [
+      { date:'12 июл', num:'№2026-04871', type:'Выплата за товар', sum:'+6 200 000', st:'Выплачено' },
+      { date:'10 июл', num:'№2026-04855', type:'Выплата за товар', sum:'+4 150 000', st:'Выплачено' },
+      { date:'07 июл', num:'№2026-04788', type:'Выплата за товар', sum:'+5 400 000', st:'Выплачено' },
+      { date:'05 июл', num:'№2026-04712', type:'Выплата за товар', sum:'+7 800 000', st:'Выплачено' }
+    ];
+
+    // ---- employees ----
+    const emp = [
+      { n:1, name:'Санжар Алиев', role:'Администратор', phone:'+998 90 111-22-33', sales:'18', st:'Активен', stCls:'faol' },
+      { n:2, name:'Малика Рустамова', role:'Продавец', phone:'+998 93 444-55-66', sales:'14', st:'Активен', stCls:'faol' },
+      { n:3, name:'Отабек Турсунов', role:'Продавец', phone:'+998 94 777-88-99', sales:'7', st:'Активен', stCls:'faol' },
+      { n:4, name:'Гулнора Ахмедова', role:'Продавец', phone:'+998 91 000-12-34', sales:'0', st:'Заблокирован', stCls:'stop' }
+    ];
+    const employees = emp.map(e => ({ ...e, ini: e.name.split(' ').map(w => w[0]).slice(0,2).join(''), avBg: avPal[e.n % avPal.length] }));
+
+    // ---- faq ----
+    const faqDefs = [
+      ['Как формируется лимит клиента?', 'Лимит рассчитывается системой FINTECH на основе скоринга: кредитная история, доход и текущая долговая нагрузка. Агент видит только итоговую одобренную сумму.'],
+      ['Когда магазин получает выплату?', 'Выплата за переданный товар поступает на расчётный счёт магазина в течение 1 рабочего дня после подписания договора клиентом.'],
+      ['Как начисляется комиссия агента?', 'Агент получает фиксированную комиссию с каждой продажи (обычно 5% от стоимости товаров). Комиссия отражается в разделе «Взаиморасчёты».'],
+      ['Кто собирает платежи с клиента?', 'Все ежемесячные платежи собирает FINTECH напрямую с клиента. Магазин не участвует в сборе задолженности.'],
+      ['Что делать при отказе в лимите?', 'Сообщите клиенту причину отказа. Чаще всего это активная просрочка — после её погашения клиент может обратиться повторно.']
+    ];
+    const faq = faqDefs.map(([qq, aa], i) => ({ q: qq, a: aa, open: s.faqOpen === i, chev: s.faqOpen === i ? 'chevron-up' : 'chevron-down', toggle: () => this.setState({ faqOpen: s.faqOpen === i ? -1 : i }) }));
+
+    return {
+      brand: this.props.brandName || 'ZOOD', legal: this.props.legalName || 'ZOOD Pay Uzbekistan', lang: s.lang,
+      nav, chart, recent, startSale: () => this.setState({ route: 'sale' }), goSettle: this.go('settle'),
+      isHome: s.route === 'home', isSale: s.route === 'sale', isCalc: s.route === 'calc', isSettle: s.route === 'settle',
+      isContracts: s.route === 'contracts', isReports: s.route === 'reports', isEmployees: s.route === 'employees', isFaq: s.route === 'faq', isSettings: s.route === 'settings',
+      // wizard
+      steps, w: { pinfl: s.wPinfl, phone: s.wPhone, name: s.wName, otp: s.wOtp, term, nameShow: s.wName || 'Азиз Каримов' },
+      isW1: s.wStep === 1, isW2: s.wStep === 2, isW3: s.wStep === 3, isW4: s.wStep === 4,
+      onPinfl: e => this.setState({ wPinfl: e.target.value }), onPhone: e => this.setState({ wPhone: e.target.value }), onName: e => this.setState({ wName: e.target.value }),
+      onOtp: e => this.setState({ wOtp: e.target.value.replace(/\D/g, '').slice(0, 6), otpErr: false }),
+      runScoring: () => this.setState({ wResult: 'approved' }),
+      resApproved: s.wResult === 'approved', resDeny: s.wResult === 'deny', resExisting: s.wResult === 'existing',
+      otpErr: s.otpErr, otpTimerText: s.otpTimer > 0 ? ('Отправить код повторно через 0:' + String(s.otpTimer).padStart(2, '0')) : 'Отправить код повторно',
+      cart,
+      addItem: () => this.setState(st => ({ cart: [...st.cart, { id: Date.now(), cat: 'Товары для авто', name: '', unit: 'шт', qty: 1, price: 0 }] })),
+      hasPrice: goodsTotal > 0, noPrice: goodsTotal <= 0, calcHdFg: goodsTotal > 0 ? '#151515' : '#C9C9C9',
+      terms, calcTerms, t,
+      signed: s.wSigned, notSigned: !s.wSigned, sign: () => this.setState({ wSigned: true }),
+      resetSale: () => this.setState({ wStep: 1, wResult: null, wOtp: '', wSigned: false, cart: [{ id: 1, cat: 'Товары для авто', name: '', unit: 'шт', qty: 1, price: 0 }], wTerm: 6, catOpen: null }),
+      showFoot: s.route === 'sale' && !(s.wStep === 4 && s.wSigned), backVis: s.wStep === 1 ? 'hidden' : 'visible',
+      wBack: () => this.setState(st => ({ wStep: Math.max(1, st.wStep - 1) })), wNext, nextLabel, nextDisabled,
+      // calc
+      calc: { price: s.calcPrice, priceNum: s.calcPrice, term: s.calcTerm, monthly: this.fmt(cc.monthly), markup: this.fmt(cc.markup), total: this.fmt(cc.total) },
+      onCalcPrice: e => this.setState({ calcPrice: Math.max(0, parseInt(e.target.value.replace(/\D/g, '')) || 0) }),
+      // settlements
+      outflows, inflows, outTotal: this.fmt(outTotalN), inTotal: this.fmt(inTotalN), setStat,
+      // contracts
+      cQuery: s.cQuery, onCQuery: e => this.setState({ cQuery: e.target.value }), cStatusTabs, contracts, contractsEmpty: contracts.length === 0, contractsShown: contracts.length, contractsTotal: cRaw.length,
+      // reports
+      periodTabs, repTabs, repSalesRows, repPayRows, repCommRows, repOverdueRows, repSellerRows,
+      repIsSales: s.repTab === 'sales', repIsPay: s.repTab === 'pay', repIsComm: s.repTab === 'comm', repIsOverdue: s.repTab === 'overdue', repIsSellers: s.repTab === 'sellers',
+      // employees
+      employees, openInvite: () => this.setState({ inviteOpen: true }), closeInvite: () => this.setState({ inviteOpen: false }), inviteOpen: s.inviteOpen, inviteCls: s.inviteOpen ? 'show' : '', stop: e => e.stopPropagation(),
+      // faq
+      faq,
+      // settings
+      notifSmsCls: s.notifSms ? 'tgl on' : 'tgl', notifTgCls: s.notifTg ? 'tgl on' : 'tgl', notifEmailCls: s.notifEmail ? 'tgl on' : 'tgl',
+      toggleSms: () => this.setState(st => ({ notifSms: !st.notifSms })), toggleTg: () => this.setState(st => ({ notifTg: !st.notifTg })), toggleEmail: () => this.setState(st => ({ notifEmail: !st.notifEmail })),
+      ruCls: s.lang === 'RU' ? 'on' : '', uzCls: s.lang === 'UZ' ? 'on' : '', setRu: () => { try { var u=new URL(location.href); u.searchParams.set('lang','ru'); location.replace(u.toString()); } catch(_) { this.setState({ lang: 'RU' }); } }, setUz: () => { try { var u=new URL(location.href); u.searchParams.set('lang','uz'); location.replace(u.toString()); } catch(_) { this.setState({ lang: 'UZ' }); } }
+    };
+  }
+}
+</script>
+<script>
+// PANEL-I18N: mustaqil tarjima qatlami (?lang=uz|en) — klassdan mustaqil ishlaydi
+(function(){
+  var lang='ru';
+  try{ lang=(new URLSearchParams(location.search).get('lang')||'ru').toLowerCase(); }catch(e){}
+  if(lang!=='uz' && lang!=='en') return;
+  var col = lang==='uz' ? 1 : 2;
+  var MAP=null, RX=null;
+  function loadDict(){
+    try{
+      var sc=document.querySelector('script[type="text/x-dc"]');
+      if(!sc) return false;
+      var t=sc.textContent;
+      var m=/I18N = (\[[\s\S]*?\n  \]);/.exec(t);
+      var r=/RX = (\[[\s\S]*?\n  \]);/.exec(t);
+      if(!m) return false;
+      MAP=new Map(eval(m[1]).map(function(row){return [row[0], row];}));
+      RX=r?eval(r[1]):[];
+      return true;
+    }catch(e){ return false; }
+  }
+  function tr(){
+    if(!MAP && !loadDict()) return;
+    try{
+      var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT), n, list=[];
+      while((n=w.nextNode())) list.push(n);
+      for(var i=0;i<list.length;i++){
+        var nd=list[i], v=nd.nodeValue, trm=v.trim();
+        if(!trm) continue;
+        var row=MAP.get(trm);
+        if(row && row[col]){ nd.nodeValue=v.replace(trm,row[col]); continue; }
+        var nv=v;
+        for(var j=0;j<RX.length;j++){ nv=nv.replace(RX[j][0], col===1?RX[j][1]:RX[j][2]); }
+        if(nv!==v) nd.nodeValue=nv;
+      }
+      var els=document.querySelectorAll('input[placeholder], select');
+      for(var k=0;k<els.length;k++){
+        var el=els[k];
+        if(el.placeholder){ var rr=MAP.get(el.placeholder.trim()); if(rr&&rr[col]) el.placeholder=rr[col]; }
+        if(el.tagName==='SELECT'){ for(var o=0;o<el.options.length;o++){ var ro=MAP.get(el.options[o].text.trim()); if(ro&&ro[col]) el.options[o].text=ro[col]; } }
+      }
+    }catch(e){}
+  }
+  loadDict(); // darhol o'qiymiz — runtime manba skriptni keyin olib tashlashi mumkin
+  function start(){
+    tr();
+    try{ new MutationObserver(function(){ tr(); }).observe(document.body,{childList:true,subtree:true,characterData:true}); }catch(e){}
+    setInterval(tr, 700);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

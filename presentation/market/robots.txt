@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Shaxsiy va tranzaksion sahifalar indekslanmasin
+Disallow: /savat
+Disallow: /rasmiylashtirish
+Disallow: /profil
+Disallow: /buyurtmalar
+Disallow: /kirish
+Disallow: /sevimlilar
+Disallow: /taqqoslash
+Disallow: /qidiruv
+Disallow: /admin
+
+Sitemap: https://glowen-market.uz/sitemap.xml

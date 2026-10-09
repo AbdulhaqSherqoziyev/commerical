@@ -1,0 +1,6 @@
+export function hex2rgb(h){h=h.replace('#','');if(h.length===3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+function rgb2hsl(r,g,b){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h,s,l=(mx+mn)/2;if(mx===mn){h=s=0;}else{const d=mx-mn;s=l>0.5?d/(2-mx-mn):d/(mx+mn);switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h/=6;}return[h*360,s*100,l*100];}
+function hsl2hex(h,s,l){h/=360;s/=100;l/=100;const hue=(p,q,t)=>{if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};let r,g,b;if(s===0){r=g=b=l;}else{const q=l<0.5?l*(1+s):l+s-l*s,p=2*l-q;r=hue(p,q,h+1/3);g=hue(p,q,h);b=hue(p,q,h-1/3);}const t=x=>{x=Math.round(x*255);return(x<16?'0':'')+x.toString(16);};return '#'+t(r)+t(g)+t(b);}
+export function palette(base){const [r,g,b]=hex2rgb(base),[H,S0,L0]=rgb2hsl(r,g,b);const S=Math.max(S0,28);const Lm={50:96,500:Math.min(L0+16,58),600:L0,700:Math.max(L0-7,30),800:Math.max(L0-14,23),900:Math.max(L0-21,16)};const p={};for(const k in Lm)p[k]=(k==='600')?base:hsl2hex(H,S,Lm[k]);return p;}
+export function validHex(c){return /^#[0-9a-fA-F]{6}$/.test(c||'');}
+export function validSub(s){return /^[a-z0-9]([a-z0-9-]{1,30}[a-z0-9])?$/.test(s||'');}

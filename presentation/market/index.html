@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="uz" class="scroll-smooth">
+  <head>
+<script>try{var _th=localStorage.getItem("glowen-theme");if(!_th){_th="light";localStorage.setItem("glowen-theme","light");}if(_th==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");}catch(e){}try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
+    <meta charset="UTF-8" />
+    <style>/* mahsulotlar va banner darrov ko'rinsin (framer-motion reveal'ni bekor qilamiz) — FAQAT CSS, slayder va API'ga tegmaydi */article{opacity:1 !important;transform:none !important}[class*="grid"]>h1,[class*="grid"]>p{opacity:1 !important;transform:none !important}.swiper-slide .max-w-xl>*{opacity:1 !important;transform:none !important}</style>
+    <!-- DEMO BACKEND: prezentatsiya uchun butun /api serversiz ishlashi (login, buyurtma, to'lov) -->
+    <script>
+    (function(){
+      var DEMO_CODE='000000';           // prezentatsiyada ko'rsatiladigan demo kod (6 xonali)
+      var _c=null;                       // joriy demo mijoz
+      var _orders=[];                    // sessiyadagi demo buyurtmalar
+      var _cat=null;                     // mahsulotlar katalogi (bundledan olinadi)
+      var _f=window.fetch.bind(window);
+      function J(o,s){return Promise.resolve(new Response(JSON.stringify(o),{status:s||200,headers:{'Content-Type':'application/json'}}));}
+      function newCust(b){return {id:'demo',name:(b&&b.name)||'Demo mijoz',phone:(b&&b.phone)||'+998 90 000 00 00',email:'',avatar:'',addresses:[],orders:[],favorites:[]};}
+      // mahsulot katalogini bitta marta bundle faylidan o'qib olamiz (id -> {name,brand,price})
+      function catalog(){
+        if(_cat)return Promise.resolve(_cat);
+        var src=[].slice.call(document.querySelectorAll('script[src]')).map(function(s){return s.src;}).filter(function(u){return /\/assets\/index-.*\.js/.test(u);})[0];
+        if(!src){_cat={};return Promise.resolve(_cat);}
+        return _f(src).then(function(r){return r.text();}).then(function(t){
+          var map={},re=/id:"(p-\d+)"/g,m;
+          while((m=re.exec(t))){
+            var seg=t.slice(m.index,m.index+700);
+            var nm=(seg.match(/name:"([^"]*)"/)||[])[1];
+            var br=(seg.match(/brand:"([^"]*)"/)||[])[1];
+            var pr=(seg.match(/price:([0-9.eE+]+)/)||[])[1];
+            if(!map[m[1]])map[m[1]]={name:nm||'Mahsulot',brand:br||'',price:Number(pr)||0};
+          }
+          _cat=map;return map;
+        }).catch(function(){_cat={};return _cat;});
+      }
+      function buildOrder(cat,body){
+        var cart=[];try{cart=(JSON.parse(localStorage.getItem('glowen-store')||'{}').cart)||[];}catch(e){}
+        var lines=cart.map(function(it){var p=cat[it.id]||{};return {productId:it.id,name:p.name||'Mahsulot',brand:p.brand||'',qty:it.qty||1,price:p.price||0};});
+        if(!lines.length&&body&&body.items)lines=body.items.map(function(it){var p=cat[it.productId]||{};return {productId:it.productId,name:p.name||'Mahsulot',brand:p.brand||'',qty:it.qty||1,price:p.price||0};});
+        var total=lines.reduce(function(s,l){return s+l.price*l.qty;},0);
+        var n=_orders.length+1;
+        var order=Object.assign({},body||{},{id:'ORD-'+Date.now(),number:'A'+(100000+Math.floor(Math.random()*899999)),status:'new',createdAt:new Date().toISOString(),lines:lines,total:total});
+        _orders.unshift(order);
+        return order;
+      }
+      window.fetch=function(input,init){
+        var url=(input&&input.url)||input||''; url=String(url);
+        var path=url; try{path=new URL(url,location.origin).pathname;}catch(e){}
+        if(path.indexOf('/api/')!==0) return _f(input,init);
+        var method=((init&&init.method)||'GET').toUpperCase();
+        var b={}; try{b=init&&init.body?(typeof init.body==='string'?JSON.parse(init.body):init.body):{};}catch(e){}
+        // ---- AUTH ----
+        if(path.indexOf('/api/auth/')===0){
+          if(path.indexOf('request-code')>=0) return J({ok:true,devCode:DEMO_CODE,message:'Demo kod: '+DEMO_CODE});
+          if(path.indexOf('verify')>=0){_c=newCust(b);return J({token:'demo-token',customer:_c});}
+          if(path.indexOf('/auth/addresses')>=0){
+            if(method==='POST'&&_c){_c.addresses.push(Object.assign({id:'addr-'+Date.now()},b));}
+            return J({addresses:(_c&&_c.addresses)||[],ok:true});
+          }
+          if(path.indexOf('/auth/me')>=0){
+            if(method==='PUT'&&b&&typeof b==='object'){_c=_c||newCust();for(var k in b)_c[k]=b[k];}
+            return J({customer:_c||newCust()});
+          }
+          if(path.indexOf('logout')>=0){return J({ok:true});}
+          return J({ok:true});
+        }
+        // ---- ORDERS ----
+        if(path==='/api/orders'&&method==='POST') return catalog().then(function(cat){return J({order:buildOrder(cat,b)});});
+        if(path==='/api/orders'&&method==='GET') return J({orders:_orders});
+        if(/^\/api\/orders\/[^/]+\/cancel/.test(path)){var id=path.split('/')[3];_orders.forEach(function(o){if(o.id===id)o.status='cancelled';});return J({ok:true});}
+        if(/^\/api\/orders\/[^/]+$/.test(path)){var oid=path.split('/')[3];var f=_orders.filter(function(o){return o.id===oid;})[0];return J({order:f||null});}
+        // ---- PAYMENTS ----
+        if(path==='/api/payments/providers') return J({providers:[{id:'uzcard',name:'Uzcard'},{id:'humo',name:'Humo'},{id:'visa',name:'Visa'}]});
+        if(/^\/api\/payments\//.test(path)) return J({url:location.origin+location.pathname+'#/buyurtmalar',ok:true});
+        // ---- boshqa har qanday /api ----
+        return J({ok:true});
+      };
+      // ---- PASPORT inputi: 2 harf + 7 raqam (AA0000001), ko'proq qabul qilinmasin ----
+      var nativeSet=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
+      function isPassport(el){return el&&el.tagName==='INPUT'&&/^AA0*1?$/i.test((el.placeholder||'').replace(/\s/g,''));}
+      document.addEventListener('input',function(e){
+        var t=e.target;
+        if(!isPassport(t))return;
+        if(t.maxLength!==9)t.maxLength=9;
+        var v=(t.value||'').toUpperCase();
+        var letters=(v.match(/[A-Z]/g)||[]).slice(0,2).join('');
+        var digits=(v.match(/[0-9]/g)||[]).slice(0,7).join('');
+        var nv=letters+digits;
+        if(nv!==t.value){nativeSet.call(t,nv);t.dispatchEvent(new Event('input',{bubbles:true}));}
+      },true);
+    })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#2E3192" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#141637" media="(prefers-color-scheme: dark)" />
+
+    <!-- Primary meta -->
+    <title>ZOODMALL — Premium Online Marketplace</title>
+    <meta
+      name="description"
+      content="ZOODMALL — O'zbekistondagi eng zamonaviy premium online marketplace. Original mahsulotlar, tez yetkazib berish va qulay xarid tajribasi."
+    />
+    <meta name="keywords" content="ZOODMALL, marketplace, online do'kon, O'zbekiston, premium, xarid" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ZOODMALL" />
+    <meta property="og:title" content="ZOODMALL — Premium Online Marketplace" />
+    <meta
+      property="og:description"
+      content="O'zbekistondagi eng zamonaviy premium marketplace. Original mahsulotlar va qulay xarid tajribasi."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:locale" content="uz_UZ" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ZOODMALL — Premium Online Marketplace" />
+    <meta
+      name="twitter:description"
+      content="O'zbekistondagi eng zamonaviy premium marketplace."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Fonts: Nunito Sans (ZOOD dizayn tizimi — display ham, body ham) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme boot script: prevents flash of wrong theme (FOUC) -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('glowen-theme');
+          var system = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = stored ? stored === 'dark' : system;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-BWkXz6nD.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor-react-DYXBlJHR.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-query-DrAASuW8.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-motion-Djb7zGj5.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor-carousel-eWA_Mdvn.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-DtSLjcyf.css">
+    <script src="/brand.js?v=1784661573"></script>
+</head>
+  <body>
+    <div id="root"></div>
+  <script>
+/* ZOODMALL desktop market — EN overlay.
+   Prezentatsiya EN tanlaganda market ruscha render bo'ladi (localStorage['glowen-locale']='ru')
+   va localStorage['zood-ui-en']='1' bo'ladi. Bu skript ruscha matnni inglizchaga o'giradi.
+   Mahsulot nomlari, brendlar, narxlarga tegmaydi. Build ichiga tegilmaydi. */
+(function(){
+  function active(){ try { return localStorage.getItem('zood-ui-en') === '1'; } catch(e){ return false; } }
+  if (!active()) return;
+  try { document.documentElement.setAttribute('lang','en'); } catch(e){}
+
+  // ru -> en (aniq moslik)
+  var D = {
+    "Мобильные приложения":"Mobile apps","Каталог":"Catalog","Избранное":"Wishlist","Корзина":"Cart",
+    "Войти":"Sign in","Акции":"Deals","Новинки":"New","Главная":"Home","Все":"All","Магазин":"Store",
+    "Популярные":"Popular","Контакты":"Contacts","Все права защищены":"All rights reserved",
+    // kategoriyalar
+    "Парфюмерия":"Perfume","Уход за лицом":"Face care","Макияж":"Makeup","Уход за волосами":"Hair care",
+    "Для мужчин":"For men","Уход за телом":"Body care","Защита от солнца":"Sun protection","Ногти":"Nails",
+    "Аксессуары":"Accessories","Детям":"For kids","Подарочные наборы":"Gift sets","Премиум и Люкс":"Premium & Luxury",
+    "Уход за кожей":"Skincare","Все товары":"All products",
+    // hero / bannerlar
+    "Новая коллекция":"New collection","Ваш аромат —\nваша подпись":"Your scent —\nyour signature",
+    "Самые известные ароматы мира — оригинал и официальная гарантия":"The world's most famous fragrances — original and official warranty",
+    "Смотреть ароматы":"Shop fragrances","Гарантированный опыт":"Guaranteed experience","Гарантия":"Warranty",
+    "Здоровая кожа\nкаждый день":"Healthy skin\nevery day",
+    "CeraVe, La Roche-Posay и Estée Lauder — со скидкой до 20%":"CeraVe, La Roche-Posay and Estée Lauder — up to 20% off",
+    "Начать уход":"Start caring","Играйте\nс цветом":"Play\nwith color",
+    "Maybelline, MAC и NYX — любимая косметика по выгодным ценам":"Maybelline, MAC and NYX — favorite cosmetics at great prices",
+    "Каталог макияжа":"Makeup catalog","Молниеносная распродажа":"Flash sale",
+    "Ограниченное время — до конца акции":"Limited time — until the sale ends","Смотреть все":"View all",
+    // seksiyalar
+    "Популярные товары":"Popular products","Бестселлеры недели":"Bestsellers of the week","Показать ещё":"Show more",
+    "Новые поступления":"New arrivals","Самые свежие товары в магазине":"The freshest products in the store",
+    "Будьте в курсе лучших предложений":"Stay updated on the best deals",
+    "Узнавайте о новых скидках и товарах первыми":"Be the first to know about new deals and products",
+    "Подписаться":"Subscribe",
+    "Подписываясь, вы соглашаетесь с политикой конфиденциальности.":"By subscribing, you agree to the privacy policy.",
+    "Премиальный онлайн-маркетплейс":"Premium online marketplace",
+    // mahsulot kartasi / badge
+    "В корзину":"Add to cart","НОВОЕ":"NEW","ТОП":"TOP","ЛИМИТ":"LIMITED","Хит":"HIT",
+    // mahsulot sahifasi
+    "Наличные":"Cash","Рассрочка":"Installment","Полная оплата":"Full payment","Купить сейчас":"Buy now",
+    "Доставка курьером за 1–2 дня":"Courier delivery in 1–2 days",
+    "100% оригинал, официальная гарантия":"100% original, official warranty",
+    "Возврат в течение 14 дней":"Return within 14 days","Оплата":"Payment",
+    "Описание товара":"Product description","Состав":"Ingredients","Применение":"Usage",
+    "Характеристики":"Specifications","Объём":"Volume","Бренд":"Brand","Категория":"Category",
+    "Тип кожи":"Skin type","Нормальная–сухая":"Normal–dry","Оригинальность":"Authenticity",
+    "Официальная гарантия":"Official warranty","Доставка":"Delivery","1–2 дня":"1–2 days",
+    "Отзывы":"Reviews","Оставить отзыв":"Leave a review","Отправить":"Send",
+    "Отзыв могут оставить только покупатели товара.":"Only customers who bought the product can leave a review.",
+    "Отзывов пока нет. Будьте первым.":"No reviews yet. Be the first.","Похожие товары":"Similar products",
+    "Оригинальный товар с официальной гарантией. Высокое качество и удобство.":"Original product with official warranty. High quality and convenience.",
+    "0% наценка":"0% markup","Способ оплаты":"Payment method","Количество":"Quantity",
+    "Добавить в корзину":"Add to cart","В наличии":"In stock","Нет в наличии":"Out of stock",
+    // katalog / filtrlar
+    "Цена":"Price","Ещё бренды":"More brands","Рейтинг":"Rating","и выше":"and up","Метки":"Tags",
+    "Со скидкой":"On sale","Сбросить всё":"Reset all","товаров найдено":"products found",
+    "Фильтры":"Filters","Сортировка":"Sorting","Сначала дешёвые":"Cheapest first",
+    "Сначала дорогие":"Most expensive first","По рейтингу":"By rating","По скидке":"By discount",
+    "Применить":"Apply","Бренды":"Brands","Показать":"Show","Скрыть":"Hide","Ничего не найдено":"Nothing found",
+    // footer
+    "г. Ташкент, ул. Амира Темура 1":"Tashkent, Amir Temur street 1","Ежедневно 09:00 — 21:00":"Daily 09:00 — 21:00",
+    "заказов":"orders","заказы":"orders","заказа":"orders","отзыв.":"reviews","отзыв":"review","отзыва":"reviews","отзывов":"reviews",
+    // login / cart / checkout (ehtimoliy)
+    "Оформить заказ":"Checkout","Итого":"Total","Товары":"Products","Скидка":"Discount","Бесплатно":"Free",
+    "Корзина пуста":"Cart is empty","Продолжить покупки":"Continue shopping","Удалить":"Remove",
+    "Регистрация":"Sign up","Выйти":"Log out","Профиль":"Profile","Мои заказы":"My orders",
+    "Номер телефона":"Phone number","Получить код":"Get code","Подтвердить":"Confirm",
+    // jins / boshqa filtrlar
+    "Женская":"Women's","Мужская":"Men's","Унисекс":"Unisex","Пол":"Gender",
+    // placeholderlar
+    "Поиск товаров, брендов и категорий":"Search products, brands and categories",
+    "Ваш email":"Your email","Ваше мнение о товаре…":"Your opinion about the product…",
+    "Поиск":"Search"
+  };
+  // qoidalar (raqamli/tarkibli). $1 saqlanadi.
+  var R = [
+    [/— средство для ухода за телом\. Увлажняет, смягчает и защищает кожу\. Идеально для ежедневного использования\./g,"— a body care product. It moisturizes, softens and protects the skin. Ideal for daily use."],
+    [/— средство для ухода за волосами\. Укрепляет, питает и придаёт блеск\. Подходит для всех типов волос\./g,"— a hair care product. It strengthens, nourishes and adds shine. Suitable for all hair types."],
+    [/— эффективное средство для ухода за кожей\. При регулярном применении улучшает состояние кожи и обеспечивает увлажнение\. Протестировано дерматологами\./g,"— an effective skincare product. With regular use it improves skin condition and provides hydration. Dermatologist tested."],
+    [/— профессиональное средство для макияжа\. Стойкий результат и удобное нанесение\. Оригинальный товар с официальной гарантией\./g,"— a professional makeup product. Long-lasting result and easy application. Original product with official warranty."],
+    [/Оригинальный парфюм от официального дистрибьютора\. Аромат держится в течение дня и оставляет характерный шлейф\. Подходит для любого случая\./g,"Original perfume from the official distributor. The scent lasts throughout the day and leaves a distinctive trail. Suitable for any occasion."],
+    [/Оригинальный товар с официальной гарантией\. Высокое качество и удобство\./g,"Original product with official warranty. High quality and convenience."],
+    [/Можно купить (\d+) шт\./g,"Up to $1 available"],
+    [/На этой неделе купили (\d+) чел\./g,"$1 people bought it this week"],
+    [/(\d[\d\s.,]*)\s*тыс\./g,"$1k"],
+    [/(\d+)\s*товаров найдено/g,"$1 products found"],
+    [/товаров найдено/g,"products found"],
+    [/сум\/мес/g,"sum/mo"],
+    [/сум(?![а-яё])/gi,"sum"],
+    [/мес(?![а-яё])/gi,"mo"],
+    [/шт\.(?![а-яё])/gi,"pcs"]
+  ];
+
+  function ruleTr(s){ var out=s; for(var i=0;i<R.length;i++){ out=out.replace(R[i][0],R[i][1]); } return out!==s?out:null; }
+  function phrase(raw){
+    var lead=(raw.match(/^\s*/)||[""])[0], trail=(raw.match(/\s*$/)||[""])[0];
+    var key=raw.trim();
+    if(!key) return null;
+    if(D[key]!=null) return lead+D[key]+trail;
+    var rt=ruleTr(raw); if(rt!=null) return rt;
+    if(key.indexOf(' · ')>=0){
+      var parts=key.split(' · '), ch=false;
+      var m=parts.map(function(pt){ if(D[pt]!=null){ch=true;return D[pt];} var r=ruleTr(pt); if(r!=null){ch=true;return r;} return pt; });
+      if(ch) return lead+m.join(' · ')+trail;
+    }
+    return null;
+  }
+  function trNode(n){ var r=phrase(n.nodeValue); if(r!=null && r!==n.nodeValue) n.nodeValue=r; }
+  function walk(root){
+    if(!root||!root.querySelectorAll) root=document.body;
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(node){var p=node.parentNode;if(p&&(p.nodeName==='SCRIPT'||p.nodeName==='STYLE'||p.nodeName==='NOSCRIPT'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}},false),n,a=[];
+    while((n=w.nextNode())) a.push(n);
+    a.forEach(trNode);
+    var ph=root.querySelectorAll('[placeholder]');
+    for(var i=0;i<ph.length;i++){ var v=ph[i].getAttribute('placeholder'); if(D[v.trim()]!=null) ph[i].setAttribute('placeholder',D[v.trim()]); else { var r=ruleTr(v); if(r) ph[i].setAttribute('placeholder',r); } }
+  }
+  function run(){
+    var body=document.body; walk(body);
+    var obs=new MutationObserver(function(){ obs.disconnect(); walk(document.body); obs.observe(document.body,{childList:true,subtree:true,characterData:true}); });
+    obs.observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
+  else run();
+})();
+
+</script>
+</body>
+</html>
