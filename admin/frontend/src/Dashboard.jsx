@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { api, DOMAIN } from './api.js'
+import { api, DOMAIN, tenantHost, tenantUrl } from './api.js'
 import OrgForm from './OrgForm.jsx'
 import { UZ_REGIONS, REGION_NAMES, ALL_DISTRICTS, yandexSearchUrl } from './uzregions.js'
 import SearchSelect from './SearchSelect.jsx'
@@ -52,7 +52,7 @@ export default function Dashboard({ onLogout }){
     catch(ex){ toast(ex.error) }
   }
   async function remove(o){
-    if(!confirm(`"${o.name}" (${o.subdomain}.${DOMAIN}) o‘chirilsinmi?\nU "O‘chirilganlar" bo‘limiga tushadi — keyin qayta tiklashingiz mumkin.`)) return
+    if(!confirm(`"${o.name}" (${tenantHost(o.subdomain)}) o‘chirilsinmi?\nU "O‘chirilganlar" bo‘limiga tushadi — keyin qayta tiklashingiz mumkin.`)) return
     try { await api.remove(o.id); load(); toast('O‘chirilganlarga o‘tkazildi') } catch(ex){ toast(ex.error) }
   }
   async function restore(o){
@@ -83,7 +83,7 @@ export default function Dashboard({ onLogout }){
   }
   function exportCSV(){
     const rows = [['Nomi','Subdomen','Holat','Viloyat','Tuman','Telefon','Kontakt','Mahsulotlar','Summa','Borilgan','Faol','Manzil']]
-    active.forEach(o => rows.push([o.name, o.subdomain+'.'+DOMAIN, statusOf(o).label, o.region||'', o.district||'', o.phone||'', o.contact||'', (o.dealItems||[]).join('; '), o.dealAmount||0, o.visited?'Ha':'Yoq', o.enabled?'Ha':'Yoq', o.mapUrl||'']))
+    active.forEach(o => rows.push([o.name, tenantHost(o.subdomain), statusOf(o).label, o.region||'', o.district||'', o.phone||'', o.contact||'', (o.dealItems||[]).join('; '), o.dealAmount||0, o.visited?'Ha':'Yoq', o.enabled?'Ha':'Yoq', o.mapUrl||'']))
     const csv = '﻿' + rows.map(r => r.map(c => '"'+String(c==null?'':c).replace(/"/g,'""')+'"').join(',')).join('\n')
     const url = URL.createObjectURL(new Blob([csv], { type:'text/csv;charset=utf-8' }))
     const a = document.createElement('a'); a.href = url; a.download = 'tashkilotlar.csv'; a.click(); URL.revokeObjectURL(url)
@@ -172,7 +172,7 @@ export default function Dashboard({ onLogout }){
                 </select>
               </div>
               <div className="oc-name2">{o.name}</div>
-              <a className="oc-url" href={`https://${o.subdomain}.${DOMAIN}`} target="_blank" rel="noopener">{o.subdomain}.{DOMAIN} ↗</a>
+              <a className="oc-url" href={tenantUrl(o.subdomain)} target="_blank" rel="noopener">{tenantHost(o.subdomain)} ↗</a>
               {(o.region || o.district || o.mapUrl) && (
                 <a className="oc-loc" href={o.mapUrl || yandexSearchUrl(o.region, o.district)} target="_blank" rel="noopener"
                   title="Xaritada ochish (Yandex)"
@@ -228,7 +228,7 @@ export default function Dashboard({ onLogout }){
                       <span className="badge no">O‘chirilgan</span>
                     </div>
                     <div className="oc-name2">{o.name}</div>
-                    <div className="oc-url" style={{textDecoration:'line-through',opacity:.7}}>{o.subdomain}.{DOMAIN}</div>
+                    <div className="oc-url" style={{textDecoration:'line-through',opacity:.7}}>{tenantHost(o.subdomain)}</div>
                     <div className="oc-actions">
                       <button className="lnk" onClick={()=>restore(o)}>↩ Tiklash</button>
                     </div>

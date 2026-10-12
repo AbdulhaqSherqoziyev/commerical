@@ -1,4 +1,4 @@
-import { api, DOMAIN } from '../api.js'
+import { api, DOMAIN, tenantHost, tenantUrl } from '../api.js'
 import { palette, validHex, validSub } from '../palette.js'
 import { UZ_REGIONS, REGION_NAMES, REGION_COORDS } from '../uzregions.js'
 import { STATUSES } from '../statuses.js'
@@ -50,12 +50,12 @@ export function openOrgForm(container, { org, onClose, onSaved }){
               <div class="form-sec">Asosiy ma'lumotlar</div>
               <label>Tashkilot nomi <span class="req">*</span></label>
               <input name="name" value="${escapeHtml(state.name)}" placeholder="Acme Group" />
-              <label>Subdomen <span class="req">*</span></label>
+              <label>Manzil (havola) <span class="req">*</span></label>
               <div class="sub-row">
+                <span class="suf">${DOMAIN}/</span>
                 <input name="sub" value="${escapeHtml(state.sub)}" placeholder="acme" />
-                <span class="suf">.${DOMAIN}</span>
               </div>
-              ${editing ? `<div class="hint">Subdomenni o'zgartirsangiz, DNS'da ham aynan shu nom bo'lishi kerak</div>` : ''}
+              ${editing ? `<div class="hint">Manzilni o'zgartirsangiz, eski havola ishlamay qoladi</div>` : ''}
               <div class="two">
                 <div><label>Asosiy rang</label><div class="cp"><input type="color" name="color" value="${state.color}" /><input name="colorText" value="${state.color}" /></div></div>
                 <div><label>Ikkinchi rang</label><div class="cp"><input type="color" name="color2" value="${state.color2}" /><input name="color2Text" value="${state.color2}" /></div></div>
@@ -170,7 +170,7 @@ export function openOrgForm(container, { org, onClose, onSaved }){
         </div>
         <div class="pv-tabs"><span style="color:${state.color};border-color:${state.color}" class="on">Bosh</span><span>Katalog</span><span>Savat</span><span>Profil</span></div>
       </div>
-      <div class="hint">${state.sub ? `https://${state.sub}.${DOMAIN}` : "subdomen kiriting"}</div>
+      <div class="hint">${state.sub ? tenantUrl(state.sub) : "manzil nomini kiriting"}</div>
     `
     if(state.logo){ const img = smartLogoEl(state.logo, {height:30,maxWidth:150}); qs('#pv-logo', el).appendChild(img) }
   }
@@ -191,7 +191,7 @@ export function openOrgForm(container, { org, onClose, onSaved }){
     modal.addEventListener('mousedown', e=>e.stopPropagation())
     qs('#of-cancel', container).addEventListener('click', onClose)
     modal.querySelector('[name="name"]').addEventListener('input', e=>{ state.name = e.target.value; qs('#preview-col h4', container).textContent = state.name || 'Sizning brendingiz' })
-    modal.querySelector('[name="sub"]').addEventListener('input', e=>{ state.sub = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,''); e.target.value = state.sub; qs('.hint', qs('#preview-col',container)).textContent = state.sub ? `https://${state.sub}.${DOMAIN}` : 'subdomen kiriting' })
+    modal.querySelector('[name="sub"]').addEventListener('input', e=>{ state.sub = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,''); e.target.value = state.sub; qs('.hint', qs('#preview-col',container)).textContent = state.sub ? tenantUrl(state.sub) : 'manzil nomini kiriting' })
     modal.querySelector('[name="color"]').addEventListener('input', e=>{ state.color = e.target.value; modal.querySelector('[name="colorText"]').value = state.color; render() })
     modal.querySelector('[name="colorText"]').addEventListener('change', e=>{ state.color = e.target.value; render() })
     modal.querySelector('[name="color2"]').addEventListener('input', e=>{ state.color2 = e.target.value; modal.querySelector('[name="color2Text"]').value = state.color2; renderPreview() })

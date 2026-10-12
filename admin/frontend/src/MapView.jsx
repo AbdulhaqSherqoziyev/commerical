@@ -38,7 +38,7 @@ export default function MapView({ orgs, DOMAIN }){
       const marker = L.circleMarker(pos, { radius: 9, weight: 2, color: '#fff', fillColor: o.color || '#2E3192', fillOpacity: 1 })
       marker.bindPopup(
         '<b>' + escapeHtml(o.name) + '</b><br>' +
-        '<a href="https://' + o.subdomain + '.' + DOMAIN + '" target="_blank" rel="noopener">' + escapeHtml(o.subdomain + '.' + DOMAIN) + '</a>' +
+        '<a href="https://' + DOMAIN + '/' + o.subdomain + '" target="_blank" rel="noopener">' + escapeHtml(DOMAIN + '/' + o.subdomain) + '</a>' +
         ((o.district || o.region) ? '<br><span style="color:#7C8398">' + escapeHtml([o.district, o.region].filter(Boolean).join(', ')) + '</span>' : '')
       )
       marker.addTo(group)

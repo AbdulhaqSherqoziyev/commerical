@@ -897,7 +897,7 @@ export function mountTizimVersiyasi(root, { toast }){
               <div class="ic-strip"><span>Node.js</span><b>v24.17.0</b></div>
               <div class="ic-strip"><span>Baza</span><b>PostgreSQL 16</b></div>
               <div class="ic-strip"><span>Oxirgi zaxira</span><b>${dateAgo('bk', 1)}</b></div>
-              <div class="ic-strip"><span>Domen</span><b>commercial-icanbusiness.uz</b></div>
+              <div class="ic-strip"><span>Domen</span><b>commercial.icanbusiness.uz</b></div>
             `,
           })}
           ${card({

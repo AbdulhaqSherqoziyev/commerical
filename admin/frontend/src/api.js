@@ -1,6 +1,10 @@
 const BASE = '/api';
-// Tenant subdomenlar domeni — kelajakda faqat shu qatorni o'zgartiring
-export const DOMAIN = 'commercial-icanbusiness.uz';
+// Tashkilot sahifalari domeni: https://commercial.icanbusiness.uz/<slug>
+// (kelajakda faqat shu qatorni o'zgartiring)
+export const DOMAIN = 'commercial.icanbusiness.uz';
+// Tashkilot manzili (protokolsiz, ko'rsatish uchun) va to'liq URL
+export const tenantHost = (sub) => DOMAIN + '/' + sub;
+export const tenantUrl = (sub) => 'https://' + tenantHost(sub);
 let token = null;
 try { token = localStorage.getItem('zood-admin-token'); } catch(e){}
 export function getToken(){ return token; }

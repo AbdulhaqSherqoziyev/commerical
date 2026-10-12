@@ -1,4 +1,4 @@
-import { api, DOMAIN } from '../api.js'
+import { api, DOMAIN, tenantHost, tenantUrl } from '../api.js'
 import { statusOf } from '../statuses.js'
 import { UZ_REGIONS, REGION_NAMES, ALL_DISTRICTS, REGION_COORDS } from '../uzregions.js'
 import { qs, escapeHtml } from '../core.js'
@@ -201,7 +201,7 @@ export function mountMap(root, { toast }){
 
     order.forEach((p,idx)=>{
       const sm = statusOf(p.o)
-      const url = 'https://'+p.o.subdomain+'.'+DOMAIN
+      const url = 'https://'+p.tenantHost(o.subdomain)
       const popup = '<b>'+escapeHtml(p.o.name)+'</b>'+(my?' · #'+(idx+1):'')+'<br>'+escapeHtml(sm.label)+(p.exact?'':' · taxminiy')+
         (p.o.phone?'<br>📞 '+escapeHtml(p.o.phone):'')+
         ((p.o.region||p.o.district)?'<br>📍 '+escapeHtml([p.o.region,p.o.district].filter(Boolean).join(', ')):'')+

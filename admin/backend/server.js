@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '127.0.0.1';
 const TOKEN_TTL = 8 * 3600 * 1000; // 8 soat
 const MAX_BODY = 700 * 1024; // 700KB (logo base64 uchun)
-const RESERVED = ['www','api','admin','superadmin','mail','ftp','ns1','ns2','root','test','paperco','app','panel','static','cdn','assets'];
+const RESERVED = ['www','api','admin','superadmin','market','uploads','mail','ftp','ns1','ns2','root','test','paperco','app','panel','static','cdn','assets'];
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
 

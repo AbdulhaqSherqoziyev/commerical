@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { api, DOMAIN } from './api.js'
+import { api, DOMAIN, tenantHost, tenantUrl } from './api.js'
 import { palette, validHex, validSub } from './palette.js'
 import { UZ_REGIONS, REGION_NAMES, REGION_COORDS } from './uzregions.js'
 import { STATUSES } from './statuses.js'
@@ -91,12 +91,12 @@ export default function OrgForm({ org, onClose, onSaved }){
             <div className="form-sec">Asosiy ma‘lumotlar</div>
             <label>Tashkilot nomi <span className="req">*</span></label>
             <input value={name} onChange={e=>setName(e.target.value)} placeholder="Acme Group" />
-            <label>Subdomen <span className="req">*</span></label>
+            <label>Manzil (havola) <span className="req">*</span></label>
             <div className="sub-row">
+              <span className="suf">{DOMAIN}/</span>
               <input value={sub} onChange={e=>setSub(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,''))} placeholder="acme" />
-              <span className="suf">.{DOMAIN}</span>
             </div>
-            {editing && <div className="hint">Subdomenni o‘zgartirsangiz, DNS‘da ham aynan shu nom bo‘lishi kerak</div>}
+            {editing && <div className="hint">Manzilni o‘zgartirsangiz, eski havola ishlamay qoladi</div>}
             <div className="two">
               <div><label>Asosiy rang</label><div className="cp"><input type="color" value={color} onChange={e=>setColor(e.target.value)} /><input value={color} onChange={e=>setColor(e.target.value)} /></div></div>
               <div><label>Ikkinchi rang</label><div className="cp"><input type="color" value={color2} onChange={e=>setColor2(e.target.value)} /><input value={color2} onChange={e=>setColor2(e.target.value)} /></div></div>
@@ -212,7 +212,7 @@ export default function OrgForm({ org, onClose, onSaved }){
               </div>
               <div className="pv-tabs"><span style={{color,borderColor:color}} className="on">Bosh</span><span>Katalog</span><span>Savat</span><span>Profil</span></div>
             </div>
-            <div className="hint">{sub ? `https://${sub}.${DOMAIN}` : 'subdomen kiriting'}</div>
+            <div className="hint">{sub ? tenantUrl(sub) : 'manzil nomini kiriting'}</div>
           </div>
         </div>
       </div>

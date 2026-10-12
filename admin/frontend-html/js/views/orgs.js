@@ -1,4 +1,4 @@
-import { api, DOMAIN } from '../api.js'
+import { api, DOMAIN, tenantHost, tenantUrl } from '../api.js'
 import { UZ_REGIONS, REGION_NAMES, ALL_DISTRICTS, REGION_COORDS, yandexSearchUrl } from '../uzregions.js'
 import { STATUSES, statusOf } from '../statuses.js'
 import { fmtSum } from '../products.js'
@@ -40,7 +40,7 @@ export function mountOrgs(root, { toast }){
 
   function exportCSV(active){
     const rows = [['Nomi','Subdomen','Holat','Viloyat','Tuman','Telefon','Kontakt','Mahsulotlar','Summa','Borilgan','Faol','Manzil']]
-    active.forEach(o => rows.push([o.name, o.subdomain+'.'+DOMAIN, statusOf(o).label, o.region||'', o.district||'', o.phone||'', o.contact||'', (o.dealItems||[]).join('; '), o.dealAmount||0, o.visited?'Ha':'Yoq', o.enabled?'Ha':'Yoq', o.mapUrl||'']))
+    active.forEach(o => rows.push([o.name, tenantHost(o.subdomain), statusOf(o).label, o.region||'', o.district||'', o.phone||'', o.contact||'', (o.dealItems||[]).join('; '), o.dealAmount||0, o.visited?'Ha':'Yoq', o.enabled?'Ha':'Yoq', o.mapUrl||'']))
     const csv = '﻿' + rows.map(r => r.map(c => '"'+String(c==null?'':c).replace(/"/g,'""')+'"').join(',')).join('\n')
     const url = URL.createObjectURL(new Blob([csv], { type:'text/csv;charset=utf-8' }))
     const a = document.createElement('a'); a.href = url; a.download = 'tashkilotlar.csv'; a.click(); URL.revokeObjectURL(url)
@@ -130,7 +130,7 @@ export function mountOrgs(root, { toast }){
           </select>
         </div>
         <div class="oc-name2">${escapeHtml(o.name)}</div>
-        <a class="oc-url" href="https://${o.subdomain}.${DOMAIN}" target="_blank" rel="noopener">${o.subdomain}.${DOMAIN} ↗</a>
+        <a class="oc-url" href="${tenantUrl(o.subdomain)}" target="_blank" rel="noopener">${tenantHost(o.subdomain)} ↗</a>
         ${(o.region || o.district || o.mapUrl) ? `<a class="oc-loc" href="${o.mapUrl || yandexSearchUrl(o.region, o.district)}" target="_blank" rel="noopener" title="Xaritada ochish (Yandex)" style="display:flex;align-items:center;gap:6px;margin-top:6px;color:var(--b,#2E3192);font:700 12px system-ui,sans-serif;text-decoration:none">${PIN}${[o.region,o.district].filter(Boolean).join(' · ') || "Xaritada ochish"}</a>` : ''}
         <div style="display:flex;align-items:center;gap:6px;margin-top:6px;font:700 12px system-ui,sans-serif">
           ${PHONE}
@@ -169,7 +169,7 @@ export function mountOrgs(root, { toast }){
           <span class="badge no">O'chirilgan</span>
         </div>
         <div class="oc-name2">${escapeHtml(o.name)}</div>
-        <div class="oc-url" style="text-decoration:line-through;opacity:.7">${o.subdomain}.${DOMAIN}</div>
+        <div class="oc-url" style="text-decoration:line-through;opacity:.7">${tenantHost(o.subdomain)}</div>
         <div class="oc-actions"><button class="lnk" data-restore>↩ Tiklash</button></div>
       </div>
     `).join('')
@@ -234,7 +234,7 @@ export function mountOrgs(root, { toast }){
     on(qs('#org-grid', root), 'click', '[data-edit]', (e,btn)=>{ const card = btn.closest('.org-card'); const o = active.find(x=>x.id===card.dataset.id); openForm(o) })
     on(qs('#org-grid', root), 'click', '[data-remove]', async (e,btn)=>{
       const card = btn.closest('.org-card'); const o = active.find(x=>x.id===card.dataset.id)
-      if(!confirm(`"${o.name}" (${o.subdomain}.${DOMAIN}) o'chirilsinmi?\nU "O'chirilganlar" bo'limiga tushadi — keyin qayta tiklashingiz mumkin.`)) return
+      if(!confirm(`"${o.name}" (${tenantHost(o.subdomain)}) o'chirilsinmi?\nU "O'chirilganlar" bo'limiga tushadi — keyin qayta tiklashingiz mumkin.`)) return
       try{ await api.remove(o.id); toast("O'chirilganlarga o'tkazildi"); load() }catch(ex){ toast(ex.error) }
     })
     const trashGrid = qs('#trash-grid', root)

@@ -1,0 +1,55 @@
+# commercial.icanbusiness.uz — tashkilotlar PATH orqali: https://commercial.icanbusiness.uz/<slug>/
+# DNS: icanbusiness.uz zonasida bitta yozuv yetarli:  commercial  A  <server IP>
+# Sertifikat (oddiy, wildcard emas — HTTP-01):
+#   certbot certonly --nginx -d commercial.icanbusiness.uz
+
+# ---- HTTP -> HTTPS ----
+server {
+    listen 80;
+    listen [::]:80;
+    server_name commercial.icanbusiness.uz;
+    return 301 https://$host$request_uri;
+}
+
+# ---- HTTPS ----
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name commercial.icanbusiness.uz;
+
+    ssl_certificate     /etc/letsencrypt/live/commercial.icanbusiness.uz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/commercial.icanbusiness.uz/privkey.pem;
+
+    root /var/www/zoodprez;
+    index index.html;
+
+    # API -> Node backend (haqiqiy mijoz IP uzatiladi)
+    location /api/ {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # brand.js keshlanmasin
+    location = /brand.js { add_header Cache-Control "no-store"; expires off; }
+
+    # React Super Admin (SPA)
+    location /superadmin/ { try_files $uri $uri/ /superadmin/index.html; }
+
+    # Market (React build)
+    location /market/ { try_files $uri $uri/ =404; }
+
+    # Prezentatsiya + demolar. Haqiqiy fayl topilmasa -> tashkilot (slug) yo'li deb qaraladi.
+    location / { try_files $uri $uri/ @tenant; }
+
+    # /<slug>  -> /<slug>/  (nisbiy havolalar to'g'ri ishlashi uchun)
+    # /<slug>/<fayl> -> /<fayl> (bir xil prezentatsiya; brendni brand.js URL'dagi slug bo'yicha oladi)
+    location @tenant {
+        rewrite ^/([a-z0-9][a-z0-9-]*)$ /$1/ permanent;
+        rewrite ^/[a-z0-9][a-z0-9-]*(/.*)$ $1 last;
+        return 404;
+    }
+}

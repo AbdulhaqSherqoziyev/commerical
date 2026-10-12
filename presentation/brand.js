@@ -1,25 +1,28 @@
 /* ZOODMALL prezentatsiya — brend theming engine (rang + logo).
-   Brend manbai: localStorage['zood-brand'] -> ?brand= -> subdomen /api/brand.
+   Tashkilot manzili: https://commercial.icanbusiness.uz/<slug>/ (slug = tashkilot "subdomain" maydoni).
+   Brend manbai: localStorage['zood-brand'] (faqat shu slug uchun) -> ?brand= -> /api/brand?sub=<slug>.
    Config bo'lmasa HECH NARSA qilmaydi (standart ZOOD saqlanadi).
    Parent (asosiy sahifa) o'zini VA barcha same-origin iframe'larni ranglaydi. */
 (function(){
   var isTop = (window.self === window.top);
 
-  function subdomain(){
-    var h = location.hostname, parts = h.split('.');
-    if(parts.length < 3) return null;
-    var s = parts[0];
-    if(['zoodprez','www','paperco','api','admin','superadmin'].indexOf(s) >= 0) return null;
+  // Slug — ENG YUQORI oyna manzilining birinchi segmenti (iframe'lar, masalan market,
+  // o'z URL'ini o'zgartiradi, shuning uchun top oynadan olamiz).
+  var NOT_SLUG = ['market','superadmin','uploads','api','assets','static'];
+  function slug(){
+    var path; try { path = window.top.location.pathname; } catch(e){ path = location.pathname; }
+    var s = (path.split('/')[1]||'').toLowerCase();
+    if(!/^[a-z0-9][a-z0-9-]*$/.test(s) || NOT_SLUG.indexOf(s) >= 0) return null;
     return s;
   }
-  function fromLocal(){ try { var c = JSON.parse(localStorage.getItem('zood-brand')||'null'); return (c && c.color) ? c : null; } catch(e){ return null; } }
+  var SLUG = slug();
+  function fromLocal(){ try { var c = JSON.parse(localStorage.getItem('zood-brand')||'null'); return (c && c.color && c._slug === SLUG) ? c : null; } catch(e){ return null; } }
   function getConfig(cb){
     var c = fromLocal(); if(c) return cb(c);
     var m=(location.search.match(/[?&]brand=([0-9a-fA-F]{6})/)||[])[1]; if(m) return cb({color:'#'+m});
-    var sub = subdomain();
-    if(!sub){ if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } return cb(null); }
-    fetch('/api/brand?sub='+encodeURIComponent(sub)).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-      if(d && d.color){ try{ localStorage.setItem('zood-brand', JSON.stringify(d)); }catch(e){} cb(d); }
+    if(!SLUG){ if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } return cb(null); }
+    fetch('/api/brand?sub='+encodeURIComponent(SLUG)).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if(d && d.color){ d._slug = SLUG; try{ localStorage.setItem('zood-brand', JSON.stringify(d)); }catch(e){} cb(d); }
       else { if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } cb(null); }
     }).catch(function(){ cb(fromLocal()); });
   }
