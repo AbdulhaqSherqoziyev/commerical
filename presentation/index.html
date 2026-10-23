@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);
-/* logo FOUC: tenant logosi bo'lsa — eski ZOOD logolarini almashguncha yashiramiz (src almashsa avtomatik ko'rinadi). data-nobrand (ICAN) tegmaydi. */
-if(_b.logo){var _s=document.createElement("style");_s.id="zfouc-logo";_s.textContent='img[src$="zood-logo.png"]:not([data-nobrand]),img[src$="zood-logo-white.png"]:not([data-nobrand]){opacity:0!important}';(document.head||document.documentElement).appendChild(_s);setTimeout(function(){var e=document.getElementById("zfouc-logo");if(e&&e.parentNode)e.parentNode.removeChild(e);},1600);}
+<script>try{var _b=(function(){try{var b=JSON.parse(localStorage.getItem("icb-brand")||"null"),s=(top.location.pathname.split("/")[1]||"").toLowerCase();return b&&b._slug===s?b:null}catch(e){return null}})();if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);
+/* logo FOUC: tenant logosi bo'lsa — neytral logolarni almashguncha yashiramiz. */
+if(_b.logo){var _s=document.createElement("style");_s.id="zfouc-logo";_s.textContent='img[src$="brand-logo.svg"],img[src$="brand-logo-white.svg"],img[src$="brand-mark.svg"]{opacity:0!important}';(document.head||document.documentElement).appendChild(_s);setTimeout(function(){var e=document.getElementById("zfouc-logo");if(e&&e.parentNode)e.parentNode.removeChild(e);},1600);}
 }}catch(e){}</script>
-<script>/* BO'LIMLAR (modullar): tashkilotga yoqilmagan bo'limlarni yashiramiz — FOUC'siz, keshlangan konfiguratsiyadan. data-mod tokeni yoqilganlar ichida bo'lsa ko'rinadi. */try{var _bm=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_bm&&Array.isArray(_bm.modules)){var _c2='[data-mod]{display:none!important}';for(var _i=0;_i<_bm.modules.length;_i++){_c2+='[data-mod~="'+String(_bm.modules[_i]).replace(/[^a-z0-9_]/gi,'')+'"]{display:revert!important}';}var _sm=document.createElement("style");_sm.id="zmodhide";_sm.textContent=_c2;(document.head||document.documentElement).appendChild(_sm);}}catch(e){}</script>
+<script>/* BO'LIMLAR (modullar): tashkilotga yoqilmagan bo'limlarni yashiramiz — FOUC'siz, keshlangan konfiguratsiyadan. data-mod tokeni yoqilganlar ichida bo'lsa ko'rinadi. */try{var _bm=(function(){try{var b=JSON.parse(localStorage.getItem("icb-brand")||"null"),s=(top.location.pathname.split("/")[1]||"").toLowerCase();return b&&b._slug===s?b:null}catch(e){return null}})();if(_bm&&Array.isArray(_bm.modules)){var _c2='[data-mod]{display:none!important}';for(var _i=0;_i<_bm.modules.length;_i++){_c2+='[data-mod~="'+String(_bm.modules[_i]).replace(/[^a-z0-9_]/gi,'')+'"]{display:revert!important}';}var _sm=document.createElement("style");_sm.id="zmodhide";_sm.textContent=_c2;(document.head||document.documentElement).appendChild(_sm);}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
   <script src="watermark.js" defer></script>
   <script src="/security.js" defer></script>
-  <script>/* Market (React) tilini sahifa tili bilan sinxronlash: iframe yuklanishidan OLDIN. uz->uz, ru->ru, en->ru+overlay */try{var _pl=(localStorage.getItem('zood-prez-lang')||'uz');localStorage.setItem('glowen-locale',_pl==='uz'?'uz':'ru');localStorage.setItem('zood-ui-en',_pl==='en'?'1':'0');}catch(e){}</script>
+  <script>/* Market (React) tilini sahifa tili bilan sinxronlash: iframe yuklanishidan OLDIN. uz->uz, ru->ru, en->ru+overlay */try{var _pl=(localStorage.getItem('icb-lang')||'uz');localStorage.setItem('glowen-locale',_pl==='uz'?'uz':'ru');localStorage.setItem('icb-ui-en',_pl==='en'?'1':'0');}catch(e){}</script>
   <script src="/brand.js?v=1784661573"></script>
 </head>
 <body>
@@ -68,12 +68,12 @@ html,body{overflow-x:hidden}
 </style>
 </helmet>
 
-<div data-screen-label="ZOOD prezentatsiya" style="min-height:100vh">
+<div data-screen-label="Prezentatsiya" style="min-height:100vh">
 
   <!-- NAV -->
   <div style="position:sticky;top:0;z-index:30;background:rgba(244,245,250,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
     <div class="wrap" style="display:flex;align-items:center;gap:16px;height:70px">
-      <img src="zood-logo.png" alt="ZOOD" style="height:34px;width:auto" />
+      <img src="brand-logo.svg" alt="" style="height:34px;width:auto" />
       <span class="d-hide-sm" style="width:1px;height:22px;background:var(--line)"></span>
       <span class="d-hide-sm" style="font:800 13.5px 'Nunito Sans',sans-serif;color:var(--muted)">{{ t.navSub }}</span>
       <span style="margin-left:auto;display:flex;gap:2px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px">
@@ -126,7 +126,7 @@ html,body{overflow-x:hidden}
     <div class="shot" style="height:660px;position:relative">
       <div style="height:34px;background:#EDEFF6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)">
         <span style="width:11px;height:11px;border-radius:50%;background:#E5695B"></span><span style="width:11px;height:11px;border-radius:50%;background:#E9B44A"></span><span style="width:11px;height:11px;border-radius:50%;background:#57B368"></span>
-        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">panel.zood.uz</span>
+        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">panel.{{ brandDom }}</span>
       </div>
       <div style="height:626px;overflow:hidden;position:relative">
         <iframe class="frame" loading="lazy" src="Agent Panel.dc.html?v=1784659690&amp;lang={{ langQ }}" scrolling="yes" style="position:absolute;top:0;left:0;width:1440px;height:816px;transform:scale(.7667);transform-origin:top left"></iframe>
@@ -206,7 +206,7 @@ html,body{overflow-x:hidden}
     <div style="display:grid;grid-template-columns:420px 1fr;gap:48px;align-items:center">
       <div style="justify-self:center;padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 40px 80px -24px rgba(20,30,60,.5),inset 0 0 0 1.5px rgba(255,255,255,.07)">
       <div style="position:relative;width:374px;height:813px;border-radius:45px;overflow:hidden">
-        <iframe class="frame" loading="lazy" src="uploads/ZOOD%20-%20Demo%20(standalone).html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-24.5px;left:-23px;width:420px;height:862px;background:transparent"></iframe>
+        <iframe class="frame" loading="lazy" src="Mijoz%20ilova.html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-24.5px;left:-23px;width:420px;height:862px;background:transparent"></iframe>
       </div>
       </div>
       <div>
@@ -218,7 +218,7 @@ html,body{overflow-x:hidden}
             <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:var(--ink)"><span style="width:30px;height:30px;border-radius:9px;background:var(--soft);color:var(--accent);display:grid;place-items:center"><i data-lucide="{{ cf.icon }}" style="width:16px;height:16px"></i></span>{{ cf.label }}</div>
           </sc-for>
         </div>
-        <a href="uploads/ZOOD%20-%20Demo%20(standalone).html" target="_blank" rel="noopener"><span class="btn btn-g" style="margin-top:26px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.cliBtn }}</span></a>
+        <a href="Mijoz%20ilova.html" target="_blank" rel="noopener"><span class="btn btn-g" style="margin-top:26px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.cliBtn }}</span></a>
       </div>
     </div>
   </div>
@@ -235,12 +235,12 @@ html,body{overflow-x:hidden}
             <div style="display:flex;align-items:center;gap:12px;font:800 15px 'Nunito Sans',sans-serif;color:#E7E8FB"><span style="width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff"><i data-lucide="{{ iv.icon }}" style="width:16px;height:16px"></i></span>{{ iv.label }}</div>
           </sc-for>
         </div>
-        <a href="Investor%20Mobil%20-ZOOD-.html" target="_blank" rel="noopener"><span class="btn" style="background:#fff;color:var(--accent);margin-top:30px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.invBtn }}</span></a>
+        <a href="Investor%20Mobil.html" target="_blank" rel="noopener"><span class="btn" style="background:#fff;color:var(--accent);margin-top:30px"><i data-lucide="external-link" style="width:17px;height:17px"></i>{{ t.invBtn }}</span></a>
       </div>
       <div style="justify-self:center">
         <div style="padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 50px 90px -40px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.07)">
         <div style="width:374px;height:813px;border-radius:45px;overflow:hidden;position:relative">
-          <iframe class="frame" loading="lazy" src="Investor%20Mobil%20-ZOOD-.html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-26px;left:-46px;width:500px;height:930px;transform:scale(.9302);transform-origin:top left;background:transparent"></iframe>
+          <iframe class="frame" loading="lazy" src="Investor%20Mobil.html?v=1784659690&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-26px;left:-46px;width:500px;height:930px;transform:scale(.9302);transform-origin:top left;background:transparent"></iframe>
         </div>
         </div>
       </div>
@@ -259,7 +259,7 @@ html,body{overflow-x:hidden}
     <div class="shot" style="height:640px;position:relative;margin-bottom:26px">
       <div style="height:34px;background:#EDEFF6;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)">
         <span style="width:11px;height:11px;border-radius:50%;background:#E5695B"></span><span style="width:11px;height:11px;border-radius:50%;background:#E9B44A"></span><span style="width:11px;height:11px;border-radius:50%;background:#57B368"></span>
-        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">zoodmall.uz</span>
+        <span style="margin-left:14px;font:700 11.5px 'Nunito Sans',sans-serif;color:var(--muted)">{{ brandDom }}</span>
         <a href="market/index.html" target="_blank" rel="noopener" style="margin-left:auto;font:900 11.5px 'Nunito Sans',sans-serif;color:var(--accent);display:inline-flex;align-items:center;gap:5px">{{ t.glwNew }} <i data-lucide="external-link" style="width:12px;height:12px"></i></a>
       </div>
       <div style="height:606px;overflow:hidden;position:relative">
@@ -285,7 +285,7 @@ html,body{overflow-x:hidden}
     <div class="wrap" style="padding:64px 28px;display:grid;grid-template-columns:420px 1fr;gap:48px;align-items:center">
       <div style="justify-self:center">
         <div style="padding:12px;border-radius:57px;background:linear-gradient(160deg,#3A3D45,#0F1116 30%,#1E2128);box-shadow:0 50px 90px -40px rgba(0,0,0,.8),inset 0 0 0 1.5px rgba(255,255,255,.07)">
-        <!-- Glowen ilovasi o'z qora ramkasini chizadi: uni kesib tashlab, faqat ekranni (368x822) ZOOD ramkasiga joylaymiz -->
+        <!-- Glowen ilovasi o'z qora ramkasini chizadi: uni kesib tashlab, faqat ekranni (368x822) telefon ramkasiga joylaymiz -->
         <div style="width:364px;height:813px;border-radius:45px;overflow:hidden;position:relative;background:#F1F4F5">
           <iframe class="frame-x" loading="lazy" src="Glowen%20-%20Mobil%20ilova.html?embed=1&amp;lang={{ langQ }}" scrolling="no" style="position:absolute;top:-22.75px;left:-25.72px;width:420px;height:868px;transform:scale(.98905);transform-origin:top left;background:transparent"></iframe>
         </div>
@@ -354,7 +354,7 @@ html,body{overflow-x:hidden}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('zood-prez-lang')) || 'uz' };
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('icb-lang')) || 'uz' };
   componentDidMount() { this._lastLang = this.state.lang; const d = () => { if (window.lucide) window.lucide.createIcons(); }; d(); this._i = setInterval(d, 500); }
   componentWillUnmount() { clearInterval(this._i); }
   componentDidUpdate() {
@@ -366,11 +366,11 @@ class Component extends DCLogic {
       try {
         const marketLoc = (l === 'uz') ? 'uz' : 'ru';
         const uiEn = (l === 'en') ? '1' : '0';
-        try { localStorage.setItem('glowen-locale', marketLoc); localStorage.setItem('zood-ui-en', uiEn); } catch (e) {}
+        try { localStorage.setItem('glowen-locale', marketLoc); localStorage.setItem('icb-ui-en', uiEn); } catch (e) {}
         document.querySelectorAll('iframe.frame-x').forEach(f => {
           const cur = f.getAttribute('src') || '';
           if (cur.indexOf('market/index.html') >= 0) {
-            try { f.contentWindow.localStorage.setItem('glowen-locale', marketLoc); f.contentWindow.localStorage.setItem('zood-ui-en', uiEn); } catch (e) {}
+            try { f.contentWindow.localStorage.setItem('glowen-locale', marketLoc); f.contentWindow.localStorage.setItem('icb-ui-en', uiEn); } catch (e) {}
             f.src = 'market/index.html?loc=' + marketLoc + '&ui=' + uiEn + '&t=' + Date.now();
           } else if (cur.indexOf('Glowen') >= 0) {
             f.src = 'Glowen%20-%20Mobil%20ilova.html?embed=1&lang=' + l + '&t=' + Date.now();
@@ -380,11 +380,14 @@ class Component extends DCLogic {
     }
   }
 
+  // matnlardagi {B} — tashkilot nomi (brand.js sahifa chizilishidan oldin window.BRAND_NAME'ni beradi)
+  brandT(o) { const B = window.BRAND_NAME || 'iCAN'; const f = v => typeof v === 'string' ? v.split('{B}').join(B) : Array.isArray(v) ? v.map(f) : (v && typeof v === 'object') ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, f(x)])) : v; return f(o); }
+
   T = {
     ru: {
       navSub: 'Панель агента · BNPL', navBtn: 'Открыть демо',
       heroPill: 'Живой прототип · 2026', heroA: 'Рассрочка для магазина —', heroB: 'от проверки клиента до выплаты',
-      heroP: 'Единая панель агента ZOOD: оформление продажи в рассрочку, скоринг и лимит клиента, прозрачные взаиморасчёты с финтехом и отчётность — на компьютере и в телефоне.',
+      heroP: 'Единая панель агента {B}: оформление продажи в рассрочку, скоринг и лимит клиента, прозрачные взаиморасчёты с финтехом и отчётность — на компьютере и в телефоне.',
       openWeb: 'Открыть веб-панель', openMob: 'Открыть мобильную версию', open: 'Открыть',
       icmPill: 'iCAN Mobil', icmH: 'Клиентское приложение — теперь полностью в мобильном',
       icmP: 'Вход, договоры, скоринг и блокировка — всё в одном приложении. Клиент отслеживает свои договоры, график платежей и лимит прямо с телефона.',
@@ -397,13 +400,13 @@ class Component extends DCLogic {
       cliPill: 'Приложение клиента', cliH: 'А клиент видит всё у себя в телефоне',
       cliP: 'Личный кабинет покупателя: одобренный лимит, QR-код для оформления в магазине, график платежей и оплата — всё в одном приложении.',
       cliBtn: 'Открыть приложение клиента',
-      invPill: 'ZOOD Invest · Инвестор', invH: 'Кабинет инвестора — в телефоне',
+      invPill: '{B} Invest · Инвестор', invH: 'Кабинет инвестора — в телефоне',
       invP: 'Инвесторы финансируют рассрочку и следят за своим портфелем: вложения, доходность и выплаты — в мобильном кабинете.',
       invBtn: 'Открыть кабинет инвестора',
-      glwPill: 'ZOODMALL · Веб-магазин', glwH: 'Premium marketplace — от покупки до доставки',
-      glwP: 'ZOODMALL — полноценный магазин в браузере: каталог и поиск, молниеносные скидки, рассрочка и подтверждение личности. Заказ сразу попадает в панель управления.',
+      glwPill: '{B} · Веб-магазин', glwH: 'Premium marketplace — от покупки до доставки',
+      glwP: '{B} — полноценный магазин в браузере: каталог и поиск, молниеносные скидки, рассрочка и подтверждение личности. Заказ сразу попадает в панель управления.',
       glwNew: 'В новом окне', glwLive: 'Окно выше — живой сайт. Внутри можно листать и кликать.',
-      gmPill: 'Zoodmall мобильный маркет', gmH: 'Покупки прямо с телефона',
+      gmPill: '{B} мобильный маркет', gmH: 'Покупки прямо с телефона',
       gmP: 'Возможности сайта в кармане: каталог и поиск, таймер молниеносных скидок, рассрочка и подтверждение через камеру. Кнопка корзины — всегда под большим пальцем.',
       gmBtn: 'Открыть приложение полностью',
       demoPill: 'Попробуйте сами', demoH: 'Откройте демо и пройдите весь путь',
@@ -441,14 +444,14 @@ class Component extends DCLogic {
         ['Мобильная версия','Приложение агента в iOS-оболочке. Продажа в пару касаний.'],
         ['Приложение клиента','Лимит, QR-код и график платежей глазами покупателя.'],
         ['Кабинет инвестора','Портфель, доходность и выплаты инвестора фонда.'],
-        ['Маркет · веб-панель','Магазин ZOODMALL в браузере. Каталог, страница товара, корзина и оформление.'],
-        ['Маркет · мобильная версия','Приложение ZOODMALL в телефоне. Покупка и рассрочка в пару касаний.']
+        ['Маркет · веб-панель','Магазин {B} в браузере. Каталог, страница товара, корзина и оформление.'],
+        ['Маркет · мобильная версия','Приложение {B} в телефоне. Покупка и рассрочка в пару касаний.']
       ]
     },
     uz: {
       navSub: 'Agent paneli · BNPL', navBtn: 'Demoni ochish',
       heroPill: 'Jonli prototip · 2026', heroA: "Do'kon uchun muddatli to'lov —", heroB: "mijoz tekshiruvidan to'lovgacha",
-      heroP: "ZOOD agentining yagona paneli: muddatli to'lovga savdo rasmiylashtirish, skoring va mijoz limiti, fintex bilan shaffof o'zaro hisob-kitoblar va hisobotlar — kompyuterda ham, telefonda ham.",
+      heroP: "{B} agentining yagona paneli: muddatli to'lovga savdo rasmiylashtirish, skoring va mijoz limiti, fintex bilan shaffof o'zaro hisob-kitoblar va hisobotlar — kompyuterda ham, telefonda ham.",
       openWeb: 'Veb-panelni ochish', openMob: 'Mobil versiyani ochish', open: 'Ochish',
       icmPill: 'iCAN Mobil ilova', icmH: "Mijoz ilovasi — endi to'liq mobilda",
       icmP: "Kirish, shartnomalar, skoring va bloklash — barchasi bitta ilovada. Mijoz o'z shartnomalarini, to'lov jadvalini va limitini istalgan vaqt telefonidan kuzatadi.",
@@ -461,13 +464,13 @@ class Component extends DCLogic {
       cliPill: 'Mijoz ilovasi', cliH: "Mijoz esa hammasini o'z telefonida ko'radi",
       cliP: "Xaridorning shaxsiy kabineti: tasdiqlangan limit, do'konda rasmiylashtirish uchun QR-kod, to'lov jadvali va to'lov — hammasi bitta ilovada.",
       cliBtn: 'Mijoz ilovasini ochish',
-      invPill: 'ZOOD Invest · Investor', invH: 'Investor kabineti — telefonda',
+      invPill: '{B} Invest · Investor', invH: 'Investor kabineti — telefonda',
       invP: "Investorlar muddatli to'lovni moliyalashtiradi va portfelini kuzatadi: qo'yilmalar, daromadlilik va to'lovlar — mobil kabinetda.",
       invBtn: 'Investor kabinetini ochish',
-      glwPill: "ZOODMALL · Veb-do'kon", glwH: "Premium marketplace — xariddan yetkazib berishgacha",
-      glwP: "ZOODMALL — brauzerdagi to'liq do'kon: katalog va qidiruv, chaqmoq chegirma, muddatli to'lov va shaxsni tasdiqlash. Buyurtma bir zumda boshqaruv paneliga tushadi.",
+      glwPill: "{B} · Veb-do'kon", glwH: "Premium marketplace — xariddan yetkazib berishgacha",
+      glwP: "{B} — brauzerdagi to'liq do'kon: katalog va qidiruv, chaqmoq chegirma, muddatli to'lov va shaxsni tasdiqlash. Buyurtma bir zumda boshqaruv paneliga tushadi.",
       glwNew: 'Yangi oynada', glwLive: "Yuqoridagi oyna — jonli sayt. Ichida aylantirib, bosib ko'rishingiz mumkin.",
-      gmPill: 'Zoodmall mobil market', gmH: "To'g'ridan-to'g'ri telefondan xarid",
+      gmPill: '{B} mobil market', gmH: "To'g'ridan-to'g'ri telefondan xarid",
       gmP: "Saytdagi imkoniyatlar cho'ntakda: katalog va qidiruv, chaqmoq chegirma taymeri, bo'lib to'lash va kamera orqali tasdiqlash. Savat tugmasi — doim bosh barmoq ostida.",
       gmBtn: "Ilovani to'liq ochish",
       demoPill: "O'zingiz sinab ko'ring", demoH: "Demoni oching va butun yo'lni bosib o'ting",
@@ -505,14 +508,14 @@ class Component extends DCLogic {
         ['Mobil versiya','iOS qobig\'idagi agent ilovasi. Bir necha teginishda savdo.'],
         ['Mijoz ilovasi',"Limit, QR-kod va to'lov jadvali — xaridor ko'zi bilan."],
         ['Investor kabineti',"Fond investorining portfeli, daromadliligi va to'lovlari."],
-        ['Market veb-panel',"ZOODMALL do'koni brauzerda. Katalog, mahsulot sahifasi, savat va rasmiylashtirish."],
-        ['Market mobil versiya',"ZOODMALL ilovasi telefonda. Bir necha bosishda xarid va bo'lib to'lash."]
+        ['Market veb-panel',"{B} do'koni brauzerda. Katalog, mahsulot sahifasi, savat va rasmiylashtirish."],
+        ['Market mobil versiya',"{B} ilovasi telefonda. Bir necha bosishda xarid va bo'lib to'lash."]
       ]
     },
     en: {
       navSub: 'Agent panel · BNPL', navBtn: 'Open demo',
       heroPill: 'Live prototype · 2026', heroA: 'In-store installments —', heroB: 'from client check to payout',
-      heroP: 'One ZOOD agent panel: installment sales, client scoring and limits, transparent settlements with the fintech, and reporting — on desktop and mobile.',
+      heroP: 'One {B} agent panel: installment sales, client scoring and limits, transparent settlements with the fintech, and reporting — on desktop and mobile.',
       openWeb: 'Open web panel', openMob: 'Open mobile version', open: 'Open',
       icmPill: 'iCAN Mobile', icmH: 'The client app — now fully mobile',
       icmP: 'Login, contracts, scoring and blocking — all in one app. Clients track their contracts, payment schedule and limit right from their phone.',
@@ -525,13 +528,13 @@ class Component extends DCLogic {
       cliPill: 'Client app', cliH: 'And the client sees everything on their phone',
       cliP: 'A buyer personal account: approved limit, QR code for in-store checkout, payment schedule and payments — all in one app.',
       cliBtn: 'Open client app',
-      invPill: 'ZOOD Invest · Investor', invH: 'Investor account — on the phone',
+      invPill: '{B} Invest · Investor', invH: 'Investor account — on the phone',
       invP: 'Investors fund the installments and track their portfolio: investments, returns and payouts — in a mobile account.',
       invBtn: 'Open investor account',
-      glwPill: 'ZOODMALL · Web store', glwH: 'A premium marketplace — from checkout to delivery',
-      glwP: 'ZOODMALL is a full store in the browser: catalogue and search, flash deals, installments and identity verification. Every order lands in the admin panel instantly.',
+      glwPill: '{B} · Web store', glwH: 'A premium marketplace — from checkout to delivery',
+      glwP: '{B} is a full store in the browser: catalogue and search, flash deals, installments and identity verification. Every order lands in the admin panel instantly.',
       glwNew: 'New window', glwLive: 'The window above is the live site. Scroll and click inside it.',
-      gmPill: 'Zoodmall mobile market', gmH: 'Shop straight from the phone',
+      gmPill: '{B} mobile market', gmH: 'Shop straight from the phone',
       gmP: 'The whole site in your pocket: catalogue and search, a flash-deal timer, installments and camera verification. The cart button is always under your thumb.',
       gmBtn: 'Open the full app',
       demoPill: 'Try it yourself', demoH: 'Open the demo and walk the whole flow',
@@ -569,15 +572,15 @@ class Component extends DCLogic {
         ['Mobile version','The agent app in an iOS shell. A sale in a few taps.'],
         ['Client app','Limit, QR code and payment schedule through the buyer\'s eyes.'],
         ['Investor account','Portfolio, returns and payouts of a fund investor.'],
-        ['Market web panel','The ZOODMALL store in a browser. Catalogue, product page, cart and checkout.'],
-        ['Market mobile version','The ZOODMALL app on a phone. Buy and pay in installments in a few taps.']
+        ['Market web panel','The {B} store in a browser. Catalogue, product page, cart and checkout.'],
+        ['Market mobile version','The {B} app on a phone. Buy and pay in installments in a few taps.']
       ]
     }
   };
 
   renderVals() {
     const lang = this.state.lang;
-    const t = this.T[lang] || this.T.ru;
+    const t = this.brandT(this.T[lang] || this.T.ru);
     const icons = { features: ['file-signature','user-check','arrow-left-right','file-text','bar-chart-3','calculator'],
       icm: ['lock','file-text','shield-check','smartphone-nfc'],
       mobile: ['plus-circle','scan-line','wallet','calculator'],
@@ -586,10 +589,10 @@ class Component extends DCLogic {
       glw: ['search','zap','credit-card','scan-face'],
       gm: ['search','zap','credit-card','scan-face'],
       demo: ['wallet','monitor','smartphone','user-round','trending-up','store','shopping-bag'] };
-    const hrefs = ['iCAN%20Mobile.dc.html?lang=' + lang,'Agent%20Panel%20(standalone).html','Agent%20Mobile%20(standalone).html?lang=' + lang,'uploads/ZOOD%20-%20Demo%20(standalone).html','Investor%20Mobil%20-ZOOD-.html','market/index.html','Glowen%20-%20Mobil%20ilova.html'];
+    const hrefs = ['iCAN%20Mobile.dc.html?lang=' + lang,'Agent%20Panel%20(standalone).html','Agent%20Mobile%20(standalone).html?lang=' + lang,'Mijoz%20ilova.html','Investor%20Mobil.html','market/index.html','Glowen%20-%20Mobil%20ilova.html'];
     return {
-      t, langQ: lang,
-      langs: ['uz','ru','en'].map(l => ({ label: l.toUpperCase(), cls: lang === l ? 'lng on' : 'lng', on: () => { this.setState({ lang: l }); try { localStorage.setItem('zood-prez-lang', l); } catch(_){} } })),
+      t, langQ: lang, brand: window.BRAND_NAME || 'iCAN', brandDom: window.BRAND_DOMAIN || 'ican.uz',
+      langs: ['uz','ru','en'].map(l => ({ label: l.toUpperCase(), cls: lang === l ? 'lng on' : 'lng', on: () => { this.setState({ lang: l }); try { localStorage.setItem('icb-lang', l); } catch(_){} } })),
       features: t.features.map((f, i) => ({ icon: icons.features[i], title: f[0], desc: f[1] })),
       flow: t.flow.map((f, i) => ({ n: String(i + 1), title: f[0], desc: f[1] })),
       icmFeat: t.icmFeat.map((label, i) => ({ icon: icons.icm[i], label })),

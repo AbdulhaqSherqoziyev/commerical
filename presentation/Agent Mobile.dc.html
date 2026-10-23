@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
+<script>try{var _b=(function(){try{var b=JSON.parse(localStorage.getItem("icb-brand")||"null"),s=(top.location.pathname.split("/")[1]||"").toLowerCase();return b&&b._slug===s?b:null}catch(e){return null}})();if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -51,7 +51,7 @@ a{color:var(--accent-ink);text-decoration:none}a:hover{color:var(--accent-press)
 
     <!-- app header -->
     <div style="display:flex;align-items:center;gap:11px;padding:60px 18px 10px">
-      <img src="zood-mark.png" alt="ZOOD" style="width:38px;height:38px;object-fit:contain;display:block" />
+      <img src="brand-mark.svg" alt="" style="width:38px;height:38px;object-fit:contain;display:block" />
       <span style="flex:1"><span style="display:block;font:900 15px 'Nunito Sans',sans-serif;color:var(--ink)">{{ brand }}</span><span style="display:block;font:700 11px 'Nunito Sans',sans-serif;color:var(--muted)">Панель агента</span></span>
       <span style="width:40px;height:40px;border-radius:13px;background:#fff;display:grid;place-items:center;color:var(--ink-3);position:relative"><i data-lucide="bell" style="width:19px;height:19px"></i><span style="position:absolute;top:9px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid #fff"></span></span>
     </div>
@@ -350,7 +350,7 @@ a{color:var(--accent-ink);text-decoration:none}a:hover{color:var(--accent-press)
 </x-import>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:960},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ZOOD&quot;,&quot;Изумруд&quot;,&quot;Фиолет&quot;,&quot;Бирюза&quot;],&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:960},&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Brend&quot;,&quot;Изумруд&quot;,&quot;Фиолет&quot;,&quot;Бирюза&quot;],&quot;default&quot;:&quot;Brend&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;}}">
 class Component extends DCLogic {
   state = {
     tab: 'home',
@@ -437,8 +437,8 @@ class Component extends DCLogic {
   componentWillUnmount() { clearInterval(this._i); clearInterval(this._otp); }
 
   applyTheme() {
-    const map = { 'ZOOD': ['#2E3192','#23276F','#ECEDF7','#282C7D'], 'Изумруд': ['#12A150','#0E8443','#E4F6EC','#0B6B37'], 'Фиолет': ['#7A5AF0','#6544D6','#EEEAFC','#5533B8'], 'Бирюза': ['#14A0B8','#0E7F93','#E4F6F9','#0C6C7D'] };
-    const t = map[this.props.accent] || map['ZOOD']; const r = document.documentElement.style;
+    const map = { 'Brend': ['#2E3192','#23276F','#ECEDF7','#282C7D'], 'Изумруд': ['#12A150','#0E8443','#E4F6EC','#0B6B37'], 'Фиолет': ['#7A5AF0','#6544D6','#EEEAFC','#5533B8'], 'Бирюза': ['#14A0B8','#0E7F93','#E4F6F9','#0C6C7D'] };
+    const t = map[this.props.accent] || map['Brend']; const r = document.documentElement.style;
     r.setProperty('--accent', t[0]); r.setProperty('--accent-press', t[1]); r.setProperty('--accent-soft', t[2]); r.setProperty('--accent-ink', t[3]);
   }
 
@@ -525,7 +525,7 @@ class Component extends DCLogic {
     ];
 
     return {
-      brand: this.props.brandName || 'ZOOD',
+      brand: this.props.brandName || window.BRAND_NAME || 'iCAN',
       isHome: s.tab === 'home', isContracts: s.tab === 'contracts', isSale: s.tab === 'sale', isSettle: s.tab === 'settle', isMore: s.tab === 'more',
       tabHome: T('home'), tabContracts: T('contracts'), tabSettle: T('settle'), tabMore: T('more'),
       goHome: goTab('home'), goContracts: goTab('contracts'), goSale: goTab('sale'), goSettle: goTab('settle'), goMore: goTab('more'),

@@ -1,4 +1,4 @@
-/* ZOODMALL mobil ilova — i18n qatlami (uz/ru/en). ?lang= orqali.
+/* Mobil market — i18n qatlami (uz/ru/en). ?lang= orqali.
    Mahsulot nomlari, brendlar va narxlarга tegmaydi. */
 (function(){
   var q = (location.search.match(/[?&]lang=([a-z]{2})/) || [])[1] || 'uz';
@@ -48,14 +48,14 @@
     "Sharhingiz chop etildi":["Ваш отзыв опубликован","Your review is published"],
     "Kecha":["Вчера","Yesterday"],
     "Xush kelibsiz!":["Добро пожаловать!","Welcome!"],
-    "ZOODMALL'ga qo'shilganingiz uchun rahmat":["Спасибо, что присоединились к ZOODMALL","Thanks for joining ZOODMALL"],
+    "Bizga qo'shilganingiz uchun rahmat":["Спасибо, что присоединились к нам","Thanks for joining us"],
     "Chaqmoq chegirma":["Молниеносные скидки","Flash deals"],
     // bannerlar
     "YOZGI SOTUV":["ЛЕТНЯЯ РАСПРОДАЖА","SUMMER SALE"],
     "Sevimli mahsulotlarga 40% gacha chegirma":["Скидки до 40% на любимые товары","Up to 40% off favorite products"],
     "Xarid qilish":["Купить","Shop now"],
     "YANGI KOLLEKSIYA":["НОВАЯ КОЛЛЕКЦИЯ","NEW COLLECTION"],
-    "Eng so'nggi brendlar endi ZOODMALL'da":["Новейшие бренды теперь в ZOODMALL","The latest brands now on ZOODMALL"],
+    "Eng so'nggi brendlar endi bizda":["Новейшие бренды теперь у нас","The latest brands are now here"],
     "Ko'rish":["Смотреть","View"],
     "BEPUL YETKAZISH":["БЕСПЛАТНАЯ ДОСТАВКА","FREE DELIVERY"],
     "200 000 so'mdan yuqori xaridlarga":["На заказы от 200 000 сум","On orders over 200,000 sum"],
@@ -130,7 +130,7 @@
     "Til: O'zbekcha":["Язык: Русский","Language: English"],
     // yetkazish
     "Do'kon manzili":["Адрес магазина","Store address"],
-    "ZOODMALL do'koni":["Магазин ZOODMALL","ZOODMALL store"],
+    "Asosiy do'kon":["Главный магазин","Main store"],
     "Toshkent sh., Amir Temur ko'chasi 108":["г. Ташкент, ул. Амира Темура 108","Tashkent, Amir Temur street 108"],
     "Ish vaqti: Har kuni 09:00–21:00":["Часы работы: Ежедневно 09:00–21:00","Hours: Daily 09:00–21:00"],
     "Mo'ljal: Amir Temur xiyoboni ro'parasida":["Ориентир: напротив сквера Амира Темура","Landmark: opposite Amir Temur square"],

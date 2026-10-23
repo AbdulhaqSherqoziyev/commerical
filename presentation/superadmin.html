@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZOOD Prezentatsiya — Super Admin</title>
+<title>iCAN Prezentatsiya — Super Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{--b:#2E3192;--b2:#4A4FC4;--b7:#262878;--soft:#ECEDF9;--ink:#171A2B;--mut:#7C8398;--line:#E7EAF2;--bg:#F4F5FA;--card:#fff}
@@ -64,7 +64,7 @@
 </style>
 </head>
 <body>
-<div class="top"><span class="logo">◆ ZOOD Prezentatsiya</span><span class="sub">Super Admin — Brendlash paneli</span></div>
+<div class="top"><span class="logo">◆ iCAN Prezentatsiya</span><span class="sub">Super Admin — Brendlash paneli</span></div>
 <div class="wrap">
   <div class="card">
     <h2>Yangi tashkilot</h2>
@@ -98,7 +98,7 @@
         <p>Dunyoning eng mashhur mahsulotlari — original va rasmiy kafolat bilan</p>
         <span class="pv-btn" id="pvbtn">Xaridni boshlash →</span>
       </div>
-      <div class="pv-brandline"><img id="pvlogo" src="zood-logo.png" alt=""><span class="nm" id="pvnm">ZOOD</span></div>
+      <div class="pv-brandline"><img id="pvlogo" src="brand-logo.svg" alt=""><span class="nm" id="pvnm">Tashkilot</span></div>
       <div class="pv-cards" id="pvcards"></div>
       <div class="pv-tabs" id="pvtabs"><span class="on">Bosh</span><span>Katalog</span><span>Savat</span><span>Profil</span></div>
     </div>
@@ -122,7 +122,7 @@ function loadLogo(n){var f=document.getElementById('f'+n).files[0];if(!f)return;
 function render(){
   var c1=document.getElementById('c1').value, c2=document.getElementById('c2').value;
   var P=palette(c1);
-  var name=document.getElementById('name').value||'ZOOD';
+  var name=document.getElementById('name').value||'Tashkilot';
   var sub=document.getElementById('sub').value;
   document.getElementById('urlhint').textContent='Manzil: '+(sub?('https://'+sub+'.paperco.uz'):'—');
   // preview hero

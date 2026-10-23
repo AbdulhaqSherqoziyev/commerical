@@ -24,7 +24,7 @@
   }
 
   function org() {
-    try { var b = JSON.parse(localStorage.getItem('zood-brand') || 'null'); if (b && b.name) return String(b.name).toUpperCase(); } catch (e) {}
+    try { var b = JSON.parse(localStorage.getItem('icb-brand') || 'null'); if (b && b.name) return String(b.name).toUpperCase(); } catch (e) {}
     return 'ICAN BUSINESS';
   }
 
