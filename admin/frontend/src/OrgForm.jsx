@@ -38,6 +38,14 @@ const MODULES = [
   { key: 'market',      label: 'Mobil market' },
 ]
 const ALL_MODS = MODULES.map(m => m.key)
+// do'kon yo'nalishlari — market mahsulotlari shunga qarab chiqadi (presentation/catalog.js, backend ALLOWED_NICHES)
+const NICHES = [
+  ['phones','📱','Telefonlar va gadjetlar'],['computers','💻','Kompyuter va noutbuklar'],['appliances','🏠','Maishiy texnika'],
+  ['stationery','✏️','Kanselyariya'],['women','👗','Ayollar kiyimi'],['men','👔','Erkaklar kiyimi'],['kids','🧸',"Bolalar kiyimi va o'yinchoqlar"],
+  ['shoes','👟','Poyabzal'],['print','🖨️','Brendlash va pechat (merch)'],['cosmetics','💄','Kosmetika va parfyumeriya'],['furniture','🛋️','Mebel va uy jihozlari'],
+  ['grocery','🛒','Oziq-ovqat'],['building','🧱','Qurilish mollari'],['auto','🚗','Avto ehtiyot qismlar'],['sport','⚽','Sport tovarlari'],
+  ['jewelry','💍','Zargarlik va aksessuarlar'],['books','📚','Kitoblar'],
+]
 
 export default function OrgForm({ org, onClose, onSaved }){
   const [name, setName] = useState(org?.name || '')
@@ -47,6 +55,7 @@ export default function OrgForm({ org, onClose, onSaved }){
   const [logo, setLogo] = useState(org?.logo || '')
   const [logoWhite, setLogoWhite] = useState(org?.logoWhite || '')
   const [modules, setModules] = useState(Array.isArray(org?.modules) ? org.modules : ALL_MODS)
+  const [niches, setNiches] = useState(Array.isArray(org?.niches) ? org.niches : [])
   const [region, setRegion] = useState(org?.region || '')
   const [district, setDistrict] = useState(org?.district || '')
   const [mapUrl, setMapUrl] = useState(org?.mapUrl || '')
@@ -75,7 +84,7 @@ export default function OrgForm({ org, onClose, onSaved }){
     setBusy(true)
     const _pd = phone.replace(/\D/g,'') // raqamlar
     const phoneClean = (_pd === '' || _pd === '998') ? '' : phone.trim() // faqat +998 (qo'shimcha raqamsiz) -> bo'sh
-    const payload = { name:name.trim(), subdomain:sub.toLowerCase(), color, color2, logo, logoWhite, modules, region, district, mapUrl:mapUrl.trim(), phone:phoneClean, contact:contact.trim(), status, lat, lng, dealItems, dealAmount: Number(String(dealAmount).replace(/\D/g,''))||0 }
+    const payload = { name:name.trim(), subdomain:sub.toLowerCase(), color, color2, logo, logoWhite, modules, niches, region, district, mapUrl:mapUrl.trim(), phone:phoneClean, contact:contact.trim(), status, lat, lng, dealItems, dealAmount: Number(String(dealAmount).replace(/\D/g,''))||0 }
     try {
       if(editing) await api.update(org.id, payload); else await api.create(payload)
       onSaved()
@@ -110,6 +119,20 @@ export default function OrgForm({ org, onClose, onSaved }){
                 <label>Oq logo (to‘q fon)</label>
                 <label className="drop">{logoWhite ? <img src={logoWhite} alt="" style={{background:'#20235E',padding:4,borderRadius:6}} /> : 'Yuklash'}<input type="file" accept="image/*" hidden onChange={e=>pickLogo(e,setLogoWhite)} /></label>
               </div>
+            </div>
+            <div className="form-sec">Do‘kon yo‘nalishi (mahsulotlar)</div>
+            <div className="hint" style={{marginTop:0,marginBottom:8}}>Bir nechtasini tanlash mumkin (masalan telefon + maishiy texnika). Market va mobil ilovadagi mahsulotlar, kategoriyalar va rasmlar shunga qarab chiqadi. Tanlanmasa — standart katalog.</div>
+            <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+              {NICHES.map(([key, icon, label]) => {
+                const on = niches.includes(key)
+                return (
+                  <div key={key} onClick={()=>setNiches(v => v.includes(key) ? v.filter(x=>x!==key) : v.concat(key))}
+                    style={{cursor:'pointer',padding:'8px 12px',borderRadius:999,border:'1px solid '+(on?color:'#e2e4ee'),background:on?(P['50']||'#f3f4fb'):'#fff',
+                      font:'700 13px system-ui,sans-serif',color:on?'#1a1c2e':'#6b6f82',userSelect:'none',transition:'all .12s'}}>
+                    {icon} {label}
+                  </div>
+                )
+              })}
             </div>
             <div className="form-sec">Bo‘limlar (rollar)</div>
             <div className="hint" style={{marginTop:0,marginBottom:8}}>Yoqilgan bo‘limlargina dasturda ko‘rinadi. O‘chirilgani mijoz sahifasida chiqmaydi.</div>

@@ -100,6 +100,9 @@ function validSub(s){ return typeof s === 'string' && /^[a-z0-9]([a-z0-9-]{1,30}
 // SVG qabul qilinmaydi — SVG ichida skript bo'lishi mumkin (XSS xavfi). Faqat rasterli rasm.
 function validLogo(d){ if(!d) return true; return typeof d === 'string' && /^data:image\/(png|jpeg|jpg|webp|gif);base64,/.test(d) && d.length < 600*1024; }
 const ALLOWED_MODS = ['agent_web','agent_mobil','agent_app','client','investor','webstore','market','ican_mobil'];
+// do'kon yo'nalishlari (bir nechtasi tanlanishi mumkin) — market mahsulotlari shunga qarab chiqadi (presentation/catalog.js)
+const ALLOWED_NICHES = ['phones','computers','appliances','stationery','women','men','kids','shoes','print','cosmetics',
+  'furniture','grocery','building','auto','sport','jewelry','books'];
 
 // ---------- Xarita havolasi (Google Maps) -> lat/lng ----------
 // Ko'p tashkilotlar aniq lat/lng kiritmaydi, lekin Google Maps'dan nusxalangan
@@ -184,6 +187,8 @@ function cleanOrg(inp){
   const out = { name, subdomain: sub, color: inp.color, color2: inp.color2 || '', logo: inp.logo||'', logoWhite: inp.logoWhite||'' };
   // bo'limlar (modullar): faqat ruxsat etilgan kalitlar; berilmasa -> hammasi ko'rinadi
   if(Array.isArray(inp.modules)) out.modules = inp.modules.filter(function(m){ return ALLOWED_MODS.indexOf(m) >= 0; });
+  // yo'nalishlar: faqat ruxsat etilgan kalitlar, takrorlarsiz; berilmasa -> market standart (kosmetika) katalogi
+  if(Array.isArray(inp.niches)) out.niches = ALLOWED_NICHES.filter(function(n){ return inp.niches.indexOf(n) >= 0; });
   // ---- Manzil / lokatsiya / kontakt / holat (OrgForm.jsx shu maydonlarni yuboradi,
   // ilgari bu yerda whitelist qilinmagani sabab HAR DOIM sukut bilan tashlab
   // yuborilar edi — Xarita bo'limi va CRM funksiyalari shu sabab ishlamayotgan edi) ----
@@ -487,7 +492,7 @@ const server = http.createServer(async (req, res) => {
       const orgs = readJSON(ORGS_FILE, []);
       const o = orgs.find(x=>x.subdomain===sub && x.enabled);
       if(!o) return send(res,404,{error:'not found'}, {'Access-Control-Allow-Origin':'*','Cache-Control':'public,max-age=30'});
-      return send(res,200,{name:o.name,color:o.color,color2:o.color2,logo:o.logo,logoWhite:o.logoWhite,modules:o.modules}, {'Access-Control-Allow-Origin':'*','Cache-Control':'public,max-age=30'});
+      return send(res,200,{name:o.name,color:o.color,color2:o.color2,logo:o.logo,logoWhite:o.logoWhite,modules:o.modules,niches:o.niches||[]}, {'Access-Control-Allow-Origin':'*','Cache-Control':'public,max-age=30'});
     }
     // ---- AUTH: login ----
     if(method==='POST' && p==='/api/auth/login'){

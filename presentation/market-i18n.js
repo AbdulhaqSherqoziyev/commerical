@@ -92,6 +92,8 @@
     [/шт\.(?![а-яё])/gi,"pcs"]
   ];
 
+  // do'kon katalogi (yo'nalishga qarab) tarjimalari
+  try { var X = window.ICB_MARKET && window.ICB_MARKET.en; for (var xk in X) D[xk] = X[xk]; } catch(e) {}
   function ruleTr(s){ var out=s; for(var i=0;i<R.length;i++){ out=out.replace(R[i][0],R[i][1]); } return out!==s?out:null; }
   function phrase(raw){
     var lead=(raw.match(/^\s*/)||[""])[0], trail=(raw.match(/\s*$/)||[""])[0];

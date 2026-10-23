@@ -216,6 +216,8 @@
   };
 
   // regex qoidalari (raqamli/tarkibli iboralar). Tartib muhim.
+  // do'kon katalogi (yo'nalishga qarab) tarjimalari
+  try { var X = window.ICB_CATALOG && window.ICB_CATALOG.i18n(); for (var xk in X) D[norm(xk)] = X[xk]; } catch(e) {}
   var R = [
     [/Original mahsulot rasmiy kafolat bilan\. Yuqori sifat va kunlik parvarish uchun ideal\. Rasmiy distribyutordan keltirilgan\./, "Оригинальный товар с официальной гарантией. Идеален для высокого качества и ежедневного ухода. Поставляется от официального дистрибьютора.", "Original product with official warranty. Ideal for high quality and daily care. Delivered from the official distributor."],
     [/Yana ko'rsatish \((\d+) ta\)/, "Показать ещё ($1)", "Show more ($1)"],
