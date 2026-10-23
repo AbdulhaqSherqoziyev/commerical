@@ -1,25 +1,28 @@
 /* ZOODMALL prezentatsiya — brend theming engine (rang + logo).
-   Brend manbai: localStorage['zood-brand'] -> ?brand= -> subdomen /api/brand.
+   Tashkilot manzili: https://commercial.icanbusiness.uz/<slug>/ (slug = tashkilot "subdomain" maydoni).
+   Brend manbai: localStorage['zood-brand'] (faqat shu slug uchun) -> ?brand= -> /api/brand?sub=<slug>.
    Config bo'lmasa HECH NARSA qilmaydi (standart ZOOD saqlanadi).
    Parent (asosiy sahifa) o'zini VA barcha same-origin iframe'larni ranglaydi. */
 (function(){
   var isTop = (window.self === window.top);
 
-  function subdomain(){
-    var h = location.hostname, parts = h.split('.');
-    if(parts.length < 3) return null;
-    var s = parts[0];
-    if(['zoodprez','www','paperco','api','admin','superadmin'].indexOf(s) >= 0) return null;
+  // Slug — ENG YUQORI oyna manzilining birinchi segmenti (iframe'lar, masalan market,
+  // o'z URL'ini o'zgartiradi, shuning uchun top oynadan olamiz).
+  var NOT_SLUG = ['market','superadmin','uploads','api','assets','static'];
+  function slug(){
+    var path; try { path = window.top.location.pathname; } catch(e){ path = location.pathname; }
+    var s = (path.split('/')[1]||'').toLowerCase();
+    if(!/^[a-z0-9][a-z0-9-]*$/.test(s) || NOT_SLUG.indexOf(s) >= 0) return null;
     return s;
   }
-  function fromLocal(){ try { var c = JSON.parse(localStorage.getItem('zood-brand')||'null'); return (c && c.color) ? c : null; } catch(e){ return null; } }
+  var SLUG = slug();
+  function fromLocal(){ try { var c = JSON.parse(localStorage.getItem('zood-brand')||'null'); return (c && c.color && c._slug === SLUG) ? c : null; } catch(e){ return null; } }
   function getConfig(cb){
     var c = fromLocal(); if(c) return cb(c);
     var m=(location.search.match(/[?&]brand=([0-9a-fA-F]{6})/)||[])[1]; if(m) return cb({color:'#'+m});
-    var sub = subdomain();
-    if(!sub){ if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } return cb(null); }
-    fetch('/api/brand?sub='+encodeURIComponent(sub)).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
-      if(d && d.color){ try{ localStorage.setItem('zood-brand', JSON.stringify(d)); }catch(e){} cb(d); }
+    if(!SLUG){ if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } return cb(null); }
+    fetch('/api/brand?sub='+encodeURIComponent(SLUG)).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if(d && d.color){ d._slug = SLUG; try{ localStorage.setItem('zood-brand', JSON.stringify(d)); }catch(e){} cb(d); }
       else { if(isTop){ try{localStorage.removeItem('zood-brand');}catch(e){} } cb(null); }
     }).catch(function(){ cb(fromLocal()); });
   }
@@ -168,23 +171,28 @@
         }
       }catch(e){}
     }
+    // bitta <img> logo -> tenant logosi; almashtirilgan bo'lsa true
+    function swapImg(im){
+      if(im.getAttribute('data-zbrandlogo')) return false;
+      if(im.getAttribute('data-nobrand')) return false; // ICAN logosi kabi — hech qachon almashtirilmaydi
+      // market desktop hero grafikasi (h-72 w-72 place-items-center) — bu logo emas, savat ikonkasi bo'ladi
+      if(im.closest && im.closest('[class*="h-72"][class*="place-items"]')) return false;
+      var src=(im.getAttribute('src')||''); var t=null;
+      if(/white/i.test(src)) t=(C.logoWhite||C.logo);
+      else if(/zood-logo|zood-mark|logo|brand/i.test(src) || im.getAttribute('alt')==='ZOOD' || im.getAttribute('alt')==='ZOODMALL' || (NAME && im.getAttribute('alt')===NAME)) t=(C.logo||C.logoWhite);
+      if(t && im.src!==t){ im.src=t; im.style.objectFit='contain'; im.style.setProperty('opacity','1','important'); // FOUC yashirishdan keyin ko'rsatamiz
+        // BARCHA brend logolari (brandlogo ham) autofit qilinadi — o'lchamни zFitOne (scale + padding) boshqaradi.
+        im.setAttribute('data-zfitlogo','1');
+        return true;
+      }
+      return false;
+    }
     function swapLogos(doc){
       if(!C.logo && !C.logoWhite) return;
       try{
         // 1) <img> logolar -> tenant logosi (kattaroq: 40px)
         var imgs=doc.querySelectorAll('img');
-        for(var i=0;i<imgs.length;i++){ var im=imgs[i]; if(im.getAttribute('data-zbrandlogo')) continue;
-          if(im.getAttribute('data-nobrand')) continue; // ICAN logosi kabi — hech qachon almashtirilmaydi
-          // market desktop hero grafikasi (h-72 w-72 place-items-center) — bu logo emas, savat ikonkasi bo'ladi
-          if(im.closest && im.closest('[class*="h-72"][class*="place-items"]')) continue;
-          var src=(im.getAttribute('src')||''); var t=null;
-          if(/white/i.test(src)) t=(C.logoWhite||C.logo);
-          else if(/zood-logo|zood-mark|logo|brand/i.test(src) || im.getAttribute('alt')==='ZOOD' || im.getAttribute('alt')==='ZOODMALL' || (NAME && im.getAttribute('alt')===NAME)) t=(C.logo||C.logoWhite);
-          if(t && im.src!==t){ im.src=t; im.style.objectFit='contain'; im.style.setProperty('opacity','1','important'); // FOUC yashirishdan keyin ko'rsatamiz
-            // BARCHA brend logolari (brandlogo ham) autofit qilinadi — o'lchamни zFitOne (scale + padding) boshqaradi.
-            im.setAttribute('data-zfitlogo','1');
-          }
-        }
+        for(var i=0;i<imgs.length;i++) swapImg(imgs[i]);
         // 2) CSS wordmark/monogramm qutilari (rangli fon + qisqa matn) -> logo rasm; fon shaffof qilinadi (bg bor/yo'q logoga moslashadi)
         var boxes=doc.querySelectorAll('[class~="logo"],[class*="brandmark"],[class*="logomark"],[class*="applogo"],[class*="brand-logo"],[class*="navbar-brand"]');
         for(var k=0;k<boxes.length;k++){ var el=boxes[k];
@@ -228,17 +236,25 @@
     }
     // ---- matn (wordmark) almashtirish: "ZOODMALL"/"ZOOD" -> tashkilot nomi ----
     function reword(s){ if(!s) return s; return s.replace(/ZOODMALL/gi, NAME).replace(/ZOOD\s*MALL/gi, NAME).replace(/ZOOD/gi, NAME); }
+    var RENAME_ATTRS = ['alt','title','aria-label','placeholder'];
+    function fixText(n){
+      var p=n.parentNode; if(!p) return; var tg=p.nodeName; if(tg==='SCRIPT'||tg==='STYLE'||tg==='NOSCRIPT'||tg==='TEXTAREA') return;
+      var v=n.nodeValue; if(v && /ZOOD/i.test(v)){ var nv=reword(v); if(nv!==v) n.nodeValue=nv; }
+    }
+    function fixAttrs(el){
+      for(var j=0;j<RENAME_ATTRS.length;j++){ var av=el.getAttribute(RENAME_ATTRS[j]); if(av && /ZOOD/i.test(av)){ var nav=reword(av); if(nav!==av) el.setAttribute(RENAME_ATTRS[j],nav); } }
+    }
+    function fixTitle(doc){ try{ if(doc.title && /ZOOD/i.test(doc.title)) doc.title=reword(doc.title); }catch(e){} }
     function renameDoc(doc){
       if(!NAME) return;
       try{
+        fixTitle(doc);
         // 1) matn tugunlari (script/style'dan tashqari)
         var w=doc.createTreeWalker(doc.body||doc.documentElement, NodeFilter.SHOW_TEXT, null, false), n, list=[];
-        while(n=w.nextNode()){ var p=n.parentNode; if(!p) continue; var tg=p.nodeName; if(tg==='SCRIPT'||tg==='STYLE'||tg==='NOSCRIPT'||tg==='TEXTAREA') continue; list.push(n); }
-        for(var i=0;i<list.length;i++){ var v=list[i].nodeValue; if(v && /ZOOD/i.test(v)){ var nv=reword(v); if(nv!==v) list[i].nodeValue=nv; } }
+        while(n=w.nextNode()) list.push(n);
+        for(var i=0;i<list.length;i++) fixText(list[i]);
         // 2) xavfsiz atributlar
-        ['alt','title','aria-label','placeholder'].forEach(function(a){
-          var els=doc.querySelectorAll('['+a+']'); for(var j=0;j<els.length;j++){ var av=els[j].getAttribute(a); if(av && /ZOOD/i.test(av)){ var nav=reword(av); if(nav!==av) els[j].setAttribute(a,nav); } }
-        });
+        var els=doc.querySelectorAll('['+RENAME_ATTRS.join('],[')+']'); for(var j=0;j<els.length;j++) fixAttrs(els[j]);
         // 3) yakka "Z" monogramm qutilari (logo) -> nom bosh harfi — OG'IR skan, har hujjat uchun BIR marta
         if(doc.documentElement && !doc.documentElement.__zmono){ doc.documentElement.__zmono=1;
           var mono=NAME.charAt(0).toUpperCase();
@@ -285,15 +301,61 @@
       }
       try{ el.__zthemed=1; }catch(e){}
     }
-    // Har hujjatga DEBOUNCE'langan kuzatuvchi — DOM o'zgarganда qayta rangla, SOZLANGACH (settling) kuzatuvni TO'XTATADI (animatsiyа-og'ir market sekinlashmaydi)
+    // YENGIL qism: faqat o'zgargan tugunlar (yangi ekran, matn yangilanishi, img src) — butun hujjat skan qilinmaydi.
+    // SPA ilovalar (Mijoz/Investor) ekran almashganda "ZOOD" matni va zood logolarini qayta chizadi.
+    function lightFix(doc, roots){
+      try{
+        var swapped=false, mono=NAME?NAME.charAt(0).toUpperCase():null;
+        fixTitle(doc);
+        for(var i=0;i<roots.length;i++){ var r=roots[i];
+          if(!r || !r.isConnected) continue;
+          if(r.nodeType===3){ if(NAME) fixText(r); continue; }
+          if(r.nodeType!==1) continue;
+          if(NAME){
+            var w=doc.createTreeWalker(r, NodeFilter.SHOW_TEXT, null, false), n; while(n=w.nextNode()) fixText(n);
+            fixAttrs(r); var els=r.querySelectorAll('['+RENAME_ATTRS.join('],[')+']'); for(var j=0;j<els.length;j++) fixAttrs(els[j]);
+            var leafs=[r].concat([].slice.call(r.querySelectorAll('div,span,b,strong,a,p,h1,h2,h3,h4,em,i')));
+            for(var k=0;k<leafs.length;k++){ var lf=leafs[k]; if(lf.children.length===0 && (lf.textContent||'').trim()==='Z') lf.textContent=mono; }
+          }
+          if(C.logo || C.logoWhite){
+            var ims=(r.nodeName==='IMG')?[r]:r.querySelectorAll('img');
+            for(var m=0;m<ims.length;m++){ if(swapImg(ims[m])) swapped=true; }
+          }
+        }
+        if(swapped) fitBrandLogos(doc);
+      }catch(e){}
+    }
+    // Har hujjatga DEBOUNCE'langan kuzatuvchi — DOM o'zgarganда qayta rangla; SOZLANGACH (settling) og'ir kuzatuv to'xtaydi,
+    // YENGIL kuzatuv (faqat o'zgargan tugunlar) doim qoladi — market sekinlashmaydi, SPA ekranlari esa brendlanadi.
     function observeDoc(doc){
       try{
+        // Bundler ilovalar (Mijoz/Investor) <html>'ni butunlay almashtiradi (documentElement.replaceWith) —
+        // kuzatuvchilar eski elementda qolib ketmasligi uchun yangi ildizni ham brendlaymiz.
+        if(!doc.__zroot){ doc.__zroot=1;
+          new MutationObserver(function(){ var r=doc.documentElement; if(r && !r.__zobs){ themeDoc(doc); observeDoc(doc); if(doc===document) addPricingBar(BASE); } }).observe(doc,{childList:true});
+        }
         var el=doc.documentElement; if(!el || el.__zobs) return; el.__zobs=1;
         var timer=null;
         var mo=new MutationObserver(function(){ if(timer) return; timer=setTimeout(function(){ timer=null; themeDoc(doc);
-          if((doc.documentElement.__zpass||0) > HEAVY_CAP+3){ try{ mo.disconnect(); }catch(e){} } // settling tugadi -> kuzatishni to'xtatamiz
+          if((doc.documentElement.__zpass||0) > HEAVY_CAP+3){ try{ mo.disconnect(); }catch(e){} } // settling tugadi -> faqat yengil kuzatuv qoladi
         }, 250); });
         mo.observe(el,{childList:true,subtree:true});
+        observeLight(doc);
+      }catch(e){}
+    }
+    function observeLight(doc){
+      try{
+        var el=doc.documentElement; if(!el || el.__zlight) return; el.__zlight=1;
+        var pending=[], timer=null;
+        var mo=new MutationObserver(function(recs){
+          for(var i=0;i<recs.length;i++){ var rc=recs[i];
+            if(rc.type==='childList'){ for(var j=0;j<rc.addedNodes.length;j++) pending.push(rc.addedNodes[j]); }
+            else pending.push(rc.target);
+          }
+          if(timer) return;
+          timer=setTimeout(function(){ timer=null; var roots=pending; pending=[]; lightFix(doc, roots); }, 120);
+        });
+        mo.observe(el,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['src'].concat(RENAME_ATTRS)});
       }catch(e){}
     }
 
