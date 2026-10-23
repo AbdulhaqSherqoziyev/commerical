@@ -187,6 +187,7 @@
       }
       return false;
     }
+    var LOGO_BOX_SEL='[class~="logo"],[class*="brandmark"],[class*="logomark"],[class*="applogo"],[class*="brand-logo"],[class*="navbar-brand"]';
     function swapLogos(doc){
       if(!C.logo && !C.logoWhite) return;
       try{
@@ -194,7 +195,7 @@
         var imgs=doc.querySelectorAll('img');
         for(var i=0;i<imgs.length;i++) swapImg(imgs[i]);
         // 2) CSS wordmark/monogramm qutilari (rangli fon + qisqa matn) -> logo rasm; fon shaffof qilinadi (bg bor/yo'q logoga moslashadi)
-        var boxes=doc.querySelectorAll('[class~="logo"],[class*="brandmark"],[class*="logomark"],[class*="applogo"],[class*="brand-logo"],[class*="navbar-brand"]');
+        var boxes=doc.querySelectorAll(LOGO_BOX_SEL);
         for(var k=0;k<boxes.length;k++){ var el=boxes[k];
           // shu quti yonida (konteynerda) allaqachon HAQIQIY <img> logo bormi? bo'lsa -> dublikat: kichik qutini yashiramiz
           var container=el.parentElement, sibImg=false;
@@ -305,7 +306,7 @@
     // SPA ilovalar (Mijoz/Investor) ekran almashganda "ZOOD" matni va zood logolarini qayta chizadi.
     function lightFix(doc, roots){
       try{
-        var swapped=false, mono=NAME?NAME.charAt(0).toUpperCase():null;
+        var needLogos=false, mono=NAME?NAME.charAt(0).toUpperCase():null;
         fixTitle(doc);
         for(var i=0;i<roots.length;i++){ var r=roots[i];
           if(!r || !r.isConnected) continue;
@@ -317,12 +318,13 @@
             var leafs=[r].concat([].slice.call(r.querySelectorAll('div,span,b,strong,a,p,h1,h2,h3,h4,em,i')));
             for(var k=0;k<leafs.length;k++){ var lf=leafs[k]; if(lf.children.length===0 && (lf.textContent||'').trim()==='Z') lf.textContent=mono; }
           }
-          if(C.logo || C.logoWhite){
-            var ims=(r.nodeName==='IMG')?[r]:r.querySelectorAll('img');
-            for(var m=0;m<ims.length;m++){ if(swapImg(ims[m])) swapped=true; }
+          // yangi ekranda logo (img) yoki wordmark-quti (masalan <div class="logo">ZOOD</div>) bo'lsa — to'liq logo almashtirish
+          if((C.logo || C.logoWhite) && !needLogos){
+            var sel='img,'+LOGO_BOX_SEL;
+            if(r.matches(sel) || r.querySelector(sel)) needLogos=true;
           }
         }
-        if(swapped) fitBrandLogos(doc);
+        if(needLogos) swapLogos(doc);
       }catch(e){}
     }
     // Har hujjatga DEBOUNCE'langan kuzatuvchi — DOM o'zgarganда qayta rangla; SOZLANGACH (settling) og'ir kuzatuv to'xtaydi,
