@@ -33,6 +33,16 @@ Manba fayllarda hech qanday brend nomi/logosi yo'q. Tashkilot sahifasi: `https:/
   `brand.js` ularni tashkilot logosiga almashtiradi (yangi chizilgan ekranlarda ham).
 - Yangi sahifa/matn qo'shganda brend nomini qo'lda yozmang — `window.BRAND_NAME` dan foydalaning.
 
+## Do'kon yo'nalishi (katalog)
+
+Super Admin'da tashkilot yaratish/tahrirlashda "Do'kon yo'nalishi" tanlanadi (bir nechtasi mumkin: masalan telefon + maishiy texnika).
+Backend `niches` maydonini saqlaydi va `/api/brand` orqali beradi. `presentation/catalog.js` shu yo'nalishlar bo'yicha
+kategoriyalar, mahsulotlar, bannerlar va SVG rasmlarni yig'adi; mobil market (Glowen) va veb market (`market-catalog.js` orqali)
+shuni ko'rsatadi. Yo'nalish tanlanmagan bo'lsa — standart katalog.
+
+Yangi yo'nalish qo'shish: `catalog.js` (`N.<kalit>` + `ORDER`), `admin/backend/server.js` (`ALLOWED_NICHES`),
+Super Admin ro'yxati (`OrgForm.jsx` `NICHES`).
+
 ## Bo'limlar (modullar)
 
 Tashkilot yaratishda 8 ta bo'lim yoqib/o'chiriladi. O'chirilgani mijoz sahifasida ko'rinmaydi:
