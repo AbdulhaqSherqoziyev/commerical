@@ -6,7 +6,7 @@ export const PRODUCTS = [
   "Mijoz ilovasi",
   "iCAN Mobil",
   "Investor kabineti",
-  "Veb-do'kon (ZOODMALL)",
+  "Veb-do'kon (Market)",
   "Mobil market ilovasi",
   "SMS xabarnoma xizmati",
   "To'lov tizimi integratsiyasi",

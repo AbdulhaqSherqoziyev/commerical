@@ -1,9 +1,9 @@
-/* ZOODMALL desktop market — EN overlay.
+/* Desktop market — EN overlay.
    Prezentatsiya EN tanlaganda market ruscha render bo'ladi (localStorage['glowen-locale']='ru')
-   va localStorage['zood-ui-en']='1' bo'ladi. Bu skript ruscha matnni inglizchaga o'giradi.
+   va localStorage['icb-ui-en']='1' bo'ladi. Bu skript ruscha matnni inglizchaga o'giradi.
    Mahsulot nomlari, brendlar, narxlarga tegmaydi. Build ichiga tegilmaydi. */
 (function(){
-  function active(){ try { return localStorage.getItem('zood-ui-en') === '1'; } catch(e){ return false; } }
+  function active(){ try { return localStorage.getItem('icb-ui-en') === '1'; } catch(e){ return false; } }
   if (!active()) return;
   try { document.documentElement.setAttribute('lang','en'); } catch(e){}
 

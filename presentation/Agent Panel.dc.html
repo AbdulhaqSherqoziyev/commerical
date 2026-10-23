@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
+<script>try{var _b=(function(){try{var b=JSON.parse(localStorage.getItem("icb-brand")||"null"),s=(top.location.pathname.split("/")[1]||"").toLowerCase();return b&&b._slug===s?b:null}catch(e){return null}})();if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -114,7 +114,7 @@ a{color:var(--accent-ink);text-decoration:none}a:hover{color:var(--accent-press)
 
   <aside class="side">
     <div class="sbrand">
-      <img src="zood-logo.png" alt="ZOOD" style="height:26px;width:auto;object-fit:contain;margin-right:auto" />
+      <img src="brand-logo.svg" alt="" style="height:26px;width:auto;object-fit:contain;margin-right:auto" />
       <span class="bfold"><i data-lucide="chevrons-left"></i></span>
     </div>
     <nav class="snav">
@@ -622,7 +622,7 @@ a{color:var(--accent-ink);text-decoration:none}a:hover{color:var(--accent-press)
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ZOOD&quot;,&quot;Изумруд&quot;,&quot;Фиолет&quot;,&quot;Бирюза&quot;],&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZOOD&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;legalName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;ZOOD Pay Uzbekistan&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Brend&quot;,&quot;Изумруд&quot;,&quot;Фиолет&quot;,&quot;Бирюза&quot;],&quot;default&quot;:&quot;Brend&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;},&quot;legalName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;White-label&quot;}}">
 class Component extends DCLogic {
   state = {
     route: 'home',
@@ -713,8 +713,8 @@ class Component extends DCLogic {
   componentWillUnmount() { clearInterval(this._i); clearInterval(this._otp); }
 
   applyTheme() {
-    const map = { 'ZOOD': ['#2E3192','#23276F','#ECEDF7','#282C7D'], 'Изумруд': ['#12A150','#0E8443','#E4F6EC','#0B6B37'], 'Фиолет': ['#7A5AF0','#6544D6','#EEEAFC','#5533B8'], 'Бирюза': ['#14A0B8','#0E7F93','#E4F6F9','#0C6C7D'] };
-    const t = map[this.props.accent] || map['ZOOD']; const r = document.documentElement.style;
+    const map = { 'Brend': ['#2E3192','#23276F','#ECEDF7','#282C7D'], 'Изумруд': ['#12A150','#0E8443','#E4F6EC','#0B6B37'], 'Фиолет': ['#7A5AF0','#6544D6','#EEEAFC','#5533B8'], 'Бирюза': ['#14A0B8','#0E7F93','#E4F6F9','#0C6C7D'] };
+    const t = map[this.props.accent] || map['Brend']; const r = document.documentElement.style;
     r.setProperty('--accent', t[0]); r.setProperty('--accent-press', t[1]); r.setProperty('--accent-soft', t[2]); r.setProperty('--accent-ink', t[3]);
   }
 
@@ -884,7 +884,7 @@ class Component extends DCLogic {
     const faq = faqDefs.map(([qq, aa], i) => ({ q: qq, a: aa, open: s.faqOpen === i, chev: s.faqOpen === i ? 'chevron-up' : 'chevron-down', toggle: () => this.setState({ faqOpen: s.faqOpen === i ? -1 : i }) }));
 
     return {
-      brand: this.props.brandName || 'ZOOD', legal: this.props.legalName || 'ZOOD Pay Uzbekistan', lang: s.lang,
+      brand: this.props.brandName || window.BRAND_NAME || 'iCAN', legal: this.props.legalName || ((window.BRAND_NAME || 'iCAN') + ' MCHJ'), lang: s.lang,
       nav, chart, recent, startSale: () => this.setState({ route: 'sale' }), goSettle: this.go('settle'),
       isHome: s.route === 'home', isSale: s.route === 'sale', isCalc: s.route === 'calc', isSettle: s.route === 'settle',
       isContracts: s.route === 'contracts', isReports: s.route === 'reports', isEmployees: s.route === 'employees', isFaq: s.route === 'faq', isSettings: s.route === 'settings',

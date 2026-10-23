@@ -7,9 +7,10 @@ Ko'p-tenantli (white-label) BNPL / e-commerce **prezentatsiya tizimi**. Har bir 
 ```
 presentation/     Prezentatsiya (statik) — nginx orqali beriladi
   index.html        Asosiy sahifa (DC framework: support.js {{ }} shablonlari)
-  brand.js          Brend theming dvigateli (rang + logo + bo'limlarni yashirish)
-  market/           ZOODMALL market (React build) + demo-backend (login/buyurtma)
-  *.html            Demolar: Agent panel/mobil, Investor, Mijoz, Glowen
+  brand.js          Tashkilot brendi: nom, rang, logo, bo'limlarni yashirish
+  brand-*.svg       Neytral logolar (tashkilot sozlanmagan holat uchun)
+  market/           Market (React build) + demo-backend (login/buyurtma)
+  *.html            Demolar: Agent panel/mobil, Investor Mobil, Mijoz ilova, Glowen
   security.js       Anti-skrinshot / himoya
   watermark.js      Dinamik suv belgisi (MAXFIY)
 
@@ -21,6 +22,16 @@ admin/
 deploy/
   commercial-icanbusiness.uz.nginx   nginx konfiguratsiyasi (wildcard + SSL)
 ```
+
+## Brend (white-label)
+
+Manba fayllarda hech qanday brend nomi/logosi yo'q. Tashkilot sahifasi: `https://commercial.icanbusiness.uz/<slug>/`.
+
+- `brand.js` sahifa chizilishidan **oldin** (sinxron) `/api/brand?sub=<slug>` konfiguratsiyasini oladi va
+  `window.BRAND_NAME`, `window.BRAND_DOMAIN`, `window.BRAND_LOGO` ni beradi — ilovalar nomni shu yerdan o'qiydi.
+- Logolar uchun `brand-logo.svg`, `brand-logo-white.svg`, `brand-mark.svg`, `brand-mark-white.svg` ishlatiladi;
+  `brand.js` ularni tashkilot logosiga almashtiradi (yangi chizilgan ekranlarda ham).
+- Yangi sahifa/matn qo'shganda brend nomini qo'lda yozmang — `window.BRAND_NAME` dan foydalaning.
 
 ## Bo'limlar (modullar)
 

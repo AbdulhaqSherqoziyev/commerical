@@ -2,9 +2,9 @@ const BASE = '/api';
 // Tenant subdomenlar domeni — kelajakda faqat shu qatorni o'zgartiring
 export const DOMAIN = 'commercial-icanbusiness.uz';
 let token = null;
-try { token = localStorage.getItem('zood-admin-token'); } catch(e){}
+try { token = localStorage.getItem('icb-admin-token'); } catch(e){}
 export function getToken(){ return token; }
-export function setToken(t){ token = t; try{ t?localStorage.setItem('zood-admin-token',t):localStorage.removeItem('zood-admin-token'); }catch(e){} }
+export function setToken(t){ token = t; try{ t?localStorage.setItem('icb-admin-token',t):localStorage.removeItem('icb-admin-token'); }catch(e){} }
 async function req(method, path, body){
   const h = { 'Content-Type':'application/json' };
   if(token) h['Authorization'] = 'Bearer '+token;

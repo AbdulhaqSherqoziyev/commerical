@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="uz" class="scroll-smooth">
   <head>
-<script>try{var _th=localStorage.getItem("glowen-theme");if(!_th){_th="light";localStorage.setItem("glowen-theme","light");}if(_th==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");}catch(e){}try{var _b=JSON.parse(localStorage.getItem("zood-brand")||"null");if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
+<script>try{var _th=localStorage.getItem("glowen-theme");if(!_th){_th="light";localStorage.setItem("glowen-theme","light");}if(_th==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");}catch(e){}try{var _b=(function(){try{var b=JSON.parse(localStorage.getItem("icb-brand")||"null"),s=(top.location.pathname.split("/")[1]||"").toLowerCase();return b&&b._slug===s?b:null}catch(e){return null}})();if(_b&&_b.color){var r=document.documentElement.style,c=_b.color,d=_b.color2||c;r.setProperty("--accent",c);r.setProperty("--teal",c);r.setProperty("--accent-2",d);r.setProperty("--teal2",d);r.setProperty("--accent-press",c);r.setProperty("--teald",c);}}catch(e){}</script>
     <meta charset="UTF-8" />
     <style>/* mahsulotlar va banner darrov ko'rinsin (framer-motion reveal'ni bekor qilamiz) — FAQAT CSS, slayder va API'ga tegmaydi */article{opacity:1 !important;transform:none !important}[class*="grid"]>h1,[class*="grid"]>p{opacity:1 !important;transform:none !important}.swiper-slide .max-w-xl>*{opacity:1 !important;transform:none !important}</style>
     <!-- DEMO BACKEND: prezentatsiya uchun butun /api serversiz ishlashi (login, buyurtma, to'lov) -->
@@ -94,17 +94,17 @@
     <meta name="theme-color" content="#141637" media="(prefers-color-scheme: dark)" />
 
     <!-- Primary meta -->
-    <title>ZOODMALL — Premium Online Marketplace</title>
+    <title>Premium Online Marketplace</title>
     <meta
       name="description"
-      content="ZOODMALL — O'zbekistondagi eng zamonaviy premium online marketplace. Original mahsulotlar, tez yetkazib berish va qulay xarid tajribasi."
+      content="O'zbekistondagi eng zamonaviy premium online marketplace. Original mahsulotlar, tez yetkazib berish va qulay xarid tajribasi."
     />
-    <meta name="keywords" content="ZOODMALL, marketplace, online do'kon, O'zbekiston, premium, xarid" />
+    <meta name="keywords" content="marketplace, online do'kon, O'zbekiston, premium, xarid" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ZOODMALL" />
-    <meta property="og:title" content="ZOODMALL — Premium Online Marketplace" />
+    <meta property="og:site_name" content="Marketplace" />
+    <meta property="og:title" content="Premium Online Marketplace" />
     <meta
       property="og:description"
       content="O'zbekistondagi eng zamonaviy premium marketplace. Original mahsulotlar va qulay xarid tajribasi."
@@ -115,14 +115,14 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ZOODMALL — Premium Online Marketplace" />
+    <meta name="twitter:title" content="Premium Online Marketplace" />
     <meta
       name="twitter:description"
       content="O'zbekistondagi eng zamonaviy premium marketplace."
     />
     <meta name="twitter:image" content="/og-image.png" />
 
-    <!-- Fonts: Nunito Sans (ZOOD dizayn tizimi — display ham, body ham) -->
+    <!-- Fonts: Nunito Sans (dizayn tizimi — display ham, body ham) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -152,12 +152,12 @@
   <body>
     <div id="root"></div>
   <script>
-/* ZOODMALL desktop market — EN overlay.
+/* Desktop market — EN overlay.
    Prezentatsiya EN tanlaganda market ruscha render bo'ladi (localStorage['glowen-locale']='ru')
-   va localStorage['zood-ui-en']='1' bo'ladi. Bu skript ruscha matnni inglizchaga o'giradi.
+   va localStorage['icb-ui-en']='1' bo'ladi. Bu skript ruscha matnni inglizchaga o'giradi.
    Mahsulot nomlari, brendlar, narxlarga tegmaydi. Build ichiga tegilmaydi. */
 (function(){
-  function active(){ try { return localStorage.getItem('zood-ui-en') === '1'; } catch(e){ return false; } }
+  function active(){ try { return localStorage.getItem('icb-ui-en') === '1'; } catch(e){ return false; } }
   if (!active()) return;
   try { document.documentElement.setAttribute('lang','en'); } catch(e){}
 
