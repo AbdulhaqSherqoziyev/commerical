@@ -204,6 +204,29 @@
   }).observe(document,{childList:true});
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', function(){ brandNode(document.documentElement); setTitle(document); });
 
+  // ---- ESKI KESH: brauzer eski (ZOOD'li) HTML/JS nusxasini keshdan bergan bo'lsa — fayllarni keshni chetlab
+  // qayta yuklab, sahifani bir marta yangilaymiz (sessiyada bir marta; brand.js o'zi hech qachon keshlanmaydi) ----
+  var STALE_RE = /zood-(logo|mark|brand|prez)|ZOODMALL|panel\.zood\.uz/;
+  function healStale(){
+    try{
+      // har bir sahifa (iframe'lar ham) o'zini alohida tuzatadi — sessionStorage bir saytdagi oynalar uchun umumiy
+      // (bir xil manzilli iframe bir sahifada bir necha marta bo'lishi mumkin — tartib raqami ham kalitda)
+      var fi = -1; try { if(window.frameElement) fi = [].indexOf.call(window.parent.document.querySelectorAll('iframe'), window.frameElement); } catch(e){}
+      var key = 'icb-heal:' + location.pathname + location.search + '#' + fi;
+      if(sessionStorage.getItem(key)) return;
+      var html = document.documentElement ? document.documentElement.outerHTML : '';
+      var text = document.body ? document.body.innerText : '';
+      if(!STALE_RE.test(html) && !/\bZOOD\b/.test(text)) return;
+      sessionStorage.setItem(key, '1');
+      var urls = [location.href];
+      var els = document.querySelectorAll('script[src],link[rel="stylesheet"][href],link[rel="modulepreload"][href],iframe[src]');
+      for(var i=0;i<els.length;i++){ var u = els[i].src || els[i].href; if(u && u.indexOf(location.origin)===0) urls.push(u); }
+      Promise.all(urls.map(function(u){ return fetch(u, { cache:'reload', credentials:'same-origin' }).catch(function(){}); }))
+        .then(function(){ location.reload(); });
+    }catch(e){}
+  }
+  window.addEventListener('load', function(){ healStale(); setTimeout(healStale, 2500); });
+
   // ---- BO'LIMLAR (modullar): yoqilmagan bo'limlarni yashirish (faqat asosiy sahifa) ----
   if(isTop){
     try{

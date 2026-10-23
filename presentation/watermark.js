@@ -24,7 +24,8 @@
   }
 
   function org() {
-    try { var b = JSON.parse(localStorage.getItem('icb-brand') || 'null'); if (b && b.name) return String(b.name).toUpperCase(); } catch (e) {}
+    // joriy sahifaning tashkiloti (brand.js beradi) — boshqa do'kon keshidan emas
+    try { if (window.BRAND && window.BRAND.name) return String(window.BRAND.name).toUpperCase(); } catch (e) {}
     return 'ICAN BUSINESS';
   }
 
