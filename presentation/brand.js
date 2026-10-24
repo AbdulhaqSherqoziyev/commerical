@@ -139,6 +139,8 @@
       // asosiy sahifada (iframe emas) logoga kattaroq joy; iframe ichidagi app header'lari ixcham
       var inFrame=false; try{ inFrame=!!vw.frameElement; }catch(e){}
       var TH=inFrame?33:48, TW=inFrame?150:200;
+      // mobil ilova header'i (.brandmark) — yonida matn va tugmalar bor, logo ixcham bo'lsin
+      if(img.closest && img.closest('.brandmark')){ TH=32; TW=110; }
       var H=Math.round(Math.max(22, Math.min(220, TH/scale)));
       var MW=Math.round(Math.max(80, Math.min(600, TW/scale))), FILL=0.9;
       if(!slot){ slot=cdoc.createElement('span'); slot.setAttribute('data-zlogoslot','1'); img.parentNode.insertBefore(slot,img); slot.appendChild(img); }
